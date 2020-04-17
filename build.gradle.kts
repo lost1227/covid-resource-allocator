@@ -13,27 +13,12 @@ plugins {
     // Apply the application plugin to add support for building a CLI application.
     application
     
-    id("org.sonarqube") version "2.7.1"
+    id("org.sonarqube") version "2.8"
 }
 
-sonarqube {
-    properties {
-        property("sonar.projectKey", "lost1227_covid-resource-allocator")
-        property("sonar.projectName", "covid-resource-allocator")
-        
-        property("sonar.links.homepage", "https://github.com/lost1227/covid-resource-allocator")
-        property("sonar.links.ci", "https://travis-ci.org/github/lost1227/covid-resource-allocator")
-        property("sonar.links.scm", "https://github.com/lost1227/covid-resource-allocator")
-        property("sonar.links.issue", "https://github.com/lost1227/covid-resource-allocator/issues")
-        
-        property("sonar.host.url", "https://sonarcloud.io")
-        property("sonar.organization", "lost1227")
-        property("sonar.language", "java")
-        
-        property("sonar.java.source", "1.8")
-        
-        property("sonar.verbose", "true")
-    }
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 repositories {
