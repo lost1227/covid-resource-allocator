@@ -13,7 +13,7 @@ plugins {
     // Apply the application plugin to add support for building a CLI application.
     application
     
-    id("org.sonarqube") version "2.8"
+    id("org.sonarqube") version "2.7.1"
 }
 
 sonarqube {
@@ -28,11 +28,9 @@ sonarqube {
         
         property("sonar.host.url", "https://sonarcloud.io")
         property("sonar.organization", "lost1227")
-        property("sonar.sources", "src")
         property("sonar.language", "java")
         
         property("sonar.java.source", "1.8")
-        property("sonar.java.binaries", ".")
         
         property("sonar.verbose", "true")
     }
