@@ -1,3 +1,12 @@
 language: java
 jdk:
 - openjdk8
+
+addons:
+  sonarcloud:
+    organization: "lost1227"
+    token:
+      secure: "XAHVWQYl/2xZhKP2PjlGsNfbVzItFWJSvq0DjtjWFlxL7tIp/MILGst6ceMmayybzgumfLjOryBVvySKhTvFnyvHhcei2XJGbHQvyHYZc1++6RXDw1aSj98puRtuTId538AAGxfaCeZ+DFbuUo0Ax8V2vlhz+5daRN6ovo6V4ATfNzIPvd+1uCzpxr+T35poBUz+JYRJNrMnxwDNknqMOxc5UKN6azlGHqgMT4xbj3yrVcSAIIqNepylQqn8asWZmfc9shHVRpbotk6UAsfQsIlGGsYfHX4AZE8wTIaEwrsdUTfuQAvajLZWqcuxe4WXRfjjGr0CDb56ifpOPXd4olb9m5Sg3pfQ+RvZiCIWQ6wJ3wwcg5Bu4RrwR8dtP/JynWB7gHfg/3yYoydwH4WKUxoN43e0k/Q16FOBQFM5IUZQFiH4DGB/nJDViV05y+4VbPBDosoqs1ZoB+7nt9SXeX0h3UUzyzNry4ndrH4w0chcF/EjE+lunLB26dfG7H9gGRefvk77p0virHOlghW+8z6Z4Vh8U2qSmArarI8gpcf+61HQv5ULK33b4Nn6ie0PzD2cEZ8G6Bu2YLPGX2bh5zgLh7RmJItfvqHTS0mpaYXl9foCjwPn9U1p1C0ZNx+0vDS9suI12JdTj6an/D2cPXzevRJM+IHPzcH94jM5ijM="
+
+script:
+- ./gradlew sonarqube
