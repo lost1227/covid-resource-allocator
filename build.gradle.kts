@@ -14,6 +14,7 @@ plugins {
     application
     
     id("org.sonarqube") version "2.8"
+    id("jacoco")
 }
 
 java {
@@ -52,4 +53,14 @@ sonarqube {
         property("sonar.links.scm", "https://github.com/lost1227/covid-resource-allocator")
         property("sonar.links.issue", "https://github.com/lost1227/covid-resource-allocator/issues")
     }
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.isEnabled = true
+    }
+}
+
+plugins.withType(JacocoPlugin::class.java) {
+    tasks["test"].finalizedBy("jacocoTestReport")
 }
