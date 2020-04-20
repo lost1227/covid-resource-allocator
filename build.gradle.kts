@@ -39,3 +39,17 @@ application {
     // Define the main class for the application.
     mainClassName = "edu.calpoly.csc_308.cora.App"
 }
+
+sonarqube {
+    properties {
+        property("sonar.projectKey", "lost1227_covid-resource-allocator")
+        property("sonar.organization", "lost1227")
+        property("sonar.host.url", "https://sonarcloud.io")
+
+        property("sonar.projectName", "covid-resource-allocator")
+        property("sonar.links.homepage", "https://github.com/lost1227/covid-resource-allocator")
+        property("sonar.links.ci", "https://travis-ci.org/github/lost1227/covid-resource-allocator")
+        property("sonar.links.scm", "https://github.com/lost1227/covid-resource-allocator")
+        property("sonar.links.issue", "https://github.com/lost1227/covid-resource-allocator/issues")
+    }
+}
