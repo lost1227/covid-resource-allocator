@@ -25,6 +25,26 @@ task packageNpmApp(type: Zip) {
     }
 }
 
+sonarqube {
+    properties {
+        property "sonar.sources", "src"
+        property "sonar.tests", "src"
+        property "sonar.exclusions", "**/*.spec.ts,src/test.ts,src/main.ts,**/*.prod.ts"
+        property "sonar.test.inclusions", "**/*.spec.js"
+        property "sonar.javascript.lcov.reportPaths", "coverage/ng-cora/lcov.info"
+    }
+}
+
+npm_run_test {
+    args = ['--', '--no-watch', '--no-progress', '--browsers=ChromeHeadlessCI']
+}
+
+npm_run_e2e {
+    args = ['--', '--protractor-config=e2e/protractor-ci.conf.js']
+}
+
+project.parent.tasks["sonarqube"].dependsOn "ui:npm_run_test", "ui:npm_run_e2e"
+
 configurations {
     npmResources
 }
