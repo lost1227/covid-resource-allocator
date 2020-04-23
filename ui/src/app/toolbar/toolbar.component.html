@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" id="toolbar">
+    <div id="toolbar-right">
+        <span>COVID Resource Allocator</span>
+    </div>
+    <div id="toolbar-mid">
+
+        <button *ngFor="let option of Options" mat-button>
+            <span [ngClass]="(option == selectedOption) ? ['nav-button', 'nav-button-selected'] : ['nav-button']">{{option}}</span>
+        </button>
+    </div>
+    <div id="toolbar-left">
+        <span>{{user.name}}</span>
+        <button mat-icon-button aria-label="Open menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+</mat-toolbar>
