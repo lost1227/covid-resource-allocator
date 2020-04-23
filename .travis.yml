@@ -18,3 +18,5 @@ cache:
     - '$HOME/.sonar/cache'
     - '$HOME/.gradle'
     - '.gradle'
+    - 'ui/.gradle'
+    - 'ui/node_modules'
