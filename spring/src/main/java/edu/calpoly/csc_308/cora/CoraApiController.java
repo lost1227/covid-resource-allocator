@@ -5,20 +5,20 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.calpoly.csc_308.cora.data.Task;
-import edu.calpoly.csc_308.cora.data.TaskRepository;
+import edu.calpoly.csc_308.cora.data.VolunteerTask;
+import edu.calpoly.csc_308.cora.data.VolunteerTaskRepository;
 
 @RestController
 public class CoraApiController {
 
-    private final TaskRepository repo;
+    private final VolunteerTaskRepository repo;
 
-    CoraApiController(TaskRepository repo) {
+    CoraApiController(VolunteerTaskRepository repo) {
         this.repo = repo;
     }
     
     @GetMapping("/api/tasks")
-    public List<Task> getTasks() {
+    public List<VolunteerTask> getVolunteerTasks() {
         return repo.findAll();
     }
 

@@ -8,18 +8,25 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Task {
+public class VolunteerTask {
     public @Id @GeneratedValue Long id;
     
     public String name;
     public String location;
+    
+    public Integer need;
+
     public String description;
 
-    public Task() {};
+    public String taskOwner;
 
-    public Task(String name, String location, String description) {
+    public VolunteerTask() {};
+
+    public VolunteerTask(String name, String location, Integer need, String description, String taskOwner) {
         this.name = name;
         this.location = location;
+        this.need = need;
         this.description = description;
+        this.taskOwner = taskOwner;
     }
 }

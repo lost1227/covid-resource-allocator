@@ -13,19 +13,23 @@ public class LoadDatabase {
     Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(TaskRepository repository) {
+    CommandLineRunner initDatabase(VolunteerTaskRepository repository) {
         return args -> {
             logger.info("Preloading " + repository.save(
-                new Task(
+                new VolunteerTask(
                     "Supply Collector",
                      "Long Beach, CA",
-                     "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities."
+                     1,
+                     "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
+                     "Memorialcare Health System"
                 )));
                 logger.info("Preloading " + repository.save(
-                new Task(
+                new VolunteerTask(
                     "Pamphlet Designer",
-                        "Long Beach, CA",
-                        "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic."
+                    "Long Beach, CA",
+                    0,
+                    "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
+                    "Blue Shield of California"
                 )));
         };
     }
