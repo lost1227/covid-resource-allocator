@@ -19,4 +19,11 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public getOptionClass(option : string) : string[] {
+    if(option == this.selectedOption) {
+      return ["nav-button", "nav-button-selected"]
+    } else {
+      return ["nav-button"]
+    }
+  }
 }

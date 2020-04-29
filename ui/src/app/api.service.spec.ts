@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { ApiService } from './api.service';
+import { ApiService, VolunteerFilter } from './api.service';
 
 describe('ApiService', () => {
   let injector: TestBed;
@@ -46,7 +46,7 @@ describe('ApiService', () => {
       }
     ];
     
-    service.getVolunteerTasks(new ApiService.VolunteerFilter(false, false, false)).subscribe(tasks => {
+    service.getVolunteerTasks(new VolunteerFilter(false, false, -1)).subscribe(tasks => {
       expect(tasks.length).toBe(dummyTasks.length);
       expect(tasks).toEqual(dummyTasks);
     });

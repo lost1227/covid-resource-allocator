@@ -5,7 +5,7 @@
     <div id="toolbar-mid">
 
         <button *ngFor="let option of Options" mat-button>
-            <span [ngClass]="(option == selectedOption) ? ['nav-button', 'nav-button-selected'] : ['nav-button']">{{option}}</span>
+            <span [ngClass]="getOptionClass(option)">{{option}}</span>
         </button>
     </div>
     <div id="toolbar-left">
