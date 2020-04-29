@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { ApiService, VolunteerFilter } from './api.service';
+import { ApiService, VolunteerFilter } from '@app/api.service';
 
 describe('ApiService', () => {
   let injector: TestBed;
