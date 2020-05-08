@@ -16,7 +16,7 @@ public class CoraApiController {
         public Boolean matchSkillset;
         public Boolean highNeed;
         public Integer locationDistance;
-    }
+    } 
 
     private final VolunteerTaskRepository repo;
 
