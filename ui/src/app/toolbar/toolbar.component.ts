@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef,ViewChild } from '@angular/core';
 
 
 @Component({
@@ -10,7 +10,6 @@ export class ToolbarComponent implements OnInit {
   user = {
     name: "Jordan Powers"
   }
-
   public Options = ["Volunteers", "Supplies"]
   @Input('selected') selectedOption : string;
 

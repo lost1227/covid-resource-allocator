@@ -12,13 +12,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TaskListComponent } from '@app/volunteer/task-list/task-list.component';
 import { TaskItemComponent } from '@app/volunteer/task-item/task-item.component';
+import { PostComponent } from './post/post.component';
+import { SuppliesListComponent } from '@app/supplies/supplies-list/supplies-list.component';
+import { SupplyComponent } from './supplies/supply/supply.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
     TaskListComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    PostComponent,
+    SuppliesListComponent,
+    SupplyComponent
   ],
   imports: [
     BrowserModule,

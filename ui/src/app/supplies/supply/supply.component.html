@@ -1,0 +1,13 @@
+<div class="supply">
+    <div class="task-image-box">
+        <img class="task-image" src="/assets/placeholder.png" alt="placeholder">
+    </div>
+    <div class="task-details">
+        <p class="task-title">{{task.name}}</p>
+        <p class="task-description">{{task.description}}</p>
+    </div>
+    <div class="task-misc">
+        <p class="task-loc">{{task.location}}</p>
+        <p [ngClass]="getClass()">{{getNeedDesc()}}</p>
+    </div>
+</div>
