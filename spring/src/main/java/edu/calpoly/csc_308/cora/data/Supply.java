@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class Request {
+public class Supply {
     public @Id @GeneratedValue Long id;
     
     public String name;
@@ -18,15 +18,15 @@ public class Request {
 
     public String description;
 
-    public String requestOwner;
+    public String taskOwner;
 
-    public Request() {};
+    public Supply() {};
 
-    public Request(String name, String location, Integer need, String description, String taskOwner) {
+    public Supply(String name, String location, Integer need, String description, String taskOwner) {
         this.name = name;
         this.location = location;
         this.need = need;
         this.description = description;
-        this.requestOwner = taskOwner;
+        this.taskOwner = taskOwner;
     }
 }

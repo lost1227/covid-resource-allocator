@@ -33,4 +33,16 @@ public class LoadDatabase {
                 )));
         };
     }
+    CommandLineRunner initSupplyDatabase(SupplyRepository repository) {
+        return args -> {
+            logger.info("Preloading " + repository.save(
+                new Supply(
+                    "KN-95 Masks",
+                    "Tempe, AZ",
+                    1,
+                    "In need of extra KN-95 medical grade masks.",
+                    "Local Clinic ACME"
+                )));
+        };
+    }
 }
