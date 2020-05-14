@@ -8,9 +8,9 @@ import { Component, OnInit, Input, ElementRef,ViewChild } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
   user = {
-    name: "Jordan Powers"
+    name: "Raymond Lenz"
   }
-  public Options = ["Volunteers", "Supplies"]
+  public Options = ["Volunteers", "Supplies","New Post"]
   @Input('selected') selectedOption : string;
 
   constructor() { }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService, VolunteerFilter, VolunteerTask } from '@app/api.service';
+import { ApiService, SupplyFilter, Supply } from '@app/api.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 })
 export class SuppliesListComponent implements OnInit {
 
-  tasks : Observable<VolunteerTask[]>
+  supplies : Observable<Supply[]>
 
   constructor(private api : ApiService) { }
 
   ngOnInit(): void {
-    this.tasks = this.api.getVolunteerTasks(new VolunteerFilter(false, false, -1));
+    this.supplies = this.api.getVolunteerTasks(new SupplyFilter(false, false, -1));
   }
 }

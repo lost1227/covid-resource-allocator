@@ -8,7 +8,7 @@ import { Supply } from '@app/api.service'
 })
 export class SupplyComponent implements OnInit {
 
-  @Input() task : Supply
+  @Input() supply : Supply
 
   constructor() { }
 
@@ -16,7 +16,7 @@ export class SupplyComponent implements OnInit {
   }
 
   getClass() : string[] {
-    switch(this.task.need) {
+    switch(this.supply.need) {
       case 0:
         return ["supply-need", "supply-need-low"]
       case 1:
@@ -27,7 +27,7 @@ export class SupplyComponent implements OnInit {
   }
 
   getNeedDesc() : string {
-    switch(this.task.need) {
+    switch(this.supply.need) {
       case 0:
         return "Low need"
       case 1:
