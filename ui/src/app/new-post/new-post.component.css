@@ -1,0 +1,203 @@
+/* Frame 12 */
+form.box{
+position: absolute;
+width: 400px;
+height: 88px;
+left: 470px;
+top: 100px;
+}
+
+/* Task Title */
+label.title{
+position: absolute;
+width: 104px;
+height: 28px;
+left: 0px;
+top: 0px;
+
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+
+/* Rectangle 25 */
+input.titletext{
+position: absolute;
+width: 400px;
+height: 30px;
+left: 0px;
+top: 30px;
+}
+
+form.description{
+position: absolute;
+width: 400px;
+height: 88px;
+left: 470px;
+top: 190px;
+}
+
+/* Task Title */
+label.description{
+position: absolute;
+width: 104px;
+height: 28px;
+left: 0px;
+top: 0px;
+
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+
+/* Rectangle 25 */
+textarea.desctext{
+position: absolute;
+width: 400px;
+height: 175px;
+left: 0px;
+top: 30px;
+}
+
+img.add-image {
+
+position: absolute;
+width: 300px;
+height: 300px;
+left: 150px;
+top: 100px;
+
+/* Light Grey */
+background: #D9D9D9;
+}
+
+/* Accept button */
+button.create-button{
+position: absolute;
+width: 536px;
+height: 78px;
+left: 470px;
+top: 460px;
+
+/* Rectangle 15 */
+
+position: absolute;
+width: 630px;
+height: 78px;
+left: 460px;
+top: 420px;
+
+/* Secondary Accent */
+background: #007048;
+border-radius: 30px;
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 36px;
+line-height: 42px;
+
+color: #FFFFFF;
+}
+
+/*Location*/
+form.location{
+    position: absolute;
+    width: 400px;
+    height: 88px;
+    left: 920px;
+    top: 100px;
+    }
+    
+    /* Task Title */
+label.location{
+    position: absolute;
+    width: 104px;
+    height: 28px;
+    left: 0px;
+    top: 0px;
+    
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    display: flex;
+    align-items: center;
+    
+    color: #000000;
+}
+    
+    
+    /* Rectangle 25 */
+input.locationtext{
+    position: absolute;
+    width: 150px;
+    height: 30px;
+    left: 0px;
+    top: 30px;
+}
+/*need*/
+/* Need */
+label.need{
+position: absolute;
+width: 57px;
+height: 28px;
+left: 920px;
+top: 190px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+text-align: right;
+
+color: #000000;
+}
+select.need-drop{
+position: absolute;
+width: 90px;
+height: 35px;
+left: 920px;
+top: 220px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 28px;
+display: flex;
+align-items: center;
+text-align: right;
+
+color: #000000;
+}
+
+
+
+
+
+
+
+
+
+
