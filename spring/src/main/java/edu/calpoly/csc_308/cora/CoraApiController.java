@@ -36,7 +36,7 @@ public class CoraApiController {
     public List<VolunteerTask> getVolunteerTasks(@RequestBody VolunteerFiltersRequestModel request ) {
         return repo.findAll();
     }
-    @PostMapping("/api/supplies")
+    @PostMapping("/api/supp")
     public List<Supply> getSupplies(@RequestBody SupplyFiltersRequestModel request ) {
         return supplyrepo.findAll();
     }

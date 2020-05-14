@@ -14,6 +14,6 @@ export class SuppliesListComponent implements OnInit {
   constructor(private api : ApiService) { }
 
   ngOnInit(): void {
-    this.supplies = this.api.getVolunteerTasks(new SupplyFilter(false, false, -1));
+    this.supplies = this.api.getSuppliesList(new SupplyFilter(false, false, -1));
   }
 }

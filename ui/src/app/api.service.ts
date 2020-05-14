@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 
 import { Observable} from 'rxjs';
-import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,7 @@ export class ApiService {
     return this.http.post<VolunteerTask[]>("/api/tasks", filters)
   }
   getSuppliesList(filters : SupplyFilter) : Observable<Supply[]> {
-    return this.http.post<Supply[]>("/api/tasks", filters)
+    return this.http.post<Supply[]>("/api/supp", filters)
   }
 }
 

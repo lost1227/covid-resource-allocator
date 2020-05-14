@@ -33,9 +33,11 @@ public class LoadDatabase {
                 )));
         };
     }
-    CommandLineRunner initSupplyDatabase(SupplyRepository repository) {
+    Logger logger1 = LoggerFactory.getLogger(LoadDatabase.class);
+    @Bean
+    CommandLineRunner initSupplyDatabase(SupplyRepository supplyrepository) {
         return args -> {
-            logger.info("Preloading " + repository.save(
+            logger1.info("Preloading " + supplyrepository.save(
                 new Supply(
                     "KN-95 Masks",
                     "Tempe, AZ",

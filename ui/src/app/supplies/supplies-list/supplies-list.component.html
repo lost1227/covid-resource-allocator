@@ -1,1 +1,2 @@
 <app-toolbar selected="Supplies"></app-toolbar>
+<app-supply *ngFor="let supply of supplies | async" [supply]="supply"></app-supply>
