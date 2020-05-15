@@ -1,4 +1,4 @@
-package edu.calpoly.csc_308.cora.data;
+package edu.calpoly.csc_308.cora.data.tasks;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class LoadDatabase {
+public class TaskConfig {
 
-    Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
+    Logger logger = LoggerFactory.getLogger(TaskConfig.class);
 
     @Bean
     CommandLineRunner initDatabase(VolunteerTaskRepository repository) {

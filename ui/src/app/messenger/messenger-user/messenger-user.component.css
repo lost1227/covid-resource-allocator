@@ -1,0 +1,25 @@
+div.maindiv {
+    display: flex;
+    padding: 10px;
+
+    align-items: center;
+}
+
+img.thumb {
+    width: 50px;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    border-radius: 10px;
+}
+
+p.name {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+
+    padding: 0px 0px 0px 10px;
+    margin: 0px;
+}

@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.calpoly.csc_308.cora.data.VolunteerTask;
-import edu.calpoly.csc_308.cora.data.VolunteerTaskRepository;
+import edu.calpoly.csc_308.cora.data.tasks.VolunteerTask;
+import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskRepository;
 
 @RestController
 public class CoraApiController {

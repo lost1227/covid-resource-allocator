@@ -1,4 +1,4 @@
-package edu.calpoly.csc_308.cora.data;
+package edu.calpoly.csc_308.cora.data.tasks;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
