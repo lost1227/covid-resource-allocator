@@ -38,12 +38,13 @@ public class MessengerAPI {
     public ResponseModel postMessage(@RequestBody SendMessageRequestModel messageRequest) {
         logger.info("postMessage: {}", messageRequest);
 
-        Message message = new Message();
-        message.messageText = messageRequest.messageText;
-        message.sender = this.auth.getUIDforKey(messageRequest.authToken);
-        message.receiver = messageRequest.receiverId;
-        message.sentTs = System.currentTimeMillis();
+        Long id = this.auth.getUIDforKey(messageRequest.authToken);
+        if(id.equals(messageRequest.receiverId)) {
+            throw new IllegalArgumentException("Cannot message self");
+        }
 
+        Message message = new Message(-1L, this.auth.getUIDforKey(messageRequest.authToken), messageRequest.receiverId, messageRequest.messageText, System.currentTimeMillis());
+        
         mess.postMessage(message);
         return new SuccessResponse();
     }

@@ -22,21 +22,12 @@ public class Messenger {
     }
 
     private MessageDAO convertMessageDAO(Message message) {
-        MessageDAO dao = new MessageDAO();
-        dao.messageText = message.messageText;
-        dao.receiver = message.receiver;
-        dao.sender = message.sender;
-        dao.sentTs = message.sentTs;
+        MessageDAO dao = new MessageDAO(message.sender, message.receiver, message.messageText, message.sentTs);
         return dao;
     }
 
     private Message convertMessage(MessageDAO dao) {
-        Message message = new Message();
-        message.messageText = dao.messageText;
-        message.receiver = dao.receiver;
-        message.sender = dao.sender;
-        message.sentTs = dao.sentTs;
-
+        Message message = new Message(dao.id, dao.sender, dao.receiver, dao.messageText, dao.sentTs);
         return message;
     }
 

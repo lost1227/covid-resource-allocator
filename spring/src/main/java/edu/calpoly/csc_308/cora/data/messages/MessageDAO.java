@@ -14,4 +14,13 @@ public class MessageDAO {
     public String messageText;
 
     public Long sentTs;
+
+    public MessageDAO() {}
+
+    public MessageDAO(Long sender, Long receiver, String messageText, Long sentTs) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.messageText = messageText;
+        this.sentTs = sentTs;
+    }
 }

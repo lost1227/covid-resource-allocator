@@ -18,6 +18,12 @@ export class UserinfoApiService extends ApiService {
     params = params.append("id", String(id));
     return super.verifyResponse(this.http.get<UserInfoResponseModel>("/api/user/info", { params: params }));
   }
+
+  findUsersByName(name : string) : Observable<FindUsersResponseModel> {
+    let params = new HttpParams();
+    params = params.append("name", name);
+    return super.verifyResponse(this.http.get<FindUsersResponseModel>("/api/user/find", { params: params }));
+  }
 }
 
 export interface UserInfoResponseModel extends ResponseModel {
@@ -26,5 +32,9 @@ export interface UserInfoResponseModel extends ResponseModel {
   location : string;
   userType : string;
   description : string;
-  skillset : string;
+  skillset : string[];
+}
+export interface FindUsersResponseModel extends ResponseModel {
+  query : String,
+  users : UserInfoResponseModel[]
 }

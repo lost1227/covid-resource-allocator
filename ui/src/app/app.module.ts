@@ -18,6 +18,7 @@ import { TaskItemComponent } from '@app/volunteer/task-item/task-item.component'
 import { MessengerComponent } from '@app/messenger/messenger.component';
 import { MessengerUserComponent } from '@app/messenger/messenger-user/messenger-user.component';
 import { MessengerChatComponent } from '@app/messenger/messenger-chat/messenger-chat.component';
+import { MessengerNewConversationComponent } from '@app/messenger/messenger-new-conversation/messenger-new-conversation.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MessengerChatComponent } from '@app/messenger/messenger-chat/messenger-
     TaskItemComponent,
     MessengerComponent,
     MessengerUserComponent,
-    MessengerChatComponent
+    MessengerChatComponent,
+    MessengerNewConversationComponent
   ],
   imports: [
     BrowserModule,

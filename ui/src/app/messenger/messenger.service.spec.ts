@@ -19,7 +19,7 @@ describe('MessengerService', () => {
         location : "someplace",
         userType : "volunteer",
         description : "",
-        skillset : "unskilled"
+        skillset : ["unskilled"]
       })
     }
   }

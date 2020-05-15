@@ -46,6 +46,22 @@ export class MessengerService {
     ))
   }
 
+  searchUser(name : string) : Observable<MessageUser[]> {
+    const uid = this.login.getLoggedInUserId();
+    return this.userapi.findUsersByName(name).pipe(
+      map(result => result.users.filter( userinfo => userinfo.id != uid)
+                                .map( userinfo => new MessageUser(userinfo.id, userinfo.name)))
+    );
+  }
+
+  newConversation(user : MessageUser) {
+    // TODO: assert no preexisting conversation
+    this.getMessageUser(this.login.getLoggedInUserId()).subscribe( senderuser => {
+      const newConversation = new Conversation(senderuser, user, []);
+      this.selectedConversation.next(newConversation);
+    })
+  }
+
   public selectedConversation = new Subject<Conversation>()
 
 }

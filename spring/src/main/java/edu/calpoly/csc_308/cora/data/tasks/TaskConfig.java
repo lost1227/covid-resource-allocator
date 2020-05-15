@@ -13,7 +13,7 @@ public class TaskConfig {
     Logger logger = LoggerFactory.getLogger(TaskConfig.class);
 
     @Bean
-    CommandLineRunner initDatabase(VolunteerTaskRepository repository) {
+    CommandLineRunner initTasks(VolunteerTaskRepository repository) {
         return args -> {
             logger.info("Preloading " + repository.save(
                 new VolunteerTask(

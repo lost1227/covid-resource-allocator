@@ -12,6 +12,6 @@ export class LoginManagerService {
   }
 
   public getLoggedInUserId() : number {
-    return 2;
+    return 5;
   }
 }

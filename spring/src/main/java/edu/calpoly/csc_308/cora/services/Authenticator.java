@@ -11,7 +11,7 @@ public class Authenticator {
 
     public Authenticator() {
         // TODO: Implement authentication logic
-        loggedinUsers.put("abc123", 2L);
+        loggedinUsers.put("abc123", 5L);
     }
 
     public Long getUIDforKey(String key) {
