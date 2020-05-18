@@ -26,7 +26,7 @@ describe('TaskListComponent', () => {
           "location": "Long Beach, CA",
           "need": 0,
           "description": "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
-          "taskOwner": "Blue Shield of California"
+          "taskOwner": "Memorialcare Health System" 
         }
       ]);
     }

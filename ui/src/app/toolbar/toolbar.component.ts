@@ -8,8 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
   user = {
-    name: "Jordan Powers"
+    name: "Ryan Madamba"
   }
+  text : String = null;
 
   public Options = ["Volunteers", "Supplies"]
   @Input('selected') selectedOption : string;
@@ -26,4 +27,6 @@ export class ToolbarComponent implements OnInit {
       return ["nav-button"]
     }
   }
+
+  value = '...';
 }

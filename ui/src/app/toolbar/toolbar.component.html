@@ -1,17 +1,45 @@
 <mat-toolbar color="primary" id="toolbar">
-    <div id="toolbar-right">
-        <span>COVID Resource Allocator</span>
-    </div>
-    <div id="toolbar-mid">
+    <mat-toolbar-row>
+        <div id="toolbar-right">
+            <span>COVID Resource Allocator</span>
+        </div>
 
-        <button *ngFor="let option of Options" mat-button>
-            <span [ngClass]="getOptionClass(option)">{{option}}</span>
-        </button>
-    </div>
-    <div id="toolbar-left">
-        <span>{{user.name}}</span>
-        <button mat-icon-button aria-label="Open menu">
-            <mat-icon>menu</mat-icon>
-        </button>
-    </div>
+        <span class="example-spacer"></span>
+        <div id="toolbar-mid">
+
+            <button *ngFor="let option of Options" mat-button>
+                <span [ngClass]="getOptionClass(option)">{{option}}</span>
+            </button>
+        </div>
+        <span class="example-spacer"></span>
+        <div id="toolbar-left">
+            <span class="example-fill-remaining-space"></span>
+            <span>{{user.name}}</span>
+            <button mat-icon-button aria-label="Open menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar-row>
+<mat-toolbar-row>
+<button mat-button [matMenuTriggerFor]="menu">Filters</button>
+<mat-menu #menu="matMenu">
+    <mat-checkbox>High Need</mat-checkbox>
+    <br>
+    <mat-checkbox>Match my Skillset</mat-checkbox>
+</mat-menu>
+
+<span class="example-spacer"></span>
+
+<mat-form-field class="example-form-field">
+  <mat-label>Enter keywords</mat-label>
+  <input matInput type="text" [(ngModel)]="value">
+  <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+</mat-toolbar-row>
 </mat-toolbar>
+
+
+
