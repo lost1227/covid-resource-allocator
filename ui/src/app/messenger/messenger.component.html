@@ -1,9 +1,9 @@
-<mat-sidenav-container>
-    <mat-sidenav mode="side" opened>
+<div class="maindiv">
+    <div class="sidebar">
         <app-messenger-new-conversation></app-messenger-new-conversation>
         <app-messenger-user *ngFor="let conversation of conversations" [conversation]="conversation"></app-messenger-user>
-    </mat-sidenav>
-    <mat-sidenav-content>
+    </div>
+    <div class="mainpanel">
         <app-messenger-chat></app-messenger-chat>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+    </div>
+</div>

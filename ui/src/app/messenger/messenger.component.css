@@ -1,3 +1,14 @@
 mat-sidenav-container {
     height: 100%;
 }
+div.maindiv {
+    display: flex;
+    justify-content: space-between;
+}
+div.sidebar {
+    width: 400px;
+    flex-shrink: 0;
+}
+div.mainpanel {
+    flex-grow: 1;
+}
