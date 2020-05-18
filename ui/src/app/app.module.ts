@@ -21,6 +21,10 @@ import { MessengerChatComponent } from '@app/messenger/messenger-chat/messenger-
 import { MessengerNewConversationComponent } from '@app/messenger/messenger-new-conversation/messenger-new-conversation.component';
 import { LoginComponent } from './login/login.component';
 import { XhrInterceptor } from './xhr-interceptor';
+import { SuppliesListComponent } from '@app/supplies/supplies-list/supplies-list.component';
+import { SupplyComponent } from './supplies/supply/supply.component';
+import { NewPostComponent } from './new-post/new-post.component';
+import { TestComponent } from './post-new-resource/test.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { XhrInterceptor } from './xhr-interceptor';
     MessengerUserComponent,
     MessengerChatComponent,
     MessengerNewConversationComponent,
-    LoginComponent
+    LoginComponent,
+    SuppliesListComponent,
+    SupplyComponent,
+    NewPostComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

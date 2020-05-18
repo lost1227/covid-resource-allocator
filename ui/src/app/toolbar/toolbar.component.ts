@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 
 @Component({
@@ -8,10 +8,11 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
   user = {
-    name: "Jordan Powers"
+    name: "Raymond Lenz"
   }
-
-  public Options = ["Volunteers", "Supplies"]
+  public options : NavOption[] = [new NavOption("Volunteer", "/volunteer"),
+                                  new NavOption("Supplies", "/supplies"),
+                                  new NavOption("New Post", "/post")];
   @Input('selected') selectedOption : string;
 
   constructor() { }
@@ -19,11 +20,18 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public getOptionClass(option : string) : string[] {
-    if(option == this.selectedOption) {
+  public getOptionClass(option : NavOption) : string[] {
+    if(option.label == this.selectedOption) {
       return ["nav-button", "nav-button-selected"]
     } else {
       return ["nav-button"]
     }
   }
+}
+
+class NavOption {
+  constructor(
+    public label : string,
+    public url : string
+  ) {}
 }
