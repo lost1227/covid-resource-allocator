@@ -33,4 +33,18 @@ public class LoadDatabase {
                 )));
         };
     }
+    Logger logger1 = LoggerFactory.getLogger(LoadDatabase.class);
+    @Bean
+    CommandLineRunner initSupplyDatabase(SupplyRepository supplyrepository) {
+        return args -> {
+            logger1.info("Preloading " + supplyrepository.save(
+                new Supply(
+                    "KN-95 Masks",
+                    "Tempe, AZ",
+                    1,
+                    "In need of extra KN-95 medical grade masks.",
+                    "Local Clinic ACME"
+                )));
+        };
+    }
 }

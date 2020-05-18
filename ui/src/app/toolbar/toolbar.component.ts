@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 
 
 @Component({
@@ -8,10 +8,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
   user = {
-    name: "Jordan Powers"
+    name: "Finian Rawson"
   }
-
-  public Options = ["Volunteers", "Supplies"]
+  public Options = ["Volunteers", "Supplies","New Post"]
   @Input('selected') selectedOption : string;
 
   constructor() { }

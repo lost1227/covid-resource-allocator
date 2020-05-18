@@ -13,6 +13,9 @@ export class ApiService {
   getVolunteerTasks(filters : VolunteerFilter) : Observable<VolunteerTask[]> {
     return this.http.post<VolunteerTask[]>("/api/tasks", filters)
   }
+  getSuppliesList(filters : SupplyFilter) : Observable<Supply[]> {
+    return this.http.post<Supply[]>("/api/supp", filters)
+  }
 }
 
 export interface VolunteerTask {
@@ -25,6 +28,22 @@ export interface VolunteerTask {
 }
 
 export class VolunteerFilter {
+  constructor(
+    public matchSkillset : boolean,
+    public highNeed : boolean,
+    public locationDistance : number
+  ) {}
+}
+export interface Supply {
+  id : number
+  name : string
+  location : string
+  need : number
+  description : string
+  taskOwner : string
+}
+
+export class SupplyFilter {
   constructor(
     public matchSkillset : boolean,
     public highNeed : boolean,
