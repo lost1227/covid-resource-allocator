@@ -8,6 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +17,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import org.springframework.http.ResponseEntity;
+
 import org.mockito.Mockito;
 
-import edu.calpoly.csc_308.cora.api.request.AuthenticatedRequestModel;
 import edu.calpoly.csc_308.cora.api.request.SendMessageRequestModel;
 import edu.calpoly.csc_308.cora.api.response.ListConversationsResponse;
 import edu.calpoly.csc_308.cora.api.response.SuccessResponse;
+import edu.calpoly.csc_308.cora.data.users.UserDAO;
+import edu.calpoly.csc_308.cora.data.users.UserRepository;
 import edu.calpoly.csc_308.cora.entities.Conversation;
 import edu.calpoly.csc_308.cora.services.Messenger;
 
@@ -39,10 +44,26 @@ public class MessengerAPITest {
     @MockBean
     private Messenger messengerService;
 
+    @MockBean
+    private UserRepository userService;
+
     @BeforeEach
     public void setup() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         List<Conversation> conversations = new ArrayList<>();
         Mockito.doReturn(conversations).when(messengerService).listConversations(Mockito.any());
+
+        UserDAO dao = new UserDAO(
+                    "Jordan Powers",
+                    "Long Beach, CA",
+                    "volunteer",
+                    "Student living in Long Beach, CA", 
+                    new String[] { "programming" },
+                    "test",
+                    encoder.encode("password123"));
+        dao.id = 0L;
+        Mockito.doReturn(dao).when(userService).findByUsername("test");
     }
 
     @Test
@@ -54,27 +75,28 @@ public class MessengerAPITest {
     @Test
     public void testSendMessage() {
         SendMessageRequestModel request = new SendMessageRequestModel();
-        request.authToken = "abc123";
         request.receiverId = 1L;
         request.messageText = "Test Message";
 
-        SuccessResponse value = this.restTemplate.postForObject(
+        ResponseEntity<SuccessResponse> entity = this.restTemplate.withBasicAuth("test", "password123").postForEntity(
             "http://localhost:"+this.port+"/api/message/post",
             request,
             SuccessResponse.class);
         
+        assertThat(entity.getStatusCodeValue()).isEqualTo(200);
+
+        SuccessResponse value = entity.getBody();
+
+        //System.out.println("Interactions" + Mockito.mockingDetails(userService).printInvocations());
+
         assertThat(value).isNotNull();
         assertThat(value.ok).isTrue();
     }
 
     @Test
     public void testListConversation() {
-        AuthenticatedRequestModel request = new AuthenticatedRequestModel();
-        request.authToken = "abc123";
-
-        ListConversationsResponse response = this.restTemplate.postForObject(
-            "http://localhost:"+this.port+"/api/message/conversations", 
-            request, 
+        ListConversationsResponse response = this.restTemplate.withBasicAuth("test", "password123").getForObject(
+            "http://localhost:"+this.port+"/api/message/conversations",
             ListConversationsResponse.class);
         
         assertThat(response).isNotNull();

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { LoginManagerService } from '@app/loginmanager.service';
-import { UserinfoApiService, UserInfoResponseModel } from '@app/api/userinfo-api.service';
-import { MessengerApiService, ListConversationsRequestModel, SendMessageRequestModel } from '@app/api/messenger-api.service';
-import { Observable, Subject, combineLatest } from 'rxjs';
-import { toArray, mergeMap, map } from 'rxjs/operators';
+import { UserinfoApiService } from '@app/api/userinfo-api.service';
+import { MessengerApiService, SendMessageRequestModel } from '@app/api/messenger-api.service';
+import { Observable, Subject, combineLatest, of, throwError, empty } from 'rxjs';
+import { toArray, mergeMap, map, catchError } from 'rxjs/operators';
+import { User } from '@app/entities/User';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,16 +18,19 @@ export class MessengerService {
     private messengerapi : MessengerApiService) { }
 
   listConversations() : Observable<Conversation[]> {
-    const userId = this.login.getLoggedInUserId();
-    return this.messengerapi.listConversations(
-      new ListConversationsRequestModel(this.login.getAuthToken())
-    ).pipe(
-      mergeMap(conversations => conversations.conversations),
-      mergeMap( conversation => combineLatest(this.getMessageUser(userId), this.getMessageUser(conversation.userId)).pipe(
-        map( ([senderUser, receiverUser]) => new Conversation(senderUser, receiverUser, null)) 
-      )),
-      toArray()
-      );
+    return this.login.getLoggedInUser().pipe(
+      mergeMap(principal => {
+        const senderUser : MessageUser = new MessageUser(principal.id, principal.name);
+        return this.messengerapi.listConversations().pipe(
+          mergeMap(conversations => conversations.conversations),
+          mergeMap( conversation => this.getMessageUser(conversation.userId).pipe(
+            map( receiverUser => new Conversation(senderUser, receiverUser, null)) 
+          )),
+          toArray()
+          );
+      })
+    )
+    
   }
 
 
@@ -40,24 +45,30 @@ export class MessengerService {
 
   sendMessage(message : Message) {
     return this.messengerapi.sendMessage(new SendMessageRequestModel(
-      this.login.getAuthToken(),
       message.receiverId,
       message.messageText
     ))
   }
 
   searchUser(name : string) : Observable<MessageUser[]> {
-    const uid = this.login.getLoggedInUserId();
-    return this.userapi.findUsersByName(name).pipe(
-      map(result => result.users.filter( userinfo => userinfo.id != uid)
-                                .map( userinfo => new MessageUser(userinfo.id, userinfo.name)))
-    );
+
+    return this.login.getLoggedInUser().pipe(
+      mergeMap(principal => {
+        const uid = principal.id;
+        return this.userapi.findUsersByName(name).pipe(
+          map(result => result.users.filter( userinfo => userinfo.id != uid)
+                                    .map( userinfo => new MessageUser(userinfo.id, userinfo.name)))
+        )
+      })
+    )
   }
 
-  newConversation(user : MessageUser) {
+  newConversation(otherUser : MessageUser) {
     // TODO: assert no preexisting conversation
-    this.getMessageUser(this.login.getLoggedInUserId()).subscribe( senderuser => {
-      const newConversation = new Conversation(senderuser, user, []);
+
+    this.login.getLoggedInUser().subscribe(principal => {
+      const senderUser = new MessageUser(principal.id, principal.name);
+      const newConversation = new Conversation(senderUser, otherUser, []);
       this.selectedConversation.next(newConversation);
     })
   }

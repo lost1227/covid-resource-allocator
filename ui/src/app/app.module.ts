@@ -5,7 +5,7 @@ import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToolbarComponent } from '@app/toolbar/toolbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,6 +19,8 @@ import { MessengerComponent } from '@app/messenger/messenger.component';
 import { MessengerUserComponent } from '@app/messenger/messenger-user/messenger-user.component';
 import { MessengerChatComponent } from '@app/messenger/messenger-chat/messenger-chat.component';
 import { MessengerNewConversationComponent } from '@app/messenger/messenger-new-conversation/messenger-new-conversation.component';
+import { LoginComponent } from './login/login.component';
+import { XhrInterceptor } from './xhr-interceptor';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { MessengerNewConversationComponent } from '@app/messenger/messenger-new-
     MessengerComponent,
     MessengerUserComponent,
     MessengerChatComponent,
-    MessengerNewConversationComponent
+    MessengerNewConversationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ import { MessengerNewConversationComponent } from '@app/messenger/messenger-new-
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ {provide: HTTP_INTERCEPTORS, useClass: XhrInterceptor, multi: true} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

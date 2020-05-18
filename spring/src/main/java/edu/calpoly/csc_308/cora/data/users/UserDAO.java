@@ -1,6 +1,7 @@
 package edu.calpoly.csc_308.cora.data.users;
 
 import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -15,13 +16,29 @@ public class UserDAO {
     public String description;
     public String[] skillSet;
 
+    @Column(unique = true)
+    public String username;
+    public String passwordHash;
+
     public UserDAO() {}
 
-    public UserDAO(String name, String location, String userType, String description, String[] skillSet) {
+    public UserDAO(
+        String name,
+        String location,
+        String userType,
+        String description,
+        String[] skillSet,
+
+        String username, 
+        String passwordHash
+        ) {
         this.name = name;
         this.location = location;
         this.userType = userType;
         this.description = description;
         this.skillSet = skillSet;
+
+        this.username = username;
+        this.passwordHash = passwordHash;
     }
 }

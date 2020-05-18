@@ -10,4 +10,6 @@ public interface UserRepository extends JpaRepository<UserDAO, Long> {
     @Query("select u from UserDAO u where u.name like %?1%")
     List<UserDAO> findByName(String name);
 
+    UserDAO findByUsername(String username);
+
 }

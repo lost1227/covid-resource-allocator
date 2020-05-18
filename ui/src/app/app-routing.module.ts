@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { TaskListComponent } from '@app/volunteer/task-list/task-list.component';
 import { MessengerComponent } from '@app/messenger/messenger.component';
 import { MessengerNewConversationComponent } from '@app/messenger/messenger-new-conversation/messenger-new-conversation.component';
+import { LoginComponent } from '@app/login/login.component';
 
 
 const routes: Routes = [
   { path: 'volunteer', component: TaskListComponent},
   { path: 'message', component: MessengerComponent},
   { path: 'message/new', component: MessengerNewConversationComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/volunteer', pathMatch: 'full'}
 ];
 

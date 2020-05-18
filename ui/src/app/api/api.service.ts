@@ -18,8 +18,3 @@ export class ApiService {
 export interface ResponseModel {
     ok : boolean
 }
-export class AuthenticatedRequestModel {
-    constructor(
-        public authToken : string
-    ) {}
-}

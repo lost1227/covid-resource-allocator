@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { MessengerApiService, SendMessageRequestModel, ListConversationsRequestModel } from './messenger-api.service';
+import { MessengerApiService, SendMessageRequestModel } from './messenger-api.service';
 
 describe('MessengerApiService', () => {
   let injector: TestBed;
@@ -31,7 +31,7 @@ describe('MessengerApiService', () => {
       "ok": true
     }
 
-    const message = new SendMessageRequestModel("abc123", 1, "test message");
+    const message = new SendMessageRequestModel(1, "test message");
 
     service.sendMessage(message).subscribe(result => {
       expect(result).toEqual(val);
@@ -56,14 +56,12 @@ describe('MessengerApiService', () => {
       ]
     }
 
-    const request = new ListConversationsRequestModel("abc123");
-    service.listConversations(request).subscribe(result => {
+    service.listConversations().subscribe(result => {
       expect(result).toEqual(ret);
     });
 
     const req = httpMock.expectOne("/api/message/conversations");
-    expect(req.request.method).toBe("POST");
-    expect(req.request.body).toEqual(request);
+    expect(req.request.method).toBe("GET");
     req.flush(ret);
   })
 });

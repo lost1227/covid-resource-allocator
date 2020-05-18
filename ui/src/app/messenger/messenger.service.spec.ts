@@ -3,9 +3,10 @@ import { TestBed } from '@angular/core/testing';
 import { MessengerService } from './messenger.service';
 import { UserInfoResponseModel, UserinfoApiService } from '@app/api/userinfo-api.service';
 import { Observable, of } from 'rxjs';
-import { SendMessageRequestModel, ListConversationsRequestModel, ListConversationsResponse, MessengerApiService } from '@app/api/messenger-api.service';
+import { SendMessageRequestModel, ListConversationsResponse, MessengerApiService } from '@app/api/messenger-api.service';
 import { ResponseModel } from '@app/api/api.service.ts';
 import { LoginManagerService } from '@app/loginmanager.service';
+import { User } from '@app/entities/User';
 
 describe('MessengerService', () => {
   let service: MessengerService;
@@ -28,7 +29,7 @@ describe('MessengerService', () => {
     sendMessage(message : SendMessageRequestModel) : Observable<ResponseModel> {
       return of({ok : true})
     },
-    listConversations(request : ListConversationsRequestModel) : Observable<ListConversationsResponse> {
+    listConversations(request) : Observable<ListConversationsResponse> {
       return of({
         ok: true,
         userId: 0,
@@ -42,11 +43,8 @@ describe('MessengerService', () => {
   }
 
   let mockloginservice = {
-    getLoggedInUserId() : number {
-      return 0
-    },
-    getAuthToken() : string {
-      return "abc123";
+    getLoggedInUser() : Observable<User> {
+      return of(new User(0, "Test User", "Test Location", "Test Type", "Test Description", []))
     }
   }
 
