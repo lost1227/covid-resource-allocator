@@ -12,7 +12,7 @@ button.select-request{
   left: 200px;
   top: 100px;
 
-  background: #007048;
+  background: #DEDEDE;
   border-radius: 30px;
   font-family: Roboto;
   font-style: normal;
@@ -20,7 +20,7 @@ button.select-request{
   font-size: 36px;
   line-height: 42px;
 
-  color: #FFFFFF;
+  color: #007048;
 }
 
 button.select-resource{
@@ -37,7 +37,7 @@ button.select-resource{
   left: 600px;
   top: 100px;
 
-  background: #DEDEDE;
+  background: #007048;
   border-radius: 30px;
   font-family: Roboto;
   font-style: normal;
@@ -45,7 +45,7 @@ button.select-resource{
   font-size: 36px;
   line-height: 42px;
 
-  color: #007048;
+  color: #FFFFFF;
 }
 
 /* Frame 12 */
@@ -205,7 +205,7 @@ input.locationtext{
 }
 /*need*/
 /* Need */
-label.need{
+label.resourcetype{
   position: absolute;
   width: 57px;
   height: 28px;
@@ -223,9 +223,9 @@ label.need{
 
   color: #000000;
 }
-select.need-drop{
+select.type-drop{
   position: absolute;
-  width: 90px;
+  width: 110px;
   height: 35px;
   left: 920px;
   top: 300px;

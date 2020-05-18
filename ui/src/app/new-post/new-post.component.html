@@ -1,4 +1,16 @@
 <app-toolbar selected="New Post"></app-toolbar>
+<div class="selectType">
+  <button class="select-request"
+          Request mat-button routerLink="/new-post">
+    <span [ngClass]="getOptionClass('Request')">New Request</span>
+  </button>
+  <button class="select-resource"
+          Resource mat-button routerLink="/test">
+    <span [ngClass]="getOptionClass('Resource')">New Resource</span>
+  </button>
+<!--  <button class="select-resource">New Resource</button>-->
+
+</div>
 <form class="box">
         <label class="title">Title:</label><br>
         <input class="titletext" id="title" name="title"><br>

@@ -3,15 +3,8 @@
         <span>COVID Resource Allocator</span>
     </div>
     <div id="toolbar-mid">
-        
-        <button Volunteers mat-button routerLink="/volunteer">
-            <span [ngClass]="getOptionClass('Volunteers')">Volunteer</span>
-        </button>
-        <button Supplies mat-button routerLink="/supplies">
-            <span [ngClass]="getOptionClass('Supplies')">Supplies</span>
-        </button>
-        <button Post mat-button routerLink="/post">
-            <span [ngClass]="getOptionClass('New Post')">Post</span>
+        <button mat-button *ngFor="let option of options" [routerLink]="option.url">
+            <span [ngClass]="getOptionClass(option)">{{option.label}}</span>
         </button>
     </div>
     <div id="toolbar-left">

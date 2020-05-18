@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {FormBuilder} from "@angular/forms";
 
 @Component({
-  selector: 'app-new-post',
-  templateUrl: './new-post.component.html',
-  styleUrls: ['./new-post.component.css']
+  selector: 'app-test',
+  templateUrl: './test.component.html',
+  styleUrls: ['./test.component.css']
 })
-export class NewPostComponent implements OnInit {
-
+export class TestComponent implements OnInit {
   public Options = ["Request", "Resource"]
   @Input('selected') selectedOption : string;
   constructor() { }

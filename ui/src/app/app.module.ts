@@ -15,6 +15,7 @@ import { TaskItemComponent } from '@app/volunteer/task-item/task-item.component'
 import { SuppliesListComponent } from '@app/supplies/supplies-list/supplies-list.component';
 import { SupplyComponent } from './supplies/supply/supply.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { TestComponent } from './post-new-resource/test.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NewPostComponent } from './new-post/new-post.component';
     TaskItemComponent,
     SuppliesListComponent,
     SupplyComponent,
-    NewPostComponent
+    NewPostComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,

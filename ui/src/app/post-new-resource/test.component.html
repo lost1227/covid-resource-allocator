@@ -1,0 +1,39 @@
+<app-toolbar selected="New Post"></app-toolbar>
+<div class="selectType">
+  <button class="select-request"
+          Request mat-button routerLink="/post">
+    <span [ngClass]="getOptionClass('Request')">New Request</span>
+  </button>
+  <button class="select-resource"
+          Resource mat-button routerLink="/test">
+    <span [ngClass]="getOptionClass('Resource')">New Resource</span>
+  </button>
+  <!--  <button class="select-resource">New Resource</button>-->
+
+</div>
+<form class="box">
+  <label class="title">Title:</label><br>
+  <input class="titletext" id="title" name="title"><br>
+</form>
+<form class="location">
+  <label class="location">Location:</label><br>
+  <input class="locationtext" id="location" name="location"><br>
+</form>
+<form class="description">
+  <label class="description">Description:</label><br>
+  <textarea class="desctext" id="description" name="description"></textarea>
+</form>
+<div class="create">
+
+  <button class="create-button">Create</button>
+</div>
+<div class="add-image-box">
+  <img class="add-image" src="/assets/add.png" alt="add">
+</div>
+
+<label class="resourcetype">Type:</label>
+
+<select class="type-drop">
+  <option value="item">Item(s)</option>
+  <option value="service">Service</option>
+</select>
