@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { SendMessageRequestModel, ListConversationsResponse, MessengerApiService } from '@app/api/messenger-api.service';
 import { ResponseModel } from '@app/api/api.service.ts';
 import { LoginManagerService } from '@app/loginmanager.service';
-import { User } from '@app/entities/User';
+import { User } from '@app/entities/user';
 
 describe('MessengerService', () => {
   let service: MessengerService;
