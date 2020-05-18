@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '@app/entities/User';
+import { User } from '@app/entities/User.ts';
 import { LoginApiService } from './api/login-api.service';
 import { Router } from '@angular/router';
 import { Observable, throwError, of, empty } from 'rxjs';

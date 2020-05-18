@@ -4,7 +4,6 @@ import { UserinfoApiService } from '@app/api/userinfo-api.service';
 import { MessengerApiService, SendMessageRequestModel } from '@app/api/messenger-api.service';
 import { Observable, Subject, combineLatest, of, throwError, empty } from 'rxjs';
 import { toArray, mergeMap, map, catchError } from 'rxjs/operators';
-import { User } from '@app/entities/User';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
