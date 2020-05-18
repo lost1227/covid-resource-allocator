@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { MessengerService, Conversation } from './messenger.service';
-import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,12 +9,19 @@ import { Observable } from 'rxjs';
 })
 export class MessengerComponent implements OnInit {
 
-  conversations : Observable<Conversation[]>
+  conversations : Conversation[]
 
   constructor(
     private messengerService : MessengerService
   ) {
-    this.conversations = messengerService.listConversations()
+    messengerService.listConversations().subscribe(conversations => {
+      this.conversations = conversations;
+    })
+    messengerService.selectedConversation.subscribe(conversation => {
+      if(!this.conversations.includes(conversation)) {
+        this.conversations.push(conversation);
+      }
+    })
   }
 
   ngOnInit(): void {

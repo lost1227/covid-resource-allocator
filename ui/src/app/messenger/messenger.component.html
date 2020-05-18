@@ -1,6 +1,7 @@
 <mat-sidenav-container>
     <mat-sidenav mode="side" opened>
-        <app-messenger-user *ngFor="let conversation of conversations | async" [conversation]="conversation"></app-messenger-user>
+        <app-messenger-new-conversation></app-messenger-new-conversation>
+        <app-messenger-user *ngFor="let conversation of conversations" [conversation]="conversation"></app-messenger-user>
     </mat-sidenav>
     <mat-sidenav-content>
         <app-messenger-chat></app-messenger-chat>

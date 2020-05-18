@@ -34,9 +34,11 @@ describe('MessengerService', () => {
         ok: true,
         userId: 0,
         conversations: [{
-          userId: 1
+          userId: 1,
+          messageHistory: []
         }, {
-          userId : 2
+          userId : 2,
+          messageHistory: []
         }]
       })
     }

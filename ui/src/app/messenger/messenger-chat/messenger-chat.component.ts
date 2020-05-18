@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { MessengerService, Conversation, Message } from '@app/messenger/messenger.service';
@@ -34,7 +34,8 @@ export class MessengerChatComponent implements OnInit {
     const message = new Message(
       this.currConvo.sender.id,
       this.currConvo.receiver.id,
-      messageData.message
+      messageData.message,
+      new Date().getTime()
     )
     this.messengerService.sendMessage(message).subscribe( response => {
       this.currConvo.history.push(message)

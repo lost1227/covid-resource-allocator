@@ -28,8 +28,20 @@ export class SendMessageRequestModel {
   ) { }
 }
 
+export interface MessageResponse {
+  id : number;
+  sender : number;
+  receiver : number;
+    
+  messageText: string;
+
+  sentTs : number;
+
+}
+
 export interface ConversationResponse {
-  userId : number
+  userId : number;
+  messageHistory : MessageResponse[]
 }
 
 export interface ListConversationsResponse extends ResponseModel {

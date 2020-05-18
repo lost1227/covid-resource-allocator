@@ -9,7 +9,6 @@ import { LoginComponent } from '@app/login/login.component';
 const routes: Routes = [
   { path: 'volunteer', component: TaskListComponent},
   { path: 'message', component: MessengerComponent},
-  { path: 'message/new', component: MessengerNewConversationComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: '/volunteer', pathMatch: 'full'}
 ];

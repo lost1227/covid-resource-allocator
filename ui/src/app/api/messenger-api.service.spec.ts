@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { MessengerApiService, SendMessageRequestModel } from './messenger-api.service';
+import { MessengerApiService, SendMessageRequestModel, ListConversationsResponse } from './messenger-api.service';
 
 describe('MessengerApiService', () => {
   let injector: TestBed;
@@ -44,14 +44,16 @@ describe('MessengerApiService', () => {
   });
 
   it('should return a list of conversations', () => {
-    const ret = {
+    const ret : ListConversationsResponse = {
       ok : true,
       userId : 2,
       conversations: [
         {
-          userId : 0
+          userId : 0,
+          messageHistory: []
         }, {
-          userId : 1
+          userId : 1,
+          messageHistory: []
         }
       ]
     }

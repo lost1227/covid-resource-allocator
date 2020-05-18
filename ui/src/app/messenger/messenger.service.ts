@@ -24,7 +24,10 @@ export class MessengerService {
         return this.messengerapi.listConversations().pipe(
           mergeMap(conversations => conversations.conversations),
           mergeMap( conversation => this.getMessageUser(conversation.userId).pipe(
-            map( receiverUser => new Conversation(senderUser, receiverUser, null)) 
+            map( receiverUser => new Conversation(
+              senderUser,
+              receiverUser,
+              conversation.messageHistory.map(messageResponse => new Message(messageResponse.sender, messageResponse.receiver, messageResponse.messageText, messageResponse.sentTs)))) 
           )),
           toArray()
           );
@@ -86,7 +89,8 @@ export class Message {
   constructor(
     public readonly senderId : number,
     public readonly receiverId : number,
-    public readonly messageText : string
+    public readonly messageText : string,
+    public readonly sentTs : number
   ) {}
 }
 export class Conversation {

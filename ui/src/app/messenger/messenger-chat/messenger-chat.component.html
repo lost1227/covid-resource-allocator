@@ -1,7 +1,7 @@
 <div *ngIf="this.currConvo; else elseBlock" class="maindiv">
     <div class="message-history">
         <div *ngFor="let message of currConvo?.history" class="message">
-            <p>{{message.messageText}}</p>
+            <p>{{message.senderId}}:{{message.messageText}}</p>
         </div>
     </div>
     <div class="input-box">
