@@ -6,7 +6,6 @@ import { LoginComponent } from '@app/login/login.component';
 
 import { NewPostComponent } from './new-post/new-post.component';
 import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
-import { TestComponent} from './post-new-resource/test.component';
 
 
 const routes: Routes = [

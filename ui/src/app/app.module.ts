@@ -24,7 +24,6 @@ import { XhrInterceptor } from './xhr-interceptor';
 import { SuppliesListComponent } from '@app/supplies/supplies-list/supplies-list.component';
 import { SupplyComponent } from './supplies/supply/supply.component';
 import { NewPostComponent } from './new-post/new-post.component';
-import { TestComponent } from './post-new-resource/test.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +38,7 @@ import { TestComponent } from './post-new-resource/test.component';
     LoginComponent,
     SuppliesListComponent,
     SupplyComponent,
-    NewPostComponent,
-    TestComponent
+    NewPostComponent
   ],
   imports: [
     BrowserModule,
