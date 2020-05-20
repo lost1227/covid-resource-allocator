@@ -1,0 +1,16 @@
+<div *ngIf="this.currConvo; else elseBlock" class="maindiv">
+    <div class="message-history">
+        <div *ngFor="let message of currConvo?.history" class="message">
+            <p>{{message.senderId}}:{{message.messageText}}</p>
+        </div>
+    </div>
+    <div class="input-box">
+        <form [formGroup]="sendMessageForm" (ngSubmit)="onSend(sendMessageForm.value)">
+            <textarea class="messagecomposer" formControlName="message"></textarea>
+            <button mat-button class="sendmessage" type="submit">Send</button>
+        </form>
+    </div>
+</div>
+<ng-template #elseBlock>
+    <p>No conversation selected</p>
+</ng-template>

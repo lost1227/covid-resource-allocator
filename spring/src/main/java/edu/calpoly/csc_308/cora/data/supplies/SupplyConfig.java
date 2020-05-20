@@ -1,4 +1,4 @@
-package edu.calpoly.csc_308.cora.data;
+package edu.calpoly.csc_308.cora.data.supplies;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +14,7 @@ public class SupplyConfig {
     CommandLineRunner initSupplyDatabase(SupplyRepository supplyrepository) {
         return args -> {
             logger.info("Preloading " + supplyrepository.save(
-                new Supply(
+                new SupplyDAO(
                     "KN-95 Masks",
                     "Tempe, AZ",
                     1,

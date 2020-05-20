@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTask;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskRepository;
-import edu.calpoly.csc_308.cora.data.Supply;
-import edu.calpoly.csc_308.cora.data.SupplyRepository;
+import edu.calpoly.csc_308.cora.data.supplies.SupplyDAO;
+import edu.calpoly.csc_308.cora.data.supplies.SupplyRepository;
 
 @RestController
 public class CoraApiController {
@@ -37,7 +37,7 @@ public class CoraApiController {
         return repo.findAll();
     }
     @PostMapping("/api/supp")
-    public List<Supply> getSupplies(@RequestBody SupplyFiltersRequestModel request ) {
+    public List<SupplyDAO> getSupplies(@RequestBody SupplyFiltersRequestModel request ) {
         return supplyrepo.findAll();
     }
 
