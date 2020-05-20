@@ -17,7 +17,7 @@ export class MessengerService {
     private messengerapi : MessengerApiService) { }
 
   listConversations() : Observable<Conversation[]> {
-    return this.login.getLoggedInUser().pipe(
+    return this.login.getLoggedInUser("/message").pipe(
       mergeMap(principal => {
         const senderUser : MessageUser = new MessageUser(principal.id, principal.name);
         return this.messengerapi.listConversations().pipe(
@@ -54,7 +54,7 @@ export class MessengerService {
 
   searchUser(name : string) : Observable<MessageUser[]> {
 
-    return this.login.getLoggedInUser().pipe(
+    return this.login.getLoggedInUser("/message").pipe(
       mergeMap(principal => {
         const uid = principal.id;
         return this.userapi.findUsersByName(name).pipe(
@@ -68,7 +68,7 @@ export class MessengerService {
   newConversation(otherUser : MessageUser) {
     // TODO: assert no preexisting conversation
 
-    this.login.getLoggedInUser().subscribe(principal => {
+    this.login.getLoggedInUser("/message").subscribe(principal => {
       const senderUser = new MessageUser(principal.id, principal.name);
       const newConversation = new Conversation(senderUser, otherUser, []);
       this.selectedConversation.next(newConversation);

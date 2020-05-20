@@ -1,7 +1,14 @@
+<app-toolbar></app-toolbar>
 <div class="maindiv">
     <div class="sidebar">
-        <app-messenger-new-conversation></app-messenger-new-conversation>
-        <app-messenger-user *ngFor="let conversation of conversations" [conversation]="conversation"></app-messenger-user>
+        <div class="sidebar-content">
+          <div class="block new-conversation">
+            <app-messenger-new-conversation></app-messenger-new-conversation>
+          </div>
+          <div class="block user" *ngFor="let conversation of conversations">
+            <app-messenger-user  [conversation]="conversation"></app-messenger-user>
+          </div>
+        </div>
     </div>
     <div class="mainpanel">
         <app-messenger-chat></app-messenger-chat>

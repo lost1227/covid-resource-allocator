@@ -4,7 +4,7 @@ import { LoginManagerService } from './loginmanager.service';
 import { Observable, of } from 'rxjs';
 import { UserInfoResponseModel } from './api/userinfo-api.service';
 import { LoginApiService } from './api/login-api.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 describe('LoginmanagerService', () => {
   let service: LoginManagerService;
@@ -26,14 +26,20 @@ describe('LoginmanagerService', () => {
   let mockRouter = {
     url : "/",
     navigateByUrl(loc : string) {
-
     }
+  }
+
+  let mockRoute = {
+    queryParams : of({
+      "redirect": "/"
+    })
   }
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers : [{ provide : LoginApiService, useValue : mockLoginApi},
-                  { provide : Router, useValue : mockRouter} ]
+      providers : [{ provide : LoginApiService, useValue : mockLoginApi },
+                  { provide : Router, useValue : mockRouter },
+                  { provide : ActivatedRoute, useValue : mockRoute } ]
     });
     service = TestBed.inject(LoginManagerService);
   });

@@ -1,14 +1,25 @@
-mat-sidenav-container {
-    height: 100%;
-}
 div.maindiv {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  min-height: 100%;
 }
 div.sidebar {
-    width: 400px;
-    flex-shrink: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  background: #EDEDED;
 }
 div.mainpanel {
-    flex-grow: 1;
+  padding: 10px;
+  flex-shrink: 1;
+  flex-grow: 1;
+}
+div.sidebar-content {
+  background: #FFFFFF;
+  padding: 10px;
+}
+div.block {
+  display: block;
+}
+div.new-conversation {
+  margin: 0px 0px 10px 0px;
 }

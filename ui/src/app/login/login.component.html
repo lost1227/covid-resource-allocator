@@ -1,11 +1,17 @@
-<div *ngIf="showFailedLogin">
-  <p>Invalid username/password</p>
+<app-toolbar></app-toolbar>
+<p class="title">COVID Resource Allocator</p>
+<div class="container">
+  <div class="loginbox">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+      <p class="welcome">Welcome</p>
+      <div *ngIf="showFailedLogin">
+        <p>Invalid username/password</p>
+      </div>
+      <p class="label">Username</p>
+      <input class="inputbox" type="text" formControlName="username">
+      <p class="label">Password</p>
+      <input class="inputbox" type="password" formControlName="password">
+      <button class="loginbutton" type="submit">Submit</button>
+    </form>
+  </div>
 </div>
-<h1>Login</h1>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
-    <p>Username</p>
-    <input type="text" formControlName="username">
-    <p>Password</p>
-    <input type="password" formControlName="password">
-    <button mat-button type="submit">Submit</button>
-</form>

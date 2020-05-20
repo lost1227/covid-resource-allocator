@@ -24,11 +24,12 @@ export class NewPostComponent implements OnInit {
   ) {
     this.route.url.subscribe(params => {
       this.type = params[0].path;
+      this.login.getLoggedInUser("/post/"+this.type).subscribe(user => {
+        this.user = user;
+      })
     })
     
-    this.login.getLoggedInUser().subscribe(user => {
-      this.user = user;
-    })
+    
 
     this.form = formBuilder.group({
       'title' : '',

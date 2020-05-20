@@ -8,6 +8,8 @@ import { MessengerService, MessageUser} from '@app/messenger/messenger.service';
 })
 export class MessengerNewConversationComponent implements OnInit {
 
+  query : string = '';
+
   users : MessageUser[] = [];
 
   constructor(
@@ -30,6 +32,8 @@ export class MessengerNewConversationComponent implements OnInit {
   }
 
   onClick(user : MessageUser) {
+    this.query = '';
+    this.users = [];
     this.messenger.newConversation(user);
   }
 

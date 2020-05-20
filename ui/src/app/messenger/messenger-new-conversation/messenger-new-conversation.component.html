@@ -1,5 +1,14 @@
-<input type="text" (input)="onInput($event)">
-<div *ngFor="let user of users">
-    <button mat-button (click)="onClick(user)">{{user.name}}</button>
+<div class="maindiv">
+  <div class="left-box">
+    <mat-icon class="icon">person_add</mat-icon> 
+  </div>
+  <div class="right-box">
+    <input class="textbox" type="text" (input)="onInput($event)" [(ngModel)]="query">
+    <div class="option" *ngFor="let user of users">
+      <button mat-button (click)="onClick(user)">{{user.name}}</button>
+  </div>
+  </div>
+  
 </div>
+
 

@@ -3,7 +3,7 @@ import { User } from '@app/entities/user';
 import { LoginApiService } from './api/login-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, throwError, of, empty, Subject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, count } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -30,14 +30,13 @@ export class LoginManagerService {
     })
   }
 
-  public startLogin() {
-    const redirect = this.router.url;
+  public startLogin(redirect : string) {
     this.router.navigateByUrl("/login?redirect=" + redirect);
   }
 
   public isLoggedIn() : Observable<Boolean> {
     if(this.loggedInUser == null) {
-      return this.loginApi.checkIfLoggedIn().pipe(
+      const test = this.loginApi.checkIfLoggedIn().pipe(
         map(user => {
           if(user) {
             this.loggedInUser = user;
@@ -52,18 +51,20 @@ export class LoginManagerService {
           return throwError(error);
         })
       )
+      test.pipe(count()).subscribe(cnt=>console.log(cnt));
+      return test;
     } else {
       return of(true);
     }
   }
 
-  public getLoggedInUser() : Observable<User> {
+  public getLoggedInUser(redirect = "/") : Observable<User> {
 
     if(this.loggedInUser == null) {
       const check : Observable<User> = this.loginApi.checkIfLoggedIn().pipe(
         catchError((error : HttpErrorResponse) => {
           if(error.status == 401) {
-            this.startLogin();
+            this.startLogin(redirect);
           }
           return empty();
         })
