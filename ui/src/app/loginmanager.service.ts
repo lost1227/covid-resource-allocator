@@ -3,6 +3,7 @@ import { User } from '@app/entities/User';
 import { LoginApiService } from './api/login-api.service';
 import { Router } from '@angular/router';
 import { Observable, throwError, of, empty } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -23,6 +24,28 @@ export class LoginManagerService {
   public startLogin() {
     this.redirect = this.router.url;
     this.router.navigateByUrl("/login");
+  }
+
+  public isLoggedIn() : Observable<Boolean> {
+    if(this.loggedInUser == null) {
+      return this.loginApi.checkIfLoggedIn().pipe(
+        map(user => {
+          if(user) {
+            this.loggedInUser = user;
+            return true;
+          }
+          return false;
+        }),
+        catchError((error : HttpErrorResponse) => {
+          if(error.status == 401) {
+            return of(false);
+          }
+          return throwError(error);
+        })
+      )
+    } else {
+      return of(true);
+    }
   }
 
   public getLoggedInUser() : Observable<User> {

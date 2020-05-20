@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class VolunteerTask {
+public class VolunteerTaskDAO {
     public @Id @GeneratedValue Long id;
     
     public String name;
@@ -18,15 +18,15 @@ public class VolunteerTask {
 
     public String description;
 
-    public String taskOwner;
+    public Long taskOwnerId;
 
-    public VolunteerTask() {};
+    public VolunteerTaskDAO() {};
 
-    public VolunteerTask(String name, String location, Integer need, String description, String taskOwner) {
+    public VolunteerTaskDAO(String name, String location, Integer need, String description, Long taskOwnerId) {
         this.name = name;
         this.location = location;
         this.need = need;
         this.description = description;
-        this.taskOwner = taskOwner;
+        this.taskOwnerId = taskOwnerId;
     }
 }

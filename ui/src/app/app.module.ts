@@ -13,8 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-import { TaskListComponent } from '@app/volunteer/task-list/task-list.component';
-import { TaskItemComponent } from '@app/volunteer/task-item/task-item.component';
+import { TaskListComponent } from '@app/tasks/task-list/task-list.component';
+import { TaskItemComponent } from '@app/tasks/task-item/task-item.component';
 import { MessengerComponent } from '@app/messenger/messenger.component';
 import { MessengerUserComponent } from '@app/messenger/messenger-user/messenger-user.component';
 import { MessengerChatComponent } from '@app/messenger/messenger-chat/messenger-chat.component';

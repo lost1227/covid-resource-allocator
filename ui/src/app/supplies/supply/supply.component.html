@@ -7,7 +7,8 @@
         <p class="supply-description">{{supply.description}}</p>
     </div>
     <div class="supply-misc">
+        <p [ngClass]="getTypeClass()" >{{getTypeDesc()}}</p>
         <p class="supply-loc">{{supply.location}}</p>
-        <p [ngClass]="getClass()">{{getNeedDesc()}}</p>
+        <p [ngClass]="getNeedClass()">{{getNeedDesc()}}</p>
     </div>
 </div>
