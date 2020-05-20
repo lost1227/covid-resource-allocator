@@ -11,8 +11,7 @@ import { User } from '@app/entities/user';
 export class ToolbarComponent implements OnInit {
 
   public options : NavOption[] = [new NavOption("Volunteer", "/volunteer"),
-                                  new NavOption("Supplies", "/supplies"),
-                                  new NavOption("New Post", "/post")];
+                                  new NavOption("Supplies", "/supplies")];
   @Input('selected') selectedOption : string;
 
   public user : User = null;

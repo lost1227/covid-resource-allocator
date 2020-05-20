@@ -13,8 +13,11 @@ const routes: Routes = [
   { path: 'volunteer', component: TaskListComponent},
   { path: 'message', component: MessengerComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'post', component: NewPostComponent},
-  { path: 'test', component: TestComponent},
+  { path: 'post', 
+      children: [
+        { path: 'volunteer', component: NewPostComponent },
+        { path: 'supply', component: NewPostComponent }
+      ]},
   { path: 'supplies', component: SuppliesListComponent},
   { path: '', redirectTo: '/volunteer', pathMatch: 'full'}
 ];
