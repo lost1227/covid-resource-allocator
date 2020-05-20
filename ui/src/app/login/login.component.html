@@ -1,3 +1,6 @@
+<div *ngIf="showFailedLogin">
+  <p>Invalid username/password</p>
+</div>
 <h1>Login</h1>
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
     <p>Username</p>

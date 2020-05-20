@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '@app/entities/user';
 import { LoginApiService } from './api/login-api.service';
-import { Router } from '@angular/router';
-import { Observable, throwError, of, empty } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Observable, throwError, of, empty, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,14 +16,23 @@ export class LoginManagerService {
 
   private redirect : string = "/"
 
+  failedLogin : Subject<boolean> = new Subject()
+
   constructor(
     private loginApi : LoginApiService,
-    private router : Router
-  ) { }
+    private router : Router,
+    private route : ActivatedRoute
+  ) {
+    route.queryParams.subscribe(params => {
+      if(params["redirect"]) {
+        this.redirect = params["redirect"];
+      }
+    })
+  }
 
   public startLogin() {
-    this.redirect = this.router.url;
-    this.router.navigateByUrl("/login");
+    const redirect = this.router.url;
+    this.router.navigateByUrl("/login?redirect=" + redirect);
   }
 
   public isLoggedIn() : Observable<Boolean> {
@@ -69,8 +78,18 @@ export class LoginManagerService {
   }
 
   public login(username : string, password : string) {
-    this.loginApi.login(username, password).subscribe(response => {
+    this.loginApi.login(username, password).pipe(
+      catchError((error : HttpErrorResponse) => {
+        if(error.status == 401) {
+          this.failedLogin.next(true);
+          return empty();
+        } else {
+          return throwError(error);
+        }
+      })
+    ).subscribe(response => {
       this.loggedInUser = new User(response.id, response.name, response.location, response.userType, response.description, response.skillset);
+      this.failedLogin.next(false);
       const tmp = this.redirect;
       this.redirect = "/";
       this.router.navigateByUrl(tmp);
