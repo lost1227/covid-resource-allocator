@@ -4,6 +4,8 @@ import { MessengerChatComponent } from './messenger-chat.component';
 import { Observable, Subject, of } from 'rxjs';
 import { MessengerService, Conversation, MessageUser } from '@app/messenger/messenger.service';
 import { FormBuilder } from '@angular/forms';
+import { User } from '@app/entities/user';
+import { LoginManagerService } from '@app/loginmanager.service';
 
 
 describe('MessengerChatComponent', () => {
@@ -21,9 +23,17 @@ describe('MessengerChatComponent', () => {
     selectedConversation : new Subject<Conversation>()
   }
 
+  let mockloginservice = {
+    getLoggedInUser() : Observable<User> {
+      return of(new User(0, "Test User", "Test Location", "Test Type", "Test Description", []))
+    }
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [{provide: MessengerService, useValue: mockMessengerService}, FormBuilder],
+      providers: [{provide: MessengerService, useValue: mockMessengerService},
+                  {provide: LoginManagerService, useValue: mockloginservice},
+                  FormBuilder],
       declarations: [ MessengerChatComponent ]
     })
     .compileComponents();

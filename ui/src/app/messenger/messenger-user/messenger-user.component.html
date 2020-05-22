@@ -1,5 +1,5 @@
-<button mat-button (click)="buttonClicked()">
-    <div class="maindiv">
+<button mat-button (click)="buttonClicked()" class="button">
+    <div [ngClass]="getClass()">
         <img src="/assets/placeholder.png" class="thumb">
         <p class="name">{{conversation.receiver.name}}</p>
     </div>

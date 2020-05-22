@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { LoginManagerService } from '@app/loginmanager.service';
 import { UserinfoApiService } from '@app/api/userinfo-api.service';
 import { MessengerApiService, SendMessageRequestModel } from '@app/api/messenger-api.service';
-import { Observable, Subject, combineLatest, of, throwError, empty } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { toArray, mergeMap, map, catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +74,7 @@ export class MessengerService {
     })
   }
 
-  public selectedConversation = new Subject<Conversation>()
+  public selectedConversation = new ReplaySubject<Conversation>(1)
 
 }
 export class MessageUser {
@@ -83,6 +82,10 @@ export class MessageUser {
     public readonly id : number,
     public readonly name : String
   ) {}
+
+  equals(other : MessageUser) : boolean {
+    return other.id === this.id && other.name === this.name;
+  }
 }
 export class Message {
   constructor(
@@ -98,4 +101,9 @@ export class Conversation {
     public readonly receiver : MessageUser,
     public readonly history : Message[]
   ) {}
+
+  equals(other : Conversation) : boolean {
+    return (this.sender.equals(other.sender) && this.receiver.equals(other.receiver))
+            || (this.sender.equals(other.receiver) && this.receiver.equals(other.sender))
+  }
 }

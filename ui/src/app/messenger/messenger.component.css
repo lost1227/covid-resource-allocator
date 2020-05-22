@@ -1,7 +1,20 @@
 div.maindiv {
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  height: 100%;
+}
+div.toolbar {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+div.splitpane {
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  display: flex;
   justify-content: space-between;
-  min-height: 100%;
 }
 div.sidebar {
   flex-shrink: 0;

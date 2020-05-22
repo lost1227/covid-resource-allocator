@@ -3,7 +3,7 @@ import { User } from '@app/entities/user';
 import { LoginApiService } from './api/login-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, throwError, of, empty, Subject } from 'rxjs';
-import { map, count } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { catchError } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -18,6 +18,8 @@ export class LoginManagerService {
 
   failedLogin : Subject<boolean> = new Subject()
 
+  private loggingIn = false;
+
   constructor(
     private loginApi : LoginApiService,
     private router : Router,
@@ -31,12 +33,16 @@ export class LoginManagerService {
   }
 
   public startLogin(redirect : string) {
+    this.loggingIn = true;
     this.router.navigateByUrl("/login?redirect=" + redirect);
   }
 
   public isLoggedIn() : Observable<Boolean> {
+    if(this.loggingIn) {
+      return of(false);
+    }
     if(this.loggedInUser == null) {
-      const test = this.loginApi.checkIfLoggedIn().pipe(
+      return this.loginApi.checkIfLoggedIn().pipe(
         map(user => {
           if(user) {
             this.loggedInUser = user;
@@ -51,14 +57,16 @@ export class LoginManagerService {
           return throwError(error);
         })
       )
-      test.pipe(count()).subscribe(cnt=>console.log(cnt));
-      return test;
     } else {
       return of(true);
     }
   }
 
   public getLoggedInUser(redirect = "/") : Observable<User> {
+
+    if(this.loggingIn) {
+      return empty();
+    }
 
     if(this.loggedInUser == null) {
       const check : Observable<User> = this.loginApi.checkIfLoggedIn().pipe(
@@ -91,6 +99,7 @@ export class LoginManagerService {
     ).subscribe(response => {
       this.loggedInUser = new User(response.id, response.name, response.location, response.userType, response.description, response.skillset);
       this.failedLogin.next(false);
+      this.loggingIn = false;
       const tmp = this.redirect;
       this.redirect = "/";
       this.router.navigateByUrl(tmp);
