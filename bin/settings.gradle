@@ -1,4 +1,0 @@
-rootProject.name = 'cora'
-
-include 'spring'
-include 'ui'

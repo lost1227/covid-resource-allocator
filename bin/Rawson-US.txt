@@ -1,7 +1,0 @@
-User Stories:
-User 1: As a private citizen with a 3D printer, I want to be able to print needed items and be able to easily find and send my items for free to a location that sorely needs it, so that I can help them out in this time of need.
-
-User 2: As the supplies manager at a local hospital, I want to be able to find local items like masks or face shields and be able to connect with a supplier to get those supplies to the hospital, so as to replenish our depleted supplies.
-
-User 3: As the owner of a 3D printing service, I want to be able to set up deals with multiple hospital/medical locations that need supplies and be able to get them the supplies they need, so I can help with the ongoing crisis.
-
