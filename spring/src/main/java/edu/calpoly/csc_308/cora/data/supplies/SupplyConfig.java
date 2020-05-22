@@ -19,7 +19,9 @@ public class SupplyConfig {
                     "Tempe, AZ",
                     1,
                     "In need of extra KN-95 medical grade masks.",
-                    "Local Clinic ACME"
+                    5L,
+                    SupplyType.REQUEST,
+                    0
                 )));
         };
     }

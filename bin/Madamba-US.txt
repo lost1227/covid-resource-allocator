@@ -1,0 +1,7 @@
+1. As a local town representative, I want to inform about updates
+on my community so that the community can stay informed about new 
+policies and regulations.
+2. As a business owner, I want to provide information on available
+jobs so that those unemployed can find work.
+3. As a restaurant owner, I want to provide discounted foods or
+donations so that people know where food is available.

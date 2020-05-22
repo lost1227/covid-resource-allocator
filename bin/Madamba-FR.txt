@@ -1,0 +1,6 @@
+1. The system shall provide information and updates on communities
+and their policies and regulation.
+2. The system shall provide a list of available jobs for pay from 
+businesses.
+3. The system shall provide means of interaction and messaging between
+a volunteer and a task manager.

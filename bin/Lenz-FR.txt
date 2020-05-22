@@ -1,0 +1,3 @@
+1. The system shall alert users when someone in their area has donated the resources they need.
+2. The system shall alert users when their donation has been claimed by a person in their area.
+3. The system shall generate a list of all donations within a users area and present the user with the list. 

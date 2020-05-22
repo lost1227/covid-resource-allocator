@@ -19,15 +19,19 @@ public class SupplyDAO {
 
     public String description;
 
-    public String taskOwner;
+    public long taskOwnerId;
+    public SupplyType type;
+    public int quantity;
 
-    public SupplyDAO() {};
+    public SupplyDAO() {}
 
-    public SupplyDAO(String name, String location, Integer need, String description, String taskOwner) {
+    public SupplyDAO(String name, String location, Integer need, String description, long taskOwnerId, SupplyType type, int quantity) {
         this.name = name;
         this.location = location;
         this.need = need;
         this.description = description;
-        this.taskOwner = taskOwner;
+        this.taskOwnerId = taskOwnerId;
+        this.type=type;
+        this.quantity=quantity;
     }
 }
