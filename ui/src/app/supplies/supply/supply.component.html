@@ -1,3 +1,4 @@
+<a class="details-link" [routerLink]="['/supplies/details', supply.id]">
 <div class="supply">
     <div class="supply-image-box">
         <img class="supply-image" src="/assets/placeholder.png" alt="placeholder">
@@ -12,3 +13,4 @@
         <p [ngClass]="getNeedClass()">{{getNeedDesc()}}</p>
     </div>
 </div>
+</a>

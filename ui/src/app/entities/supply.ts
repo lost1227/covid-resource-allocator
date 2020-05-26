@@ -5,7 +5,7 @@ export enum SupplyType {
 export class Supply {
     constructor(
         public readonly id : number,
-        public readonly  name : string,
+        public readonly name : string,
         public readonly location : string,
         public readonly need : number,
         public readonly description : string,

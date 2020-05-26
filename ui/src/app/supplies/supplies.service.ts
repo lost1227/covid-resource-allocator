@@ -31,4 +31,10 @@ export class SuppliesService {
       map(response => response.supplies.map(supply => new Supply(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity)))
     )
   }
+
+  getSupply(id : number) : Observable<Supply> {
+    return this.api.getSupply(id).pipe(
+      map(response => new Supply(response.id, response.name, response.location, response.need, response.description, response.ownerId, response.type, response.quantity))
+    )
+  }
 }
