@@ -9,20 +9,22 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SupplyConfig {
-    Logger logger = LoggerFactory.getLogger(SupplyConfig.class);
-    @Bean
-    CommandLineRunner initSupplyDatabase(SupplyRepository supplyrepository) {
-        return args -> {
-            logger.info("Preloading " + supplyrepository.save(
-                new SupplyDAO(
-                    "KN-95 Masks",
-                    "Tempe, AZ",
-                    1,
-                    "In need of extra KN-95 medical grade masks.",
-                    5L,
-                    SupplyType.REQUEST,
-                    0
-                )));
-        };
-    }
+  Logger logger = LoggerFactory.getLogger(SupplyConfig.class);
+  @Bean
+  CommandLineRunner initSupplyDatabase(SupplyRepository supplyrepository) {
+    return args -> {
+      if(supplyrepository.findAll().isEmpty()) {
+        logger.info("Preloading " + supplyrepository.save(
+          new SupplyDAO(
+            "KN-95 Masks",
+            "Tempe, AZ",
+            1,
+            "In need of extra KN-95 medical grade masks.",
+            5L,
+            SupplyType.REQUEST,
+            0
+          )));
+      }
+    };
+  }
 }

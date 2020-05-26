@@ -12,40 +12,42 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class UserConfig {
 
-    Logger logger = LoggerFactory.getLogger(UserConfig.class);
+  Logger logger = LoggerFactory.getLogger(UserConfig.class);
 
-    @Bean
-    CommandLineRunner initUsers(UserRepository repository) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        return args -> {
-            logger.info("Preloading " + repository.save(
-                new UserDAO(
-                    "Memorialcare Health System",
-                    "Long Beach, CA",
-                    "provider",
-                    "Hospital located in Long Beach, California",
-                    new String[] {},
-                    "memorialcare",
-                    encoder.encode("pass"))));
-            logger.info("Preloading " + repository.save(
-                new UserDAO(
-                    "Blue Shield of California",
-                    "Long Beach, CA",
-                    "provider",
-                    "Insurance company serving Long Beach, California",
-                    new String[] {},
-                    "bshield",
-                    encoder.encode("super secure password"))));
-            logger.info("Preloading " + repository.save(
-                new UserDAO(
-                    "Jordan Powers",
-                    "Long Beach, CA",
-                    "volunteer",
-                    "Student living in Long Beach, CA", 
-                    new String[] { "programming" },
-                    "jordan",
-                    encoder.encode("password123"))));
-            };
-    }
+  @Bean
+  CommandLineRunner initUsers(UserRepository repository) {
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    return args -> {
+      if(repository.findAll().isEmpty()) {
+        logger.info("Preloading " + repository.save(
+          new UserDAO(
+            "Memorialcare Health System",
+            "Long Beach, CA",
+            "provider",
+            "Hospital located in Long Beach, California",
+            new String[] {},
+            "memorialcare",
+            encoder.encode("pass"))));
+        logger.info("Preloading " + repository.save(
+          new UserDAO(
+            "Blue Shield of California",
+            "Long Beach, CA",
+            "provider",
+            "Insurance company serving Long Beach, California",
+            new String[] {},
+            "bshield",
+            encoder.encode("super secure password"))));
+        logger.info("Preloading " + repository.save(
+          new UserDAO(
+            "Jordan Powers",
+            "Long Beach, CA",
+            "volunteer",
+            "Student living in Long Beach, CA", 
+            new String[] { "programming" },
+            "jordan",
+            encoder.encode("password123"))));
+      }
+    };
+  }
     
 }
