@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .mat-form-field {
     margin-right: 12px;
   }
@@ -11,3 +12,24 @@
     background-size: cover;
   }
   
+=======
+.example-icon {
+    padding: 0 14px;
+}
+  
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-form-field {
+    width: 200px;
+}
+
+.example-margin {
+    margin: 0 10px;
+}
+
+#toolbar {
+    justify-content: space-between;
+}
+>>>>>>> 788c63d... Updated ViewTasks

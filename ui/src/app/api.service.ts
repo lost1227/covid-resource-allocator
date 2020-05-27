@@ -21,13 +21,15 @@ export interface VolunteerTask {
   location : string
   need : number
   description : string
-  taskOwner : string
+  taskOwner : string,
+  skillsNeeded : string[]
 }
 
 export class VolunteerFilter {
   constructor(
     public matchSkillset : boolean,
     public highNeed : boolean,
-    public locationDistance : number
+    public locationDistance : number,
+    public keywords : string
   ) {}
 }

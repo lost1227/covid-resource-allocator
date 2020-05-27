@@ -1,4 +1,5 @@
 <mat-toolbar color="primary" id="toolbar">
+<<<<<<< HEAD
     <mat-toolbar-row>
         <div id="toolbar-right">
             <span>COVID Resource Allocator</span>
@@ -14,11 +15,23 @@
         <span class="example-spacer"></span>
         <div id="toolbar-left">
             <span class="example-fill-remaining-space"></span>
+=======
+        <div id="toolbar-right">
+            <span>COVID Resource Allocator</span>
+        </div>
+        <div id="toolbar-mid">
+            <button mat-button *ngFor="let option of options" [routerLink]="option.url">
+                <span [ngClass]="getOptionClass(option)">{{option.label}}</span>
+            </button>
+        </div>
+        <div id="toolbar-left">
+>>>>>>> 788c63d... Updated ViewTasks
             <span>{{user.name}}</span>
             <button mat-icon-button aria-label="Open menu">
                 <mat-icon>menu</mat-icon>
             </button>
         </div>
+<<<<<<< HEAD
     </mat-toolbar-row>
 <mat-toolbar-row>
 <button mat-button [matMenuTriggerFor]="menu">Filters</button>
@@ -43,3 +56,8 @@
 
 
 
+=======
+    
+
+</mat-toolbar>
+>>>>>>> 788c63d... Updated ViewTasks

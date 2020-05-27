@@ -1,4 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+<<<<<<< HEAD
+=======
+import { VolunteerFilter } from '@app/api.service';
+>>>>>>> 788c63d... Updated ViewTasks
 
 
 @Component({
@@ -11,8 +15,21 @@ export class ToolbarComponent implements OnInit {
     name: "Ryan Madamba"
   }
   text : String = null;
+<<<<<<< HEAD
 
   public Options = ["Volunteers", "Supplies"]
+=======
+  need : boolean = false;
+  match : boolean = false;
+  filter : VolunteerFilter = null;
+
+
+  
+
+  public options : NavOption[] = [new NavOption("Volunteer", "/volunteer"),
+                                  new NavOption("Supplies", "/supplies"),
+                                  new NavOption("New Post", "/post")];
+>>>>>>> 788c63d... Updated ViewTasks
   @Input('selected') selectedOption : string;
 
   constructor() { }
@@ -23,10 +40,16 @@ export class ToolbarComponent implements OnInit {
   public getOptionClass(option : string) : string[] {
     if(option == this.selectedOption) {
       return ["nav-button", "nav-button-selected"]
-    } else {
+    } 
+    else {
       return ["nav-button"]
     }
   }
+<<<<<<< HEAD
+=======
+  
+}
+>>>>>>> 788c63d... Updated ViewTasks
 
   value = '...';
 }

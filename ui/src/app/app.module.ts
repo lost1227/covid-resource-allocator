@@ -14,6 +14,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+<<<<<<< HEAD
+=======
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+>>>>>>> 788c63d... Updated ViewTasks
 import { TaskListComponent } from '@app/volunteer/task-list/task-list.component';
 import { TaskItemComponent } from '@app/volunteer/task-item/task-item.component';
 import { FilterToolsComponent } from '@app/toolbar/filter-tools/filter-tools.component';
@@ -33,8 +42,15 @@ import {MatInputModule} from '@angular/material/input';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+<<<<<<< HEAD
     MatFormFieldModule,
     MatCardModule,
+=======
+    MatMenuModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+>>>>>>> 788c63d... Updated ViewTasks
     MatToolbarModule,
     MatButtonModule,
     MatCheckboxModule,
