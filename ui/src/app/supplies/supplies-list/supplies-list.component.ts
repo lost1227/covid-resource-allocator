@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService, SupplyFilter, Supply } from '@app/api.service';
 import { Observable } from 'rxjs';
+import { SuppliesService } from '@app/supplies/supplies.service';
+import { Supply } from '@app/entities/supply';
 
 @Component({
   selector: 'app-supplies-list',
@@ -11,9 +12,9 @@ export class SuppliesListComponent implements OnInit {
 
   supplies : Observable<Supply[]>
 
-  constructor(private api : ApiService) { }
+  constructor(private api : SuppliesService) { }
 
   ngOnInit(): void {
-    this.supplies = this.api.getSuppliesList(new SupplyFilter(false, false, -1));
+    this.supplies = this.api.listSupplies();
   }
 }

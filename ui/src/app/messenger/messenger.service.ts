@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { LoginManagerService } from '@app/loginmanager.service';
 import { UserinfoApiService } from '@app/api/userinfo-api.service';
 import { MessengerApiService, SendMessageRequestModel } from '@app/api/messenger-api.service';
-import { Observable, Subject, combineLatest, of, throwError, empty } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { toArray, mergeMap, map, catchError } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,7 @@ export class MessengerService {
     private messengerapi : MessengerApiService) { }
 
   listConversations() : Observable<Conversation[]> {
-    return this.login.getLoggedInUser().pipe(
+    return this.login.getLoggedInUser("/message").pipe(
       mergeMap(principal => {
         const senderUser : MessageUser = new MessageUser(principal.id, principal.name);
         return this.messengerapi.listConversations().pipe(
@@ -54,7 +53,7 @@ export class MessengerService {
 
   searchUser(name : string) : Observable<MessageUser[]> {
 
-    return this.login.getLoggedInUser().pipe(
+    return this.login.getLoggedInUser("/message").pipe(
       mergeMap(principal => {
         const uid = principal.id;
         return this.userapi.findUsersByName(name).pipe(
@@ -68,14 +67,14 @@ export class MessengerService {
   newConversation(otherUser : MessageUser) {
     // TODO: assert no preexisting conversation
 
-    this.login.getLoggedInUser().subscribe(principal => {
+    this.login.getLoggedInUser("/message").subscribe(principal => {
       const senderUser = new MessageUser(principal.id, principal.name);
       const newConversation = new Conversation(senderUser, otherUser, []);
       this.selectedConversation.next(newConversation);
     })
   }
 
-  public selectedConversation = new Subject<Conversation>()
+  public selectedConversation = new ReplaySubject<Conversation>(1)
 
 }
 export class MessageUser {
@@ -83,6 +82,10 @@ export class MessageUser {
     public readonly id : number,
     public readonly name : String
   ) {}
+
+  equals(other : MessageUser) : boolean {
+    return other.id === this.id && other.name === this.name;
+  }
 }
 export class Message {
   constructor(
@@ -98,4 +101,9 @@ export class Conversation {
     public readonly receiver : MessageUser,
     public readonly history : Message[]
   ) {}
+
+  equals(other : Conversation) : boolean {
+    return (this.sender.equals(other.sender) && this.receiver.equals(other.receiver))
+            || (this.sender.equals(other.receiver) && this.receiver.equals(other.sender))
+  }
 }

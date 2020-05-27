@@ -3,6 +3,9 @@ div.maindiv {
     padding: 10px;
 
     align-items: center;
+    
+    width: 100%;
+    border-radius: 10px;
 }
 
 img.thumb {
@@ -22,4 +25,12 @@ p.name {
 
     padding: 0px 0px 0px 10px;
     margin: 0px;
+}
+
+button.button {
+  width: 100%;
+}
+
+div.active {
+  background-color: #D8CDFE;
 }

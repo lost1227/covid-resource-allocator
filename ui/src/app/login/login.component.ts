@@ -11,6 +11,8 @@ export class LoginComponent implements OnInit {
 
   loginForm : FormGroup
 
+  showFailedLogin : boolean = false
+
   constructor(
     private loginManager : LoginManagerService,
     private formBuilder : FormBuilder
@@ -18,6 +20,9 @@ export class LoginComponent implements OnInit {
     this.loginForm = formBuilder.group({
       username : '',
       password : ''
+    })
+    loginManager.failedLogin.subscribe(failed => {
+      this.showFailedLogin = failed
     })
   }
 

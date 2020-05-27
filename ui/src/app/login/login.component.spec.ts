@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { FormBuilder } from '@angular/forms';
 import { LoginManagerService } from '@app/loginmanager.service';
+import { of } from 'rxjs';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -11,7 +12,8 @@ describe('LoginComponent', () => {
   let mockLoginManager = {
     login(username : string, password : string) {
       
-    }
+    },
+    failedLogin : of(false)
   }
 
   beforeEach(async(() => {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService, VolunteerFilter, VolunteerTask } from '@app/api.service';
+import { TasksService } from '@app/tasks/tasks.service';
 import { Observable } from 'rxjs';
+import { VolunteerTask } from '@app/entities/volunteer-task';
 
 @Component({
   selector: 'app-task-list',
@@ -11,10 +12,10 @@ export class TaskListComponent implements OnInit {
 
   tasks : Observable<VolunteerTask[]>
 
-  constructor(private api : ApiService) { }
+  constructor(private tasksService : TasksService) { }
 
   ngOnInit(): void {
-    this.tasks = this.api.getVolunteerTasks(new VolunteerFilter(false, false, -1));
+    this.tasks = this.tasksService.listTasks();
   }
 
 }
