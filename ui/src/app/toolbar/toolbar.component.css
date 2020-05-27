@@ -1,11 +1,6 @@
 #toolbar {
     justify-content: space-between;
 }
-
-.example-spacer {
-    flex: 1 1 auto;
-  }
-
 .nav-button {
     font-size: 24px;
     font-weight: normal;
@@ -20,24 +15,3 @@
     border-bottom: 5px solid;
 }
 
-<<<<<<< HEAD
-.example-form-field {
-    width: 200px;
-  }
-=======
-.example-icon {
-    padding: 0 14px;
-}
-  
-.example-spacer {
-    flex: 1 1 auto;
-}
-
-.example-form-field {
-    width: 200px;
-}
-
-.example-margin {
-    margin: 0 10px;
-}
->>>>>>> 788c63d... Updated ViewTasks
