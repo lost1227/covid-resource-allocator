@@ -18,7 +18,8 @@ describe('TaskListComponent', () => {
           "location": "Long Beach, CA",
           "need": 1,
           "description": "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
-          "taskOwner": "Memorialcare Health System"
+          "taskOwner": "Memorialcare Health System",
+          "skillsNeeded": []
         },
         {
           "id": 2,
@@ -26,7 +27,8 @@ describe('TaskListComponent', () => {
           "location": "Long Beach, CA",
           "need": 0,
           "description": "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
-          "taskOwner": "Memorialcare Health System" 
+          "taskOwner": "Memorialcare Health System",
+          "skillsNeeded": ["Graphic Design"]
         }
       ]);
     }

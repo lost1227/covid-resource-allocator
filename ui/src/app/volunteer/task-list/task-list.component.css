@@ -1,18 +1,4 @@
-<<<<<<< HEAD
-.mat-form-field {
-    margin-right: 12px;
-  }
 
-  .example-card {
-    max-width: 400px;
-  }
-
-  .example-header-image {
-    background-image: url(https://media-exp1.licdn.com/dms/image/C4E0BAQG8MaAkTNGu2g/company-logo_200_200/0?e=2159024400&v=beta&t=HjUTmepX_pGgtAZP0n-Ik66twL20AVj-D7OUoiSryus);
-    background-size: cover;
-  }
-  
-=======
 .example-icon {
     padding: 0 14px;
 }
@@ -32,4 +18,3 @@
 #toolbar {
     justify-content: space-between;
 }
->>>>>>> 788c63d... Updated ViewTasks

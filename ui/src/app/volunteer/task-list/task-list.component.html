@@ -3,7 +3,7 @@
     <div id="toolbar-right">
         <button mat-button [matMenuTriggerFor]="menu">Filters</button>
         <mat-menu #menu="matMenu">
-            <mat-checkbox class="example-margin" [(ngModel)]="need">High Need</mat-checkbox>
+            <mat-checkbox class="example-margin" [(ngModel)]="need" >High Need</mat-checkbox>
             <br>
             <mat-checkbox class="example-margin" [(ngModel)]="match">Match my Skillset</mat-checkbox>
         </mat-menu>
@@ -21,8 +21,3 @@
 
 <app-task-item *ngFor="let task of tasks | async" [task]="task"></app-task-item>
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 788c63d... Updated ViewTasks

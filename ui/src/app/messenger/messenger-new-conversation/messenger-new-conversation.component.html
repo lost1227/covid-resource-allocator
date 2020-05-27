@@ -1,0 +1,5 @@
+<input type="text" (input)="onInput($event)">
+<div *ngFor="let user of users">
+    <button mat-button (click)="onClick(user)">{{user.name}}</button>
+</div>
+

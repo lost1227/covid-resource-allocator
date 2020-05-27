@@ -1,25 +1,16 @@
 package edu.calpoly.csc_308.cora;
 
 import java.util.List;
-<<<<<<< HEAD
-
-=======
 import java.util.ArrayList;
->>>>>>> 788c63d... Updated ViewTasks
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
-import edu.calpoly.csc_308.cora.data.VolunteerTask;
-import edu.calpoly.csc_308.cora.data.VolunteerTaskRepository;
-=======
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTask;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskRepository;
 import edu.calpoly.csc_308.cora.data.Supply;
 import edu.calpoly.csc_308.cora.data.SupplyRepository;
 import edu.calpoly.csc_308.cora.entities.User;
->>>>>>> 788c63d... Updated ViewTasks
 
 @RestController
 public class CoraApiController {
@@ -30,13 +21,13 @@ public class CoraApiController {
         public Integer locationDistance;
         public String keywords;
     }
+    public static class SupplyFiltersRequestModel {
+        public Boolean matchSkillset;
+        public Boolean highNeed;
+        public Integer locationDistance;
+    }
 
     private final VolunteerTaskRepository repo;
-<<<<<<< HEAD
-
-    CoraApiController(VolunteerTaskRepository repo) {
-        this.repo = repo;
-=======
     private final SupplyRepository supplyrepo;
     private final User user;
 
@@ -91,7 +82,6 @@ public class CoraApiController {
             }
         }
         return true;
->>>>>>> 788c63d... Updated ViewTasks
     }
     
     @PostMapping("/api/tasks")
@@ -117,6 +107,22 @@ public class CoraApiController {
         }
 
         return filteredList;
+    }
+
+    /*public Boolean addTask(VolunteerTask task){
+        if (task != null){
+            bound.vol.currentTasks.add(task);
+            task.volunteers.add(bound.vol);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }*/
+
+    @PostMapping("/api/supp")
+    public List<Supply> getSupplies(@RequestBody SupplyFiltersRequestModel request ) {
+        return supplyrepo.findAll();
     }
 
 }

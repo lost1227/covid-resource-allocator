@@ -10,7 +10,10 @@
     font-size: 24px;
     font-weight: normal;
 }
-
+.visibility {
+    display: none;
+  }
+  
 .nav-button-selected {
     font-weight: bold;
     font-weight: 500;

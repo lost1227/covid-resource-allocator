@@ -24,11 +24,11 @@ describe('ToolbarComponent', () => {
   });
 
   it('shoud set the selected class on the selected element', () => {
-    component.selectedOption = component.Options[0];
+    component.selectedOption = component.options[0].label;
     fixture.detectChanges();
 
     const selectedButtonDE = fixture.debugElement.query(By.css('.nav-button-selected'))
     const selectedButtonHTML = selectedButtonDE.nativeElement;
-    expect(selectedButtonHTML.textContent).toEqual(component.Options[0]);
+    expect(selectedButtonHTML.textContent).toEqual(component.options[0].label);
   })
 });

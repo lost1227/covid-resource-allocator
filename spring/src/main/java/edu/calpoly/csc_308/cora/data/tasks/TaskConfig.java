@@ -1,4 +1,4 @@
-package edu.calpoly.csc_308.cora.data;
+package edu.calpoly.csc_308.cora.data.tasks;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class LoadDatabase {
+public class TaskConfig {
 
-    Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
+    Logger logger = LoggerFactory.getLogger(TaskConfig.class);
 
     @Bean
-    CommandLineRunner initDatabase(VolunteerTaskRepository repository) {
+    CommandLineRunner initTasks(VolunteerTaskRepository repository) {
         return args -> {
             logger.info("Preloading " + repository.save(
                 new VolunteerTask(
@@ -21,11 +21,7 @@ public class LoadDatabase {
                      "Long Beach, CA",
                      1,
                      "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
-<<<<<<< HEAD:spring/src/main/java/edu/calpoly/csc_308/cora/data/LoadDatabase.java
                      "Memorialcare Health System", ""
-=======
-                     "Memorialcare Health System", new String[] {}
->>>>>>> 788c63d... Updated ViewTasks:spring/src/main/java/edu/calpoly/csc_308/cora/data/tasks/TaskConfig.java
                 )));
                 logger.info("Preloading " + repository.save(
                 new VolunteerTask(
@@ -33,11 +29,7 @@ public class LoadDatabase {
                     "Long Beach, CA",
                     0,
                     "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
-<<<<<<< HEAD:spring/src/main/java/edu/calpoly/csc_308/cora/data/LoadDatabase.java
-                    "Blue Shield of California", ""
-=======
-                    "Blue Shield of California", new String[] {"Graphic Design"}
->>>>>>> 788c63d... Updated ViewTasks:spring/src/main/java/edu/calpoly/csc_308/cora/data/tasks/TaskConfig.java
+                    "Blue Shield of California", "Graphic Design"
                 )));
         };
     }

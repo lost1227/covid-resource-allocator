@@ -1,5 +1,6 @@
 <mat-toolbar color="primary" id="toolbar">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <mat-toolbar-row>
         <div id="toolbar-right">
             <span>COVID Resource Allocator</span>
@@ -59,5 +60,21 @@
 =======
     
 
+=======
+    <div id="toolbar-right">
+        <span>COVID Resource Allocator</span>
+    </div>
+    <div id="toolbar-mid">
+        <button mat-button *ngFor="let option of options" [routerLink]="option.url">
+            <span [ngClass]="getOptionClass(option)">{{option.label}}</span>
+        </button>
+    </div>
+    <div id="toolbar-left">
+        <span>{{user.name}}</span>
+        <button mat-icon-button aria-label="Open menu">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+>>>>>>> b7689e846b798a4a2c7f86e33c73a16212f6739d
 </mat-toolbar>
 >>>>>>> 788c63d... Updated ViewTasks
