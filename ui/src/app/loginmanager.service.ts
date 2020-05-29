@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '@app/entities/user';
-import { LoginApiService } from './api/login-api.service';
+import { LoginApiService, NewUserRequest } from './api/login-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable, throwError, of, empty, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -103,6 +103,20 @@ export class LoginManagerService {
       const tmp = this.redirect;
       this.redirect = "/";
       this.router.navigateByUrl(tmp);
+    })
+  }
+
+  public registerNewUser(username : string, password : string, user : User) {
+    const request = new NewUserRequest(user.name, user.location, user.userType, user.description, user.skillset, username, password);
+    this.loginApi.registerNewUser(request).subscribe(response => {
+      const sub = this.failedLogin.subscribe(failed => {
+        if(failed) {
+          console.error("Created user "+username+" but failed to log in!");
+          this.router.navigateByUrl("/login");
+        }
+        sub.unsubscribe();
+      })
+      this.login(username, password);
     })
   }
 }

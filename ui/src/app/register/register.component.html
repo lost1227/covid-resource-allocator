@@ -1,0 +1,35 @@
+<app-toolbar></app-toolbar>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="main">
+    <div class="left-container">
+      <input class="img-input" type="file" accept="image" #imgInput (change)="photoChange($event)" formControlName="photo">
+      <img class="add-image" [src]="imgSrc" alt="add" (click)="imgInput.click()">
+    </div>
+    <div class="middle-container">
+      <p class="label">Full Name:</p>
+      <input class="textbox" type="text" formControlName="name">
+
+      <p class="label">Description:</p>
+      <textarea class="description" formControlName="description"></textarea>
+
+      <p class="label">Username:</p>
+      <input class="textbox" type="text" formControlName="username">
+      <p class="label">Password:</p>
+      <input class="textbox" type="password" formControlName="password">
+      
+      <button class="submit-button">Submit</button>
+    </div>
+    <div class="right-container">
+      <p class="label">Location:</p>
+      <input class="textbox" type="text"  formControlName="location">
+
+      <p class="label">Account Type</p>
+      <select class="dropdown" formControlName="accountType">
+        <option value="volunteer">Volunteer</option>
+        <option value="organization">Organization</option>
+      </select>
+    </div>
+    
+  </div>
+</form>
