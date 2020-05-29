@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpHeaders;
 
@@ -50,7 +51,7 @@ public class PhotosAPI {
   public ResponseEntity<Resource> getPhoto(@RequestParam Long id) {
     Optional<PhotoDAO> optionalDao = repo.findById(id);
     if(!optionalDao.isPresent()) {
-      return ResponseEntity.badRequest().build();
+      return ResponseEntity.status(404).header(HttpHeaders.CONTENT_TYPE, "image/jpeg").body(new ClassPathResource("placeholder.jpg"));
     }
     PhotoDAO dao = optionalDao.get();
     Resource resource = new ByteArrayResource(dao.data);
