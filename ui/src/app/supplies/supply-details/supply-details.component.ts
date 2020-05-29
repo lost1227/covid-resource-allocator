@@ -27,7 +27,7 @@ export class SupplyDetailsComponent implements OnInit {
       this.suppliesService.getSupply(id).subscribe(supply => {
         this.item = supply;
         this.usersService.getUserInfo(this.item.ownerId).subscribe(response => {
-          this.user = new User(response.id, response.name, response.location, response.userType, response.description, response.skillset);
+          this.user = new User(response.id, response.name, response.location, response.userType, response.description, response.skillset, response.photoId);
         })
       })
     }

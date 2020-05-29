@@ -7,7 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AngularRouting {
     
-    @RequestMapping({ "/volunteer", "/supplies", "/message", "/login", "/post/volunteer", "/post/supply", "/supplies/details/*"})
+    @RequestMapping({
+      "/volunteer",
+      "/supplies",
+      "/message",
+      "/login",
+      "/login/register",
+      "/post/volunteer",
+      "/post/supply",
+      "/supplies/details/*"
+    })
     public String index() {
         return "forward:/index.html";
     }

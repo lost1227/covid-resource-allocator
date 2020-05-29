@@ -31,7 +31,7 @@ public class UserInfoAPI {
     public ResponseModel getUserInfo(@RequestParam Long id) {
 
         User user = userManager.getUser(id);
-        UserInfoResponse response = new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet);
+        UserInfoResponse response = new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet, user.photoId);
 
         return response;
     }
@@ -40,7 +40,7 @@ public class UserInfoAPI {
     public ResponseModel findUserByName(@RequestParam String name) {
         List<User> users = userManager.findUsersByName(name);
         List<UserInfoResponse> responses = users.stream()
-                                                .map(user -> new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet))
+                                                .map(user -> new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet, user.photoId))
                                                 .collect(Collectors.toList());
         FindUsersResponse response = new FindUsersResponse(name, responses);
         return response;

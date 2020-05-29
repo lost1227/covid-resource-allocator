@@ -3,7 +3,6 @@ package edu.calpoly.csc_308.cora.security;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +16,9 @@ import edu.calpoly.csc_308.cora.entities.User;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Service
 public class AuthUserService implements UserDetailsService {
 
@@ -25,6 +27,8 @@ public class AuthUserService implements UserDetailsService {
 
     @Autowired
     private UserRepository users;
+
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Override
     public UserDetails loadUserByUsername(String username) {
@@ -36,14 +40,46 @@ public class AuthUserService implements UserDetailsService {
         AuthUser authUser = new AuthUser(
             dao.username,
             dao.passwordHash,
-            true,
-            true,
-            true,
-            true,
-            new ArrayList<>(),
-            new User(dao.id, dao.name, dao.location, dao.userType, dao.description, dao.skillSet)
+            User.fromDao(dao)
         );
         return authUser;
+    }
+    
+
+    public AuthUser registerNewUser(User user, String username, String password) {
+      String hashedPassword = encoder.encode(password);
+      UserDAO dao = new UserDAO(user.name, user.location, user.userType, user.description, user.skillSet, user.photoId, username, hashedPassword);
+
+      UserDAO preexisting = users.findByUsername(username);
+      if(preexisting != null) {
+        throw new IllegalArgumentException("User already exists!");
+      }
+
+      dao = users.save(dao);
+      User ret = User.fromDao(dao);
+      return new AuthUser(username, hashedPassword, ret);
+    }
+
+    public AuthUser updateUser(AuthUser principal, User user, String password) {
+      UserDAO dao = users.findById(principal.user.id).get();
+      logger.info("pre-edit: {}", dao);
+      if(!user.name.isEmpty())
+        dao.name = user.name;
+      if(!user.photoId.equals(-1L))
+        dao.photoId = user.photoId;
+      if(!user.location.isEmpty())
+        dao.location = user.location;
+      if(!user.description.isEmpty())
+        dao.description = user.description;
+      if(user.skillSet.length > 0)
+        dao.skillSet = user.skillSet;
+      if(!password.isEmpty())
+        dao.passwordHash = encoder.encode(password);
+
+      dao = users.save(dao);
+      logger.info("post-edit: {}", dao);
+
+      return new AuthUser(dao.username, dao.passwordHash, User.fromDao(dao));
     }
     
 }

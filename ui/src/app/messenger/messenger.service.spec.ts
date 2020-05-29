@@ -20,7 +20,8 @@ describe('MessengerService', () => {
         location : "someplace",
         userType : "volunteer",
         description : "",
-        skillset : ["unskilled"]
+        skillset : ["unskilled"],
+        photoId: -1
       })
     }
   }
@@ -46,7 +47,7 @@ describe('MessengerService', () => {
 
   let mockloginservice = {
     getLoggedInUser() : Observable<User> {
-      return of(new User(0, "Test User", "Test Location", "Test Type", "Test Description", []))
+      return of(new User(0, "Test User", "Test Location", "Test Type", "Test Description", [], -1))
     }
   }
 

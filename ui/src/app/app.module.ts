@@ -25,6 +25,8 @@ import { SuppliesListComponent } from '@app/supplies/supplies-list/supplies-list
 import { SupplyComponent } from './supplies/supply/supply.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { SupplyDetailsComponent } from './supplies/supply-details/supply-details.component';
+import { RegisterComponent } from './register/register.component';
+import { ImageUploadComponentComponent } from './image-upload-component/image-upload-component.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { SupplyDetailsComponent } from './supplies/supply-details/supply-details
     SuppliesListComponent,
     SupplyComponent,
     NewPostComponent,
-    SupplyDetailsComponent
+    SupplyDetailsComponent,
+    RegisterComponent,
+    ImageUploadComponentComponent
   ],
   imports: [
     BrowserModule,
