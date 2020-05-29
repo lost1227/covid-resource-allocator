@@ -1,10 +1,7 @@
 package edu.calpoly.csc_308.cora.entities;
 
-//import javax.persistence.Entity;
-
 import lombok.Data;
 
-//@Entity
 @Data
 public class User {
     public final Long id;    

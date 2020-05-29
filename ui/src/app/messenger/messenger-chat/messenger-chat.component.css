@@ -1,0 +1,82 @@
+.maindiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+  height: 100%;
+}
+.message-history {
+  flex-grow: 1;
+  flex-shrink: 1;
+  
+  box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.25);
+
+  padding: 5px;
+}
+.input-box {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+div.sendcontainer {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+}
+div.composer {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+div.sendmessage {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+textarea.messagecomposer {
+  width: 100%;
+
+  font-family: Roboto;
+}
+
+div.message-outer {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+
+  padding: 2px 0px;
+}
+
+div.sent-message-outer {
+  flex-direction: row-reverse;
+}
+
+div.received-message-outer {
+  flex-direction: row;
+}
+
+div.message-inner {
+  padding: 5px 15px;
+  width: 50%;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  border-radius: 20px;
+}
+
+div.sent-message-inner {
+  background-color: #31537F;
+  color: #FFFFFF;
+}
+
+div.received-message-inner {
+  background-color: #007048;
+  color: #FFFFFF;
+}

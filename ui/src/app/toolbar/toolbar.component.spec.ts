@@ -1,13 +1,34 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ToolbarComponent } from './toolbar.component';
+import { UserInfoResponseModel } from '@app/api/userinfo-api.service';
+import { Observable, of } from 'rxjs';
+import { LoginManagerService } from '@app/loginmanager.service';
 
 describe('ToolbarComponent', () => {
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
 
+  let mockuserapi = {
+    isLoggedIn() : Observable<Boolean> {
+      return of(false);
+    },
+    getUserInfo(id : number) : Observable<UserInfoResponseModel> {
+      return of({
+        ok: true,
+        id: id,
+        name: "User "+id,
+        location : "someplace",
+        userType : "volunteer",
+        description : "",
+        skillset : ["unskilled"]
+      })
+    }
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [{provide: LoginManagerService, useValue: mockuserapi}],
       declarations: [ ToolbarComponent ]
     })
     .compileComponents();

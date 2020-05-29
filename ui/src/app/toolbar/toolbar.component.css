@@ -1,5 +1,13 @@
-#toolbar {
-    justify-content: space-between;
+.box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+#toolbar-left {
+    margin-right: auto;
+}
+#toolbar-right {
+    margin-left: auto;
 }
 .nav-button {
     font-size: 24px;

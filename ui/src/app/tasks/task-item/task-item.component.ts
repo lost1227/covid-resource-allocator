@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { VolunteerTask } from '@app/api.service'
+import { VolunteerTask } from '@app/entities/volunteer-task';
 
 @Component({
   selector: 'app-task-item',

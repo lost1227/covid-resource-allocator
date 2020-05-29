@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService, VolunteerFilter, VolunteerTask } from '@app/api.service';
+import { TasksService } from '@app/tasks/tasks.service';
 import { Observable } from 'rxjs';
-import { ToolbarComponent } from '@app/toolbar/toolbar.component';
+import { VolunteerTask } from '@app/entities/volunteer-task';
 
 @Component({
   selector: 'app-task-list',
@@ -16,26 +16,27 @@ export class TaskListComponent implements OnInit {
   need : boolean = false;
   match : boolean = false;
   loc : boolean = false;
-  filter : VolunteerFilter;
+  //filter : VolunteerFilter;
 
   value : string;
 
-  constructor(private api : ApiService) { }
+  constructor(private tasksService : TasksService) { }
 
-  public createFilter() : VolunteerFilter{
+  /*public createFilter() : VolunteerFilter{
     this.filter = new VolunteerFilter(this.need, this.match, this.loc, this.value);
     return this.filter;
-  }
+  }*/
 
   ngOnInit(): void {
-    this.tasks = this.api.getVolunteerTasks(new VolunteerFilter(false, false, false, ""));
+    //this.tasks = this.api.getVolunteerTasks(new VolunteerFilter(false, false, false, ""));
     //this.tasks = this.api.getVolunteerTasks(this.filter);
 
+    this.tasks = this.tasksService.listTasks();
   }
 
-  onChange(){
+  /*onChange(){
     this.tasks = this.api.getVolunteerTasks(this.createFilter());
-  }
+  }*/
 
   
 

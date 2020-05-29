@@ -1,3 +1,6 @@
+#toolbar {
+    justify-content: space-between;
+}
 
 .example-icon {
     padding: 0 14px;
@@ -13,8 +16,4 @@
 
 .example-margin {
     margin: 0 10px;
-}
-
-#toolbar {
-    justify-content: space-between;
 }

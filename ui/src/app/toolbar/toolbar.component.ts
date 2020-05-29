@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+import { LoginManagerService } from '@app/loginmanager.service';
+import { User } from '@app/entities/user';
 
 
 @Component({
@@ -7,20 +9,25 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  user = {
-
-    name: "Ryan Madamba"
-  }
 
   public options : NavOption[] = [new NavOption("Volunteer", "/volunteer"),
-                                  new NavOption("Supplies", "/supplies"),
-                                  new NavOption("New Post", "/post")];
-
+                                  new NavOption("Supplies", "/supplies")];
   @Input('selected') selectedOption : string;
 
-  constructor() { }
+  public user : User = null;
+
+  constructor(
+    private login : LoginManagerService
+  ) { }
 
   ngOnInit(): void {
+    this.login.isLoggedIn().subscribe(isLoggedIn => {
+      if(isLoggedIn) {
+        this.login.getLoggedInUser().subscribe(user => {
+          this.user = user;
+        })
+      }
+    })
   }
 
   public getOptionClass(option : NavOption) : string[] {
@@ -33,7 +40,6 @@ export class ToolbarComponent implements OnInit {
   }
 
 }
-
 class NavOption {
   constructor(
     public label : string,

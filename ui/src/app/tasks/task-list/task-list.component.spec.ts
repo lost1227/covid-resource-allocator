@@ -2,15 +2,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskListComponent } from './task-list.component';
 
-import { VolunteerTask, VolunteerFilter, ApiService } from '@app/api.service';
 import { of, Observable } from 'rxjs';
+import { VolunteerTask } from '@app/entities/volunteer-task';
+import { TasksService } from '../tasks.service';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
   let fixture: ComponentFixture<TaskListComponent>;
 
-  var mockApi = {
-    getVolunteerTasks(filters : VolunteerFilter[]) : Observable<VolunteerTask[]> {
+  var mockTasksService = {
+    listTasks(skillSet? : string[], priority? : number, distance? : number) : Observable<VolunteerTask[]> {
       return of([
         {
           "id": 1,
@@ -19,7 +20,8 @@ describe('TaskListComponent', () => {
           "need": 1,
           "description": "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
           "taskOwner": "Memorialcare Health System",
-          "skillsNeeded": []
+          "skillsNeeded": [],
+          "ownerId": 3
         },
         {
           "id": 2,
@@ -28,7 +30,8 @@ describe('TaskListComponent', () => {
           "need": 0,
           "description": "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
           "taskOwner": "Memorialcare Health System",
-          "skillsNeeded": ["Graphic Design"]
+          "skillsNeeded": ["Graphic Design"],
+          "ownerId": 4
         }
       ]);
     }
@@ -36,7 +39,7 @@ describe('TaskListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: ApiService, useValue: mockApi}],
+      providers: [{ provide: TasksService, useValue: mockTasksService}],
       declarations: [ TaskListComponent ]
     })
     .compileComponents();
