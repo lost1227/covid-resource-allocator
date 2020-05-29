@@ -6,6 +6,7 @@ import { LoginComponent } from '@app/login/login.component';
 
 import { NewPostComponent } from './new-post/new-post.component';
 import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
+import {EditAccountComponent} from "@app/account/edit-account.component";
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
         { path: 'supply', component: NewPostComponent }
       ]},
   { path: 'supplies', component: SuppliesListComponent},
-  { path: '', redirectTo: '/volunteer', pathMatch: 'full'}
+  { path: '', redirectTo: '/volunteer', pathMatch: 'full'},
+  { path: 'account', component: EditAccountComponent}
 ];
 
 @NgModule({

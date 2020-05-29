@@ -41,11 +41,21 @@ public class UserConfig {
                     "Jordan Powers",
                     "Long Beach, CA",
                     "volunteer",
-                    "Student living in Long Beach, CA", 
+                    "Student living in Long Beach, CA",
                     new String[] { "programming" },
                     "jordan",
                     encoder.encode("password123"))));
+            logger.info("Preloading " + repository.save(
+                    new UserDAO(
+                            "Finian Rawson",
+                            "Monterey, CA",
+                            "volunteer",
+                            "Student living in Monterey, CA",
+                            new String[] { "programming" },
+                            "frawson",
+                            encoder.encode("password123"))));
             };
+
     }
     
 }
