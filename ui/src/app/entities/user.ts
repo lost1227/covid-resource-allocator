@@ -5,6 +5,7 @@ export class User {
     public location : string,
     public userType : string,
     public description : string,
-    public skillset : string[]
+    public skillset : string[],
+    public photoId : number
   ) {}
 }

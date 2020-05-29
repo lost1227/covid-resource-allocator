@@ -35,7 +35,7 @@ public class UserInfoAPITest {
 
     @BeforeEach
     public void setup() {
-        Mockito.doReturn(new User(0L, "test user", "somewhere", "sometype", "description", new String[]{}))
+        Mockito.doReturn(new User(0L, "test user", "somewhere", "sometype", "description", new String[]{}, -1L))
                 .when(userManagerService).getUser(0L);
     }
     

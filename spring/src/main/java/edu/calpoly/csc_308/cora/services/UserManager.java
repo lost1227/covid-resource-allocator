@@ -20,7 +20,7 @@ public class UserManager {
 
     public User getUser(Long id) {
         UserDAO dao = repo.findById(id).get();
-        User user = new User(dao.id, dao.name, dao.location, dao.userType, dao.description, dao.skillSet);
+        User user = User.fromDao(dao);
 
         return user;
     }
@@ -28,7 +28,7 @@ public class UserManager {
     public List<User> findUsersByName(String name) {
         List<UserDAO> daos = repo.findByName(name);
         List<User> users = daos.stream()
-                                .map(dao -> new User(dao.id, dao.name, dao.location, dao.userType, dao.description, dao.skillSet))
+                                .map(dao -> User.fromDao(dao))
                                 .collect(Collectors.toList());
         return users;
     }

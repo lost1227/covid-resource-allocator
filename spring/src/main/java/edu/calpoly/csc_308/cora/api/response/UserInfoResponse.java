@@ -7,13 +7,15 @@ public class UserInfoResponse extends ResponseModel {
     public String userType;
     public String description;
     public String[] skillset;
+    public Long photoId;
 
-    public UserInfoResponse(Long id, String name, String location, String userType, String description, String[] skillset) {
+    public UserInfoResponse(Long id, String name, String location, String userType, String description, String[] skillset, Long photoId) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.userType = userType;
         this.description = description;
         this.skillset = skillset;
+        this.photoId = photoId;
     }
 }
