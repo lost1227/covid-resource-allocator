@@ -18,7 +18,7 @@ export class TasksApiService extends ApiService {
     if(filters == null) {
       filters = new VolunteerTasksFilter([], [], 0, 0);
     }
-    return super.verifyResponse(this.http.post<VolunteerTasksResponse>("/api/tasks", filters));
+    return super.verifyResponse(this.http.post<VolunteerTasksResponse>("/api/task", filters));
   }
 }
 

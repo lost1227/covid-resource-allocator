@@ -26,7 +26,7 @@ public class TasksAPI {
 
     Logger logger = LoggerFactory.getLogger(TasksAPI.class);
 
-    @PostMapping("/api/tasks")
+    @PostMapping("/api/task")
     public ResponseModel getVolunteerTasks(@RequestBody VolunteerFilterRequestModel request) {
         // TODO: add filter logic
 
