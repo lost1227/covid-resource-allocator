@@ -1,5 +1,6 @@
 package edu.calpoly.csc_308.cora.security;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +13,7 @@ public class AuthUser extends org.springframework.security.core.userdetails.User
     
     public User user;
     
-    AuthUser(
+    public AuthUser(
         String username, 
         String password, 
         boolean enabled, 
@@ -27,6 +28,17 @@ public class AuthUser extends org.springframework.security.core.userdetails.User
             throw new IllegalArgumentException("Cannot have null user");
         }
         this.user = user;
+    }
+
+    public AuthUser(String username, String password, User user) {
+      this(username, 
+        password, 
+        true,
+        true,
+        true,
+        true,
+        new ArrayList<>(),
+        user);
     }
 
     @Override
