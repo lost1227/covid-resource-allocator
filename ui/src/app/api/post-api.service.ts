@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { ApiService, ResponseModel } from '@app/api/api.service';
+import { SupplyType } from '@app/entities/supply';
 @Injectable({
   providedIn: 'root'
 })
@@ -20,12 +21,25 @@ export class PostApiService extends ApiService {
     return super.verifyResponse(this.http.get<ListSupplyResponse>("/api/supply/supplies"));
   }
 }
-
+//match fields 
+export class PostSupplyRequestModel {
+  constructor(
+    public id : number,
+    public  name : string,
+    public location : string,
+    public need : number,
+    public description : string,
+    public ownerId : number,
+    public type : SupplyType,
+    public quantity : number
+  ) { }
+}
 export class SupplyRequestModel {
   constructor(
     public supplyId : number,
   ) { }
 }
+
 
 export interface SupplyResponse {
   id : number;

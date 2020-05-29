@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '@app/entities/user';
 import { LoginManagerService } from '@app/loginmanager.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {Supply, SupplyType} from '@app/entities/supply'
+import {SuppliesApiService, PostSupplyRequestModel} from '@app/api/supplies-api.service'
+import { SupplyRequestModel } from '@app/api/post-api.service';
 
 @Component({
   selector: 'app-new-post',
@@ -12,19 +15,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class NewPostComponent implements OnInit {
 
   user : User
-
-  type : String
-
+  supplyType : SupplyType
+  type : string
   form : FormGroup
   
   constructor(
     private route : ActivatedRoute,
     private formBuilder : FormBuilder,
-    private login : LoginManagerService
+    private login : LoginManagerService,
+    private supplyService : SuppliesApiService
   ) {
     this.route.url.subscribe(params => {
-      this.type = params[0].path;
-      this.login.getLoggedInUser("/post/"+this.type).subscribe(user => {
+      this.login.getLoggedInUser("/post/supply").subscribe(user => {
         this.user = user;
       })
     })
@@ -58,6 +60,18 @@ export class NewPostComponent implements OnInit {
     console.log(formValue);
 
     // TODO: add the new item to the requisite database
+    //package supply in supply entity  and send to supply api 
+    this.form.reset();
+    const supply = new PostSupplyRequestModel(
+      formValue.title,
+      formValue.location,
+      0,
+      formValue.description,
+      this.user.id,
+      this.supplyType,
+      3
+    )
+    this.supplyService.postSupplies(supply).subscribe()
   }
 
 }
