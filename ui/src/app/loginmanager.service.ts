@@ -116,10 +116,8 @@ export class LoginManagerService {
         this.photos.postPhoto(photo).subscribe(photoResponse => {
           const editRequest = EditUserRequest.editPhotoId(photoResponse.id);
           this.loginApi.editUser(editRequest).subscribe(editResponse => {
-            this.loginApi.logout().subscribe(logoutResponse => {
-              this.loggedInUser = null;
-              this.login(username, password);
-            })
+            this.loggedInUser = null;
+            this.router.navigateByUrl("/");
           })
         })
       })

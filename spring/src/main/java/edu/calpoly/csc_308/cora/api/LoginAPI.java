@@ -49,6 +49,8 @@ public class LoginAPI {
       logger.info("Editing user " + principal.getUsername());
       User user = new User(principal.user.id, request.name, request.location, principal.user.userType, request.description, request.skillset, request.photoId);
       AuthUser result = userSerivce.updateUser(principal, user, request.password);
+      
+      principal.user = result.user;
 
       UserInfoResponse response = new UserInfoResponse(result.user.id, result.user.name, result.user.location, result.user.userType, result.user.description, result.user.skillSet, result.user.photoId);
       return response;
