@@ -38,7 +38,8 @@ export class NewPostComponent implements OnInit {
       'description' : '',
       'location' : '',
       'need' : '',
-      'supplyPostType' : ''
+      'supplyPostType' : '',
+      'quantity' : ''
     })
   }
 
@@ -65,11 +66,11 @@ export class NewPostComponent implements OnInit {
     const supply = new PostSupplyRequestModel(
       formValue.title,
       formValue.location,
-      0,
+      parseInt(formValue.need),
       formValue.description,
       this.user.id,
       this.supplyType,
-      3
+      0
     )
     this.supplyService.postSupplies(supply).subscribe()
   }

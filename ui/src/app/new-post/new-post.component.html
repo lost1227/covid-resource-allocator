@@ -24,9 +24,11 @@
 
       <p class="label">Need:</p>
       <select class="dropdown" formControlName="need">
-        <option value="high">High</option>
-        <option value="low">Low</option>
+        <option value="1">High</option>
+        <option value="0">Low</option>
       </select>
+      <p class="label">Quantity:</p>
+      <input class="textbox" formControlName="quantity">
 
       <div class="supplies" *ngIf="type == 'supply'">
         <p class="label">Post Type:</p>

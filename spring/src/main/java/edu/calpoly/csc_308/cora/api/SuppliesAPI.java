@@ -34,7 +34,9 @@ public class SuppliesAPI {
 
     @Autowired
     private SupplyRepository suppRepo;
-    
+    public SuppliesAPI(SupplyManager supp) {
+        this.supp = supp;
+    }
     @PostMapping("/api/supplies")
     public ResponseModel getSupplies(@RequestBody SuppliesFilterRequestModel request) {
         // TODO: add filter logic
