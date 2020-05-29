@@ -37,10 +37,7 @@ public class MessengerAPI {
 
     @PostMapping("/api/message/post")
     public ResponseModel postMessage(@RequestBody SendMessageRequestModel messageRequest, Authentication authentication) {
-        logger.info("postMessage: {}", messageRequest);
-
-        logger.info("principal: {}", authentication.getPrincipal());
-
+      
         User principal = ((AuthUser) authentication.getPrincipal()).user;
 
         Long id = principal.id;
