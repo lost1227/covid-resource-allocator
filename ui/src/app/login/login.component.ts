@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { LoginManagerService } from '@app/loginmanager.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   showFailedLogin : boolean = false
 
   constructor(
+    private router: Router,
     private loginManager : LoginManagerService,
     private formBuilder : FormBuilder
   ) {
@@ -27,6 +29,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loginManager.isLoggedIn().subscribe(loggedIn => {
+      if(loggedIn) {
+        this.router.navigateByUrl("/");
+      }
+    })
   }
 
   onSubmit(formValue) {

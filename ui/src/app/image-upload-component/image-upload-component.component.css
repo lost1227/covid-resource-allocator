@@ -1,0 +1,11 @@
+input.img-input {
+  display: none;
+}
+
+img.add-image {
+
+  width: 300px;
+  height: 300px;
+
+  cursor: pointer;
+}

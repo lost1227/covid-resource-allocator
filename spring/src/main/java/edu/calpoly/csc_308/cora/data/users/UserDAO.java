@@ -1,10 +1,13 @@
 package edu.calpoly.csc_308.cora.data.users;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Data
 @Entity
 public class UserDAO {
     public @Id @GeneratedValue Long id;
@@ -15,6 +18,8 @@ public class UserDAO {
     public String userType;
     public String description;
     public String[] skillSet;
+
+    public Long photoId;
 
     @Column(unique = true)
     public String username;
@@ -29,6 +34,8 @@ public class UserDAO {
         String description,
         String[] skillSet,
 
+        Long photoId,
+
         String username, 
         String passwordHash
         ) {
@@ -37,6 +44,8 @@ public class UserDAO {
         this.userType = userType;
         this.description = description;
         this.skillSet = skillSet;
+
+        this.photoId = photoId;
 
         this.username = username;
         this.passwordHash = passwordHash;

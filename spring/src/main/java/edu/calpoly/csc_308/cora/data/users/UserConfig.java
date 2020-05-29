@@ -25,6 +25,7 @@ public class UserConfig {
                     "provider",
                     "Hospital located in Long Beach, California",
                     new String[] {},
+                    -1L,
                     "memorialcare",
                     encoder.encode("pass"))));
             logger.info("Preloading " + repository.save(
@@ -34,6 +35,7 @@ public class UserConfig {
                     "provider",
                     "Insurance company serving Long Beach, California",
                     new String[] {},
+                    -1L,
                     "bshield",
                     encoder.encode("super secure password"))));
             logger.info("Preloading " + repository.save(
@@ -43,6 +45,7 @@ public class UserConfig {
                     "volunteer",
                     "Student living in Long Beach, CA", 
                     new String[] { "programming" },
+                    -1L,
                     "jordan",
                     encoder.encode("password123"))));
             };
