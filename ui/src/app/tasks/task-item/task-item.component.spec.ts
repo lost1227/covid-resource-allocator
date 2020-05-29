@@ -58,7 +58,8 @@ describe('TaskItemComponent', () => {
       "location": "Long Beach, CA",
       "need": 0,
       "description": "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
-      "ownerId": 3
+      "ownerId": 3,
+      "skillNeeded": ""
     }
     fixture.detectChanges();
 
@@ -73,7 +74,8 @@ describe('TaskItemComponent', () => {
       "location": "Long Beach, CA",
       "need": 2,
       "description": "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
-      "ownerId": 4
+      "ownerId": 4,
+      "skillNeeded": "Graphic Design"
     }
     fixture.detectChanges();
 

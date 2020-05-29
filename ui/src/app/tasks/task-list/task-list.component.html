@@ -1,8 +1,8 @@
 <app-toolbar selected="Volunteers"></app-toolbar>
 <mat-toolbar color="secondary" id="toolbar">
     <div id="toolbar-right">
-        <button mat-button [matMenuTriggerFor]="menu">Filters</button>
-        <mat-menu #menu="matMenu">
+        <button mat-button [matMenuTriggerFor]="filterMenu">Filters</button>
+        <mat-menu #filterMenu>
             <mat-checkbox class="example-margin" [(ngModel)]="need" >High Need</mat-checkbox>
             <br>
             <mat-checkbox class="example-margin" [(ngModel)]="match">Match my Skillset</mat-checkbox>
@@ -20,6 +20,6 @@
             </button>
             </mat-form-field>
     </div>
-
+  </mat-toolbar>
 <app-task-item *ngFor="let task of tasks | async" [task]="task"></app-task-item>
 

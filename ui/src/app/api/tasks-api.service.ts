@@ -26,9 +26,9 @@ export class VolunteerTasksFilter {
   constructor(
     public enabledFilters : string[],
     public skillSet : string[],
-    public priority : number,
+    public need : number,
     public location : string,
-    public keywords : string
+    public search : string
   ) {}
 }
 
@@ -39,7 +39,7 @@ export interface VolunteerTaskResponse {
   need : number
   description : string
   taskOwnerId : number
-  skillsNeeded : string
+  skillNeeded : string
 }
 export interface VolunteerTasksResponse extends ResponseModel {
   tasks : VolunteerTaskResponse[]
