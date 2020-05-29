@@ -18,15 +18,18 @@ public class VolunteerTaskDAO {
 
     public String description;
 
-    public Long taskOwnerId;
+    public Long ownerId;
+
+    public Long photoId;
 
     public VolunteerTaskDAO() {};
 
-    public VolunteerTaskDAO(String name, String location, Integer need, String description, Long taskOwnerId) {
+    public VolunteerTaskDAO(String name, String location, Integer need, String description, Long ownerId, Long photoId) {
         this.name = name;
         this.location = location;
         this.need = need;
         this.description = description;
-        this.taskOwnerId = taskOwnerId;
+        this.ownerId = ownerId;
+        this.photoId = photoId;
     }
 }

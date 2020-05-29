@@ -30,14 +30,19 @@ export class PostService {
     this.photoService.postPhoto(photo).subscribe(response => {
       supply.photoId = response.id;
       this.supplyService.postSupplies(supply).subscribe(response => {
+        // TODO: navigate to details page
         this.router.navigateByUrl("/");
       });
     })
   }
 
-  postTask(task : VolunteerTask) {
-    this.tasksService.postNewTask(task).subscribe(response => {
-      this.router.navigateByUrl("/");
+  postTask(task : VolunteerTask, photo : File) {
+    this.photoService.postPhoto(photo).subscribe(response => {
+      task.photoId = response.id;
+      this.tasksService.postNewTask(task).subscribe(response => {
+        // TODO: navigate to details page
+        this.router.navigateByUrl("/");
+      })
     })
   }
 }

@@ -19,7 +19,8 @@ describe('TaskListComponent', () => {
           "location": "Long Beach, CA",
           "need": 1,
           "description": "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
-          "ownerId": 3
+          "ownerId": 3,
+          "photoId": -1
         },
         {
           "id": 2,
@@ -27,7 +28,8 @@ describe('TaskListComponent', () => {
           "location": "Long Beach, CA",
           "need": 0,
           "description": "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
-          "ownerId": 4
+          "ownerId": 4,
+          "photoId": -1
         }
       ]);
     }

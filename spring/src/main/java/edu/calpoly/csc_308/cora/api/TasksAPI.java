@@ -33,7 +33,7 @@ public class TasksAPI {
         // TODO: add filter logic
 
         List<VolunteerTaskResponse> tasks = repo.findAll().stream().map( dao ->
-            new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.taskOwnerId)
+            new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.photoId)
         ).collect(Collectors.toList());
         
         return new VolunteerTasksResponse(tasks);
@@ -41,9 +41,9 @@ public class TasksAPI {
 
     @PostMapping("/api/tasks/post")
     public ResponseModel postVolunteerTask(@RequestBody PostVolunteerTaskRequestModel request) {
-      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.name, request.location, request.need, request.description, request.ownerId);
+      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.name, request.location, request.need, request.description, request.ownerId, request.photoId);
       dao = repo.save(dao);
-      return new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.taskOwnerId);
+      return new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.photoId);
     }
     
 }

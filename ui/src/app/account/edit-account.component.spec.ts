@@ -17,7 +17,7 @@ describe('EditAccountComponent', () => {
 
   let mockloginservice = {
     getLoggedInUser() : Observable<User> {
-      return of(new User(0, "Test User", "Test Location", "Test Type", "Test Description", []))
+      return of(new User(0, "Test User", "Test Location", "Test Type", "Test Description", [], -1))
     }
   }
 

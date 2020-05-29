@@ -27,7 +27,7 @@ export class TasksService {
     }
     const filterObj = new VolunteerTasksFilter(filters, skillSet, priority, distance);
     return this.api.getTasks(filterObj).pipe(
-      map(response => response.tasks.map(task => new VolunteerTask(task.id, task.name, task.location, task.need, task.description, task.taskOwnerId)))
+      map(response => response.tasks.map(task => new VolunteerTask(task.id, task.name, task.location, task.need, task.description, task.ownerId, task.photoId)))
     )
   }
 }

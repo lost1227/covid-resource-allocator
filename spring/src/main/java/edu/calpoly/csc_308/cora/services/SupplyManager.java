@@ -21,7 +21,7 @@ public class SupplyManager {
         return dao;
     }
     private Supply convertSupply(SupplyDAO dao) {
-        Supply supply = new Supply(dao.id, dao.name, dao.location, dao.need, dao.description,dao.taskOwnerId,dao.type,dao.quantity, dao.photoId);
+        Supply supply = new Supply(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId);
         return supply;
     }
     public Supply postSupply(Supply supply) {

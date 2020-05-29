@@ -37,7 +37,7 @@ public class SuppliesAPI {
         // TODO: add filter logic
 
         List<SupplyResponse> supplies = suppRepo.findAll().stream().map(
-                dao -> new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.taskOwnerId, dao.type, dao.quantity, dao.photoId)
+                dao -> new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId)
             ).collect(Collectors.toList());
             
         return new SuppliesResponse(supplies);

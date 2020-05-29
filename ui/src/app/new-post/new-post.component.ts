@@ -93,9 +93,10 @@ export class NewPostComponent implements OnInit {
             formValue.location,
             parseInt(formValue.need),
             formValue.description,
-            this.user.id
+            this.user.id,
+            -1
           )
-          this.postService.postTask(task);
+          this.postService.postTask(task, formValue.image);
           break;
         default:
           break;
