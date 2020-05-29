@@ -1,9 +1,5 @@
 package edu.calpoly.csc_308.cora.services;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -21,11 +17,11 @@ public class SupplyManager {
         this.repo = repo;
     }
     private SupplyDAO convertSupplyDAO(Supply supply) {
-        SupplyDAO dao = new SupplyDAO(supply.name, supply.location, supply.need, supply.description,supply.taskOwnerId,supply.type,supply.quantity);
+        SupplyDAO dao = new SupplyDAO(supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, supply.photoId);
         return dao;
     }
     private Supply convertSupply(SupplyDAO dao) {
-        Supply supply = new Supply(dao.id, dao.name, dao.location, dao.need, dao.description,dao.taskOwnerId,dao.type,dao.quantity);
+        Supply supply = new Supply(dao.id, dao.name, dao.location, dao.need, dao.description,dao.taskOwnerId,dao.type,dao.quantity, dao.photoId);
         return supply;
     }
     public Supply postSupply(Supply supply) {

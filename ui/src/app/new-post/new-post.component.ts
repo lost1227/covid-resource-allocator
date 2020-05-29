@@ -81,9 +81,10 @@ export class NewPostComponent implements OnInit {
             formValue.description,
             this.user.id,
             formValue.supplyPostType,
-            formValue.quantity
+            formValue.quantity,
+            -1
           )
-          this.postService.postSupply(supply);
+          this.postService.postSupply(supply, formValue.image);
           break;
         case PostType.VOLUNTEER:
           const task = new VolunteerTask(

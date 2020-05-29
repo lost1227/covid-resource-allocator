@@ -1,10 +1,16 @@
 package edu.calpoly.csc_308.cora.entities;
 
-import edu.calpoly.csc_308.cora.data.supplies.SupplyType;
 import lombok.Data;
 
 @Data
 public class Supply {
+
+  public static enum SupplyType {
+    REQUEST,
+    OFFER
+  }
+
+
     public Long id;
     
     public String name;
@@ -14,17 +20,20 @@ public class Supply {
 
     public String description;
 
-    public long taskOwnerId;
+    public Long ownerId;
     public SupplyType type;
-    public int quantity;
+    public Integer quantity;
 
-    public Supply(Long id, String name, String location, Integer need, String description, long taskOwnerId, SupplyType type, int quantity) {
+    public Long photoId;
+
+    public Supply(Long id, String name, String location, Integer need, String description, Long ownerId, SupplyType type, Integer quantity, Long photoId) {
         this.name = name;
         this.location = location;
         this.need = need;
         this.description = description;
-        this.taskOwnerId = taskOwnerId;
-        this.type=type;
-        this.quantity=quantity;
+        this.ownerId = ownerId;
+        this.type = type;
+        this.quantity = quantity;
+        this.photoId = photoId;
     }
 }

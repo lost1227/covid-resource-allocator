@@ -7,6 +7,7 @@ import { User } from '@app/entities/user';
 import { Supply } from '@app/entities/supply';
 import { VolunteerTask } from '@app/entities/volunteer-task';
 import { TasksApiService } from '@app/api/tasks-api.service';
+import { PhotosApiService } from '@app/api/photos-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class PostService {
   constructor(
     private router : Router,
     private loginManager : LoginManagerService,
+    private photoService : PhotosApiService,
     private supplyService : SuppliesApiService,
     private tasksService : TasksApiService
   ) { }
@@ -24,10 +26,13 @@ export class PostService {
     return this.loginManager.getLoggedInUser("/post/"+type);
   }
 
-  postSupply(supply : Supply) {
-    this.supplyService.postSupplies(supply).subscribe(response => {
-      this.router.navigateByUrl("/");
-    });
+  postSupply(supply : Supply, photo : File) {
+    this.photoService.postPhoto(photo).subscribe(response => {
+      supply.photoId = response.id;
+      this.supplyService.postSupplies(supply).subscribe(response => {
+        this.router.navigateByUrl("/");
+      });
+    })
   }
 
   postTask(task : VolunteerTask) {

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
+
 @Data
 @Entity
 
@@ -21,17 +23,20 @@ public class SupplyDAO {
 
     public long taskOwnerId;
     public SupplyType type;
-    public int quantity;
+    public Integer quantity;
+
+    public Long photoId;
 
     public SupplyDAO() {}
 
-    public SupplyDAO(String name, String location, Integer need, String description, long taskOwnerId, SupplyType type, int quantity) {
+    public SupplyDAO(String name, String location, Integer need, String description, long taskOwnerId, SupplyType type, Integer quantity, Long photoId) {
         this.name = name;
         this.location = location;
         this.need = need;
         this.description = description;
         this.taskOwnerId = taskOwnerId;
-        this.type=type;
-        this.quantity=quantity;
+        this.type = type;
+        this.quantity = quantity;
+        this.photoId = photoId;
     }
 }

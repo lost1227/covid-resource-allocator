@@ -28,7 +28,7 @@ export class SuppliesService {
     }
     const filterObj = new SuppliesFilter(filters, type, priority, distance);
     return this.api.getSupplies(filterObj).pipe(
-      map(response => response.supplies.map(supply => new Supply(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity)))
+      map(response => response.supplies.map(supply => new Supply(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, supply.photoId)))
     )
   }
 }

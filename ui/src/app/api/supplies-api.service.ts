@@ -46,7 +46,8 @@ export class PostSupplyRequestModel {
     public description : string,
     public ownerId : number,
     public type : SupplyType,
-    public quantity : number
+    public quantity : number,
+    public photoId : number
   ) { }
 }
 
@@ -59,6 +60,7 @@ export interface SupplyResponse extends ResponseModel {
   ownerId : number
   type : SupplyType
   quantity : number
+  photoId : number
 }
 export interface SuppliesResponse extends ResponseModel {
   supplies : SupplyResponse[]

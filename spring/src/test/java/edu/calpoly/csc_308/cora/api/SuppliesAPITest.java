@@ -20,7 +20,7 @@ import edu.calpoly.csc_308.cora.api.request.SuppliesFilterRequestModel;
 import edu.calpoly.csc_308.cora.api.response.SuppliesResponse;
 import edu.calpoly.csc_308.cora.data.supplies.SupplyDAO;
 import edu.calpoly.csc_308.cora.data.supplies.SupplyRepository;
-import edu.calpoly.csc_308.cora.data.supplies.SupplyType;
+import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SuppliesAPITest {
@@ -46,7 +46,8 @@ public class SuppliesAPITest {
             "In need of extra KN-95 medical grade masks.",
             5L,
             SupplyType.REQUEST,
-            0
+            0,
+            -1L
         );
         Mockito.doReturn(Arrays.asList(mockSupply1)).when(messengerService).findAll();
     }
