@@ -22,7 +22,7 @@ const routes: Routes = [
       ]},
   { path: 'supplies', component: SuppliesListComponent},
   { path: '', redirectTo: '/volunteer', pathMatch: 'full'},
-  { path: 'account', component: EditAccountComponent}
+  { path: 'account/edit', component: EditAccountComponent}
 ];
 
 @NgModule({

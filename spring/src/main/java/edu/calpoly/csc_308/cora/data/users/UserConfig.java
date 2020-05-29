@@ -55,6 +55,7 @@ public class UserConfig {
                             "volunteer",
                             "Student living in Monterey, CA",
                             new String[] { "programming" },
+                            -1L,
                             "frawson",
                             encoder.encode("password123"))));
             };
