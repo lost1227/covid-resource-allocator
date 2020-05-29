@@ -1,5 +1,0 @@
-1.	As a doctor user, I want to order face masks, so that I can protect my staff from getting sick.
-
-2.	As a citizen user, I want to donate face masks to people, so that I can help the people in need in my community.
-
-3.	As an unemployed user, I want to receive food donations, so that I can feed my family.

@@ -1,3 +1,0 @@
-1. The system shall provide a way of donating supplies.
-2. The system shall provide a way of ordering supplies
-3. The system shall provide a way of sorting orders by need and location.

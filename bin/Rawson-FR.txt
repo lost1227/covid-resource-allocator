@@ -1,4 +1,0 @@
-Functional Requirements:
-FR1: The system shall provide a notification to those that need medical equipment when the supplies become available from a supplier.
-FR2: The system shall provide to the supplier a ranking of locations that need medical equipment based on the level of need. 
-FR3: The system shall rank level of need of a location by the quantity of items needed to rectify a shortage and the total number of covid-19 patients at the location.
