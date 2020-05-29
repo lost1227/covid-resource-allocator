@@ -6,8 +6,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  templateUrl: './edit-account.component.html',
+  styleUrls: ['./edit-account.component.css']
 })
 export class EditAccountComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class EditAccountComponent implements OnInit {
   ) {
     this.route.url.subscribe(params => {
       this.type = params[0].path;
-      this.login.getLoggedInUser("/post/"+this.type).subscribe(user => {
+      this.login.getLoggedInUser("/account").subscribe(user => {
         this.user = user;
       })
     })
@@ -34,9 +34,7 @@ export class EditAccountComponent implements OnInit {
     this.form = formBuilder.group({
       'name' : '',
       'description' : '',
-      'location' : '',
-      /*'need' : '',
-      'supplyPostType' : ''*/
+      'location' : ''
     })
   }
 

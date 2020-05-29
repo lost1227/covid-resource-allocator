@@ -3,7 +3,6 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div class="main">
     <div class="left-container">
-      <!--<img class="add-image" src="/assets/add.png" alt="add">-->
       <div class="user" *ngIf="user">
         <img class="user-pic" src="/assets/placeholder.png" alt="profile picture">
         <p class="user-name">{{user.name}}</p>

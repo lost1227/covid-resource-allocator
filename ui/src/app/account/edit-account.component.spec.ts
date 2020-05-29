@@ -12,7 +12,7 @@ describe('EditAccountComponent', () => {
   let fixture: ComponentFixture<EditAccountComponent>;
 
   let mockRoute = {
-    url : of("supply")
+    url : of("account")
   }
 
   let mockloginservice = {
