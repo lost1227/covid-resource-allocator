@@ -32,7 +32,7 @@ export class VolunteerFilter {
   constructor(
     public matchSkillset : boolean,
     public highNeed : boolean,
-    public locationDistance : number,
+    public location : boolean,
     public keywords : string
   ) {}
 }

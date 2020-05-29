@@ -15,6 +15,7 @@ export class TaskListComponent implements OnInit {
   //task : VolunteerTask;
   need : boolean = false;
   match : boolean = false;
+  loc : boolean = false;
   filter : VolunteerFilter;
 
   value : string;
@@ -22,12 +23,12 @@ export class TaskListComponent implements OnInit {
   constructor(private api : ApiService) { }
 
   public createFilter() : VolunteerFilter{
-    this.filter = new VolunteerFilter(this.need, this.match, -1, this.value);
+    this.filter = new VolunteerFilter(this.need, this.match, this.loc, this.value);
     return this.filter;
   }
 
   ngOnInit(): void {
-    this.tasks = this.api.getVolunteerTasks(new VolunteerFilter(false, false, -1, ""));
+    this.tasks = this.api.getVolunteerTasks(new VolunteerFilter(false, false, false, ""));
     //this.tasks = this.api.getVolunteerTasks(this.filter);
 
   }

@@ -18,7 +18,7 @@ public class CoraApiController {
     public static class VolunteerFiltersRequestModel {
         public Boolean matchSkillset;
         public Boolean highNeed;
-        public Integer locationDistance;
+        public Boolean location;
         public String keywords;
     }
     public static class SupplyFiltersRequestModel {
@@ -83,6 +83,32 @@ public class CoraApiController {
         }
         return true;
     }
+
+    public Boolean matchLocation(VolunteerTask task, User user){
+        String[] inputkeywords = user.location.split("[ ,]+");
+        String[] titleWords = task.name.split("[ ,]+");
+        String[] locWords = task.location.split("[ ,]+");
+        ArrayList<String> matchWords = new ArrayList<>();
+
+        for (String s: inputkeywords){
+            matchWords.add(s);
+        }
+
+        for (String s: locWords){
+            matchWords.add(s);
+        }
+
+        for (String words: matchWords){
+            for (String title: titleWords){
+                if (words.equals(title)){
+                    continue;
+                }
+                else
+                    return false;
+            }
+        }
+        return true;
+    }
     
     @PostMapping("/api/tasks")
     public List<VolunteerTask> getVolunteerTasks(@RequestBody VolunteerFiltersRequestModel request ) {
@@ -95,9 +121,9 @@ public class CoraApiController {
             else if (request.matchSkillset)
                 if (evaluateSkills(task) == false)
                     continue;
-            //int locationDiff = user.location - request.location **idk needa figure out how to use GoogleMaps API
-            // if (locationDiff > request.locationDistance)
-            //        continue;
+            else if (request.location)
+                if (matchLocation(task, user) == false)
+                    continue;
             
             else if (matchKeywords(task, request.keywords) == false)
                 continue;
