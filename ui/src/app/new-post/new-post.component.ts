@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '@app/entities/user';
 import { LoginManagerService } from '@app/loginmanager.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import {Supply, SupplyType} from '@app/entities/supply'
 import {SuppliesApiService, PostSupplyRequestModel} from '@app/api/supplies-api.service'
 import { SupplyRequestModel } from '@app/api/post-api.service';
+import { PostService, PostType } from './post.service';
+import { VolunteerTask } from '@app/entities/volunteer-task';
 
 @Component({
   selector: 'app-new-post',
@@ -16,30 +18,39 @@ export class NewPostComponent implements OnInit {
 
   user : User
   supplyType : SupplyType
-  type : string
+  type : PostType
   form : FormGroup
   
   constructor(
     private route : ActivatedRoute,
     private formBuilder : FormBuilder,
-    private login : LoginManagerService,
-    private supplyService : SuppliesApiService
+    private postService : PostService
   ) {
     this.route.url.subscribe(params => {
-      this.login.getLoggedInUser("/post/supply").subscribe(user => {
+      this.type = <PostType> params[0].path;
+      this.postService.login(this.type).subscribe(user => {
         this.user = user;
       })
-    })
-    
-    
-
-    this.form = formBuilder.group({
-      'title' : '',
-      'description' : '',
-      'location' : '',
-      'need' : '',
-      'supplyPostType' : '',
-      'quantity' : ''
+      if(this.type == PostType.SUPPLY) {
+        this.form = new FormGroup({
+          'title' : new FormControl('', Validators.required),
+          'image' : new FormControl(null, Validators.required),
+          'description' : new FormControl('', Validators.required),
+          'location' : new FormControl('', Validators.required),
+          'need' : new FormControl('', Validators.required),
+          'supplyPostType' : new FormControl('', Validators.required),
+          'quantity' : new FormControl('', [Validators.required, Validators.pattern("[0-9]*")])
+        })
+      } else {
+        this.form = new FormGroup({
+          'title' : new FormControl('', Validators.required),
+          'image' : new FormControl(null, Validators.required),
+          'description' : new FormControl('', Validators.required),
+          'location' : new FormControl('', Validators.required),
+          'need' : new FormControl('', Validators.required)
+        })
+      }
+      
     })
   }
 
@@ -58,21 +69,39 @@ export class NewPostComponent implements OnInit {
   }
 
   onSubmit(formValue : any) {
-    console.log(formValue);
 
-    // TODO: add the new item to the requisite database
-    //package supply in supply entity  and send to supply api 
-    this.form.reset();
-    const supply = new PostSupplyRequestModel(
-      formValue.title,
-      formValue.location,
-      parseInt(formValue.need),
-      formValue.description,
-      this.user.id,
-      formValue.supplyPostType,
-      formValue.quantity
-    )
-    this.supplyService.postSupplies(supply).subscribe()
+    if(this.form.status == "VALID") {
+      switch(this.type) {
+        case PostType.SUPPLY:
+          const supply = new Supply(
+            -1,
+            formValue.title,
+            formValue.location,
+            parseInt(formValue.need),
+            formValue.description,
+            this.user.id,
+            formValue.supplyPostType,
+            formValue.quantity
+          )
+          this.postService.postSupply(supply);
+          break;
+        case PostType.VOLUNTEER:
+          const task = new VolunteerTask(
+            -1,
+            formValue.title,
+            formValue.location,
+            parseInt(formValue.need),
+            formValue.description,
+            this.user.id
+          )
+          this.postService.postTask(task);
+          break;
+        default:
+          break;
+      }
+      
+      
+    }
   }
 
 }

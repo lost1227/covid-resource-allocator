@@ -22,9 +22,10 @@ export class SuppliesApiService extends ApiService  {
     }
     return super.verifyResponse(this.http.post<SuppliesResponse>("/api/supplies", filters));
   }
-  //create post supply method
-  postSupplies(supply : PostSupplyRequestModel) : Observable<ResponseModel> {
-    return super.verifyResponse(this.http.post<ResponseModel>("/api/post/supply",supply))
+
+
+  postSupplies(supply : PostSupplyRequestModel) : Observable<SupplyResponse> {
+    return super.verifyResponse(this.http.post<SupplyResponse>("/api/supplies/post",supply))
   }
    
 }
@@ -49,7 +50,7 @@ export class PostSupplyRequestModel {
   ) { }
 }
 
-export interface SupplyResponse {
+export interface SupplyResponse extends ResponseModel {
   id : number
   name : string
   location : string

@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import edu.calpoly.csc_308.cora.api.request.PostVolunteerTaskRequestModel;
 import edu.calpoly.csc_308.cora.api.request.VolunteerFilterRequestModel;
 import edu.calpoly.csc_308.cora.api.response.ResponseModel;
+import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskDAO;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskRepository;
 import edu.calpoly.csc_308.cora.api.response.VolunteerTasksResponse;
 import edu.calpoly.csc_308.cora.api.response.VolunteerTasksResponse.VolunteerTaskResponse;;
@@ -26,7 +28,7 @@ public class TasksAPI {
 
     Logger logger = LoggerFactory.getLogger(TasksAPI.class);
 
-    @PostMapping("/api/task")
+    @PostMapping("/api/tasks")
     public ResponseModel getVolunteerTasks(@RequestBody VolunteerFilterRequestModel request) {
         // TODO: add filter logic
 
@@ -35,6 +37,13 @@ public class TasksAPI {
         ).collect(Collectors.toList());
         
         return new VolunteerTasksResponse(tasks);
+    }
+
+    @PostMapping("/api/tasks/post")
+    public ResponseModel postVolunteerTask(@RequestBody PostVolunteerTaskRequestModel request) {
+      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.name, request.location, request.need, request.description, request.ownerId);
+      dao = repo.save(dao);
+      return new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.taskOwnerId);
     }
     
 }

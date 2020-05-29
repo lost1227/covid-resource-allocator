@@ -47,18 +47,14 @@ public class SuppliesAPI {
             
         return new SuppliesResponse(supplies);
     }
-    //create @PostMapping ResponseModel 
-    //package SupplyDAO
-    //call post supply
-    @PostMapping("/api/post/supply")
-    public ResponseModel postSupplies(@RequestBody PostSupplyRequestModel postRequest, Authentication authentication){
-        logger.info("postSupply: {}", postRequest);
 
-        logger.info("principal: {}", authentication.getPrincipal());
 
-        Supply supply = new Supply(postRequest.name,postRequest.location,postRequest.need,postRequest.description,postRequest.taskOwnerId,postRequest.type,postRequest.quantity);
-        supp.postSupply(supply);
-        return new SuccessResponse();
+    @PostMapping("/api/supplies/post")
+    public ResponseModel postSupplies(@RequestBody PostSupplyRequestModel postRequest){
+
+        Supply supply = new Supply(null, postRequest.name, postRequest.location, postRequest.need, postRequest.description, postRequest.taskOwnerId, postRequest.type, postRequest.quantity);
+        supply = supp.postSupply(supply);
+        return new SupplyResponse(supply.id, supply.name, supply.location, supply.need, supply.description, supply.taskOwnerId, supply.type, supply.quantity);
     }
 
 }

@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { LoginManagerService } from '@app/loginmanager.service';
 import { User } from '@app/entities/user';
 import { FormBuilder } from '@angular/forms';
+import { PostSupplyRequestModel, SuppliesApiService } from '@app/api/supplies-api.service';
+import { ResponseModel } from '@app/api/api.service';
 
 describe('NewPostComponent', () => {
   let component: NewPostComponent;
@@ -21,10 +23,17 @@ describe('NewPostComponent', () => {
     }
   }
 
+  let mockSupplyService = {
+    postSupplies(supply : PostSupplyRequestModel) : Observable<ResponseModel> {
+      return of({ok : true});
+    }
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers : [{provide : ActivatedRoute, useValue : mockRoute},
                   {provide : LoginManagerService, useValue : mockloginservice},
+                  {provide : SuppliesApiService, useValue: mockSupplyService},
                   FormBuilder],
       declarations: [ NewPostComponent ]
     })

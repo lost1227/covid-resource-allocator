@@ -3,9 +3,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div class="main">
     <div class="left-container">
-      <img class="add-image" src="/assets/add.png" alt="add">
+      <app-image-upload-component formControlName="image"></app-image-upload-component>
     </div>
     <div class="middle-container">
+      <p *ngIf="(form.touched || form.dirty) && form.status == 'INVALID'" class="formstatus">Invalid item</p>
       <p class="label">Title:</p>
       <input class="textbox" type="text" formControlName="title">
 
@@ -27,21 +28,16 @@
         <option value="1">High</option>
         <option value="0">Low</option>
       </select>
-      <p class="label">Supply Type:</p>
-      <select class="dropdown" formControlName="supplyPostType">
-        <option value="OFFER">Offer</option>
-        <option value="REQUEST">Request</option>
-      </select>
-      <p class="label">Quantity:</p>
-      <input class="textbox" formControlName="quantity">
-
       <div class="supplies" *ngIf="type == 'supply'">
-        <p class="label">Post Type:</p>
+        <p class="label">Supply Type:</p>
         <select class="dropdown" formControlName="supplyPostType">
-          <option value="request">Request</option>
-          <option value="offer">Offer</option>
+          <option value="OFFER">Offer</option>
+          <option value="REQUEST">Request</option>
         </select>
+        <p class="label">Quantity:</p>
+        <input class="textbox" formControlName="quantity">
       </div>
+      
     </div>
   </div>
 </form>

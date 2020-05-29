@@ -5,7 +5,7 @@ import java.util.List;
 import edu.calpoly.csc_308.cora.data.supplies.SupplyType;
 
 public class SuppliesResponse extends ResponseModel {
-    public static class SupplyResponse {
+    public static class SupplyResponse extends ResponseModel {
         public Long id;
 
         public String name;

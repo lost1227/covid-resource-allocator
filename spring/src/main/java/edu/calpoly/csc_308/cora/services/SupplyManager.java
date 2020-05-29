@@ -25,11 +25,13 @@ public class SupplyManager {
         return dao;
     }
     private Supply convertSupply(SupplyDAO dao) {
-        Supply supply = new Supply(dao.name, dao.location, dao.need, dao.description,dao.taskOwnerId,dao.type,dao.quantity);
+        Supply supply = new Supply(dao.id, dao.name, dao.location, dao.need, dao.description,dao.taskOwnerId,dao.type,dao.quantity);
         return supply;
     }
-    public void postSupply(Supply supply) {
-        repo.save(convertSupplyDAO(supply));
+    public Supply postSupply(Supply supply) {
+      SupplyDAO dao = convertSupplyDAO(supply);  
+      dao = repo.save(convertSupplyDAO(supply));
+      return convertSupply(dao);
     }
     
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class Supply {
+    public Long id;
     
     public String name;
     public String location;
@@ -17,7 +18,7 @@ public class Supply {
     public SupplyType type;
     public int quantity;
 
-    public Supply(String name, String location, Integer need, String description, long taskOwnerId, SupplyType type, int quantity) {
+    public Supply(Long id, String name, String location, Integer need, String description, long taskOwnerId, SupplyType type, int quantity) {
         this.name = name;
         this.location = location;
         this.need = need;

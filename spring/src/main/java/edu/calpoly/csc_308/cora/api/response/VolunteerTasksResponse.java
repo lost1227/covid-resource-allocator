@@ -3,7 +3,7 @@ package edu.calpoly.csc_308.cora.api.response;
 import java.util.List;
 
 public class VolunteerTasksResponse extends ResponseModel {
-    public static class VolunteerTaskResponse {
+    public static class VolunteerTaskResponse extends ResponseModel {
         public Long id;
     
         public String name;
