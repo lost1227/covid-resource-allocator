@@ -16,7 +16,7 @@ export class TasksApiService extends ApiService {
 
   getTasks(filters : VolunteerTasksFilter) : Observable<VolunteerTasksResponse> {
     if(filters == null) {
-      filters = new VolunteerTasksFilter([], [], 0, 0);
+      filters = new VolunteerTasksFilter([], [], 0, null, null);
     }
     return super.verifyResponse(this.http.post<VolunteerTasksResponse>("/api/tasks", filters));
   }
@@ -27,7 +27,8 @@ export class VolunteerTasksFilter {
     public enabledFilters : string[],
     public skillSet : string[],
     public priority : number,
-    public locationDistance : number
+    public location : string,
+    public keywords : string
   ) {}
 }
 
@@ -38,6 +39,7 @@ export interface VolunteerTaskResponse {
   need : number
   description : string
   taskOwnerId : number
+  skillsNeeded : string
 }
 export interface VolunteerTasksResponse extends ResponseModel {
   tasks : VolunteerTaskResponse[]

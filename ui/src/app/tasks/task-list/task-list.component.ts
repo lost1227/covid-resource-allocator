@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TasksService } from '@app/tasks/tasks.service';
 import { Observable } from 'rxjs';
 import { VolunteerTask } from '@app/entities/volunteer-task';
+import { User } from '@app/entities/user';
 
 @Component({
   selector: 'app-task-list',
@@ -11,12 +12,18 @@ import { VolunteerTask } from '@app/entities/volunteer-task';
 export class TaskListComponent implements OnInit {
 
   tasks : Observable<VolunteerTask[]>;
+  user : User;
   //mockTasks : VolunteerTask[];
   //task : VolunteerTask;
   need : boolean = false;
   match : boolean = false;
   loc : boolean = false;
-  //filter : VolunteerFilter;
+
+  skillset : string[];
+  priority : number;
+  location : string;
+  keywords : string;
+  //filter : VolunteerFilterRequestModel;
 
   value : string;
 
@@ -34,9 +41,20 @@ export class TaskListComponent implements OnInit {
     this.tasks = this.tasksService.listTasks();
   }
 
-  /*onChange(){
-    this.tasks = this.api.getVolunteerTasks(this.createFilter());
-  }*/
+  onChange(){
+    /*if(this.need){
+      this.priority = 1
+    }
+    if(this.match){
+      this.skillset = this.user.skillset
+    }
+    if(this.loc){
+      this.location = this.user.location
+    }
+
+    this.tasks = this.tasksService.listTasks(this.skillset, this.priority, this.location, this.value);
+    //getVolunteerTasks(this.createFilter());*/
+  }
 
   
 

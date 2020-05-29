@@ -7,6 +7,7 @@ public class VolunteerFilterRequestModel {
 
     public String[] skillSet;
     public Integer priority;
-    public Integer locationDistance;
+    public String location;
+    public String keywords;
 
 }

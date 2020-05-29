@@ -8,11 +8,9 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class VolunteerTaskDAO {package edu.calpoly.csc_308.cora.data.tasks;
 
 public class VolunteerTaskDAO {
     
-}
     public @Id @GeneratedValue Long id;
     
     public String name;
@@ -26,11 +24,14 @@ public class VolunteerTaskDAO {
 
     public VolunteerTaskDAO() {};
 
-    public VolunteerTaskDAO(String name, String location, Integer need, String description, Long taskOwnerId) {
+    public String skillsNeeded;
+
+    public VolunteerTaskDAO(String name, String location, Integer need, String description, Long taskOwnerId, String skillsNeeded) {
         this.name = name;
         this.location = location;
         this.need = need;
         this.description = description;
         this.taskOwnerId = taskOwnerId;
+        this.skillsNeeded = skillsNeeded;
     }
 }
