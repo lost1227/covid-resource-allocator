@@ -69,8 +69,8 @@ export class NewPostComponent implements OnInit {
       parseInt(formValue.need),
       formValue.description,
       this.user.id,
-      this.supplyType,
-      0
+      formValue.supplyPostType,
+      formValue.quantity
     )
     this.supplyService.postSupplies(supply).subscribe()
   }
