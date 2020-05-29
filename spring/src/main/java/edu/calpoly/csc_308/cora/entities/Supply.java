@@ -1,16 +1,10 @@
-package edu.calpoly.csc_308.cora.data.supplies;
+package edu.calpoly.csc_308.cora.entities;
 
+import edu.calpoly.csc_308.cora.data.supplies.SupplyType;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 @Data
-@Entity
-
-public class SupplyDAO {
-    public @Id @GeneratedValue Long id;
+public class Supply {
     
     public String name;
     public String location;
@@ -23,9 +17,7 @@ public class SupplyDAO {
     public SupplyType type;
     public int quantity;
 
-    public SupplyDAO() {}
-
-    public SupplyDAO(String name, String location, Integer need, String description, long taskOwnerId, SupplyType type, int quantity) {
+    public Supply(String name, String location, Integer need, String description, long taskOwnerId, SupplyType type, int quantity) {
         this.name = name;
         this.location = location;
         this.need = need;
