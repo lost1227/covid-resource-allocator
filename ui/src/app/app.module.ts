@@ -27,6 +27,8 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { RegisterComponent } from './register/register.component';
 import { ImageUploadComponentComponent } from './image-upload-component/image-upload-component.component';
 
+import { EditAccountComponent} from "@app/account/edit-account.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { ImageUploadComponentComponent } from './image-upload-component/image-up
     SupplyComponent,
     NewPostComponent,
     RegisterComponent,
-    ImageUploadComponentComponent
+    ImageUploadComponentComponent,
+    EditAccountComponent
   ],
   imports: [
     BrowserModule,
