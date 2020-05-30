@@ -35,6 +35,7 @@ import { ImageUploadComponentComponent } from './image-upload-component/image-up
 import { EditAccountComponent} from "@app/account/edit-account/edit-account.component";
 import { TaskDetailsComponent } from './tasks/task-details/task-details.component';
 import { ProfileComponent } from './account/profile/profile.component';
+import { LogoutComponent } from './account/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ProfileComponent } from './account/profile/profile.component';
     ImageUploadComponentComponent,
     EditAccountComponent,
     TaskDetailsComponent,
-    ProfileComponent
+    ProfileComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

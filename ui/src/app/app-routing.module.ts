@@ -11,6 +11,7 @@ import { RegisterComponent } from './account/register/register.component';
 import { EditAccountComponent } from "@app/account/edit-account/edit-account.component";
 import { TaskDetailsComponent } from './tasks/task-details/task-details.component';
 import { ProfileComponent } from './account/profile/profile.component';
+import { LogoutComponent } from './account/logout/logout.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'message', component: MessengerComponent},
   { path: 'login', component: LoginComponent },
   { path: 'login/register', component: RegisterComponent },
+  { path: 'profile/logout', component: LogoutComponent },
   { path: 'profile/edit', component: EditAccountComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'post', 
