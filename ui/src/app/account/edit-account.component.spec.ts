@@ -1,20 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewPostComponent } from './new-post.component';
+import { EditAccountComponent } from './edit-account.component';
 import { of, Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { LoginManagerService } from '@app/loginmanager.service';
 import { User } from '@app/entities/user';
 import { FormBuilder } from '@angular/forms';
-import { PostSupplyRequestModel, SuppliesApiService } from '@app/api/supplies-api.service';
-import { ResponseModel } from '@app/api/api.service';
 
-describe('NewPostComponent', () => {
-  /*let component: NewPostComponent;
-  let fixture: ComponentFixture<NewPostComponent>;
+describe('EditAccountComponent', () => {
+  let component: EditAccountComponent;
+  let fixture: ComponentFixture<EditAccountComponent>;
 
   let mockRoute = {
-    url : of("supply")
+    url : of("account")
   }
 
   let mockloginservice = {
@@ -23,30 +21,23 @@ describe('NewPostComponent', () => {
     }
   }
 
-  let mockSupplyService = {
-    postSupplies(supply : PostSupplyRequestModel) : Observable<ResponseModel> {
-      return of({ok : true});
-    }
-  }
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       providers : [{provide : ActivatedRoute, useValue : mockRoute},
-                  {provide : LoginManagerService, useValue : mockloginservice},
-                  {provide : SuppliesApiService, useValue: mockSupplyService},
-                  FormBuilder],
-      declarations: [ NewPostComponent ]
+        {provide : LoginManagerService, useValue : mockloginservice},
+        FormBuilder],
+      declarations: [ EditAccountComponent ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NewPostComponent);
+    fixture = TestBed.createComponent(EditAccountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
 });

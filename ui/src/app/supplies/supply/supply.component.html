@@ -1,7 +1,7 @@
 <a class="details-link" [routerLink]="['/supplies/details', supply.id]">
 <div class="supply">
     <div class="supply-image-box">
-        <img class="supply-image" src="/assets/placeholder.png" alt="placeholder">
+        <img class="supply-image" [src]="'/api/photo/get?id='+supply.photoId" alt="placeholder">
     </div>
     <div class="supply-details">
         <p class="supply-title">{{supply.name}}</p>

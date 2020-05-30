@@ -8,9 +8,13 @@ import { ToolbarComponent } from '@app/toolbar/toolbar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatInputModule } from '@angular/material/input';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { TaskListComponent } from '@app/tasks/task-list/task-list.component';
@@ -28,6 +32,8 @@ import { SupplyDetailsComponent } from './supplies/supply-details/supply-details
 import { RegisterComponent } from './register/register.component';
 import { ImageUploadComponentComponent } from './image-upload-component/image-upload-component.component';
 
+import { EditAccountComponent} from "@app/account/edit-account.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,14 +50,20 @@ import { ImageUploadComponentComponent } from './image-upload-component/image-up
     NewPostComponent,
     SupplyDetailsComponent,
     RegisterComponent,
-    ImageUploadComponentComponent
+    ImageUploadComponentComponent,
+    EditAccountComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatMenuModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatToolbarModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatIconModule,
     MatSidenavModule,
     HttpClientModule,

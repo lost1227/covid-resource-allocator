@@ -15,7 +15,8 @@ public class AngularRouting {
       "/login/register",
       "/post/volunteer",
       "/post/supply",
-      "/supplies/details/*"
+      "/supplies/details/*",
+      "/account/edit"
     })
     public String index() {
         return "forward:/index.html";

@@ -3,7 +3,7 @@ package edu.calpoly.csc_308.cora.api.response;
 import java.util.List;
 
 public class VolunteerTasksResponse extends ResponseModel {
-    public static class VolunteerTaskResponse {
+    public static class VolunteerTaskResponse extends ResponseModel {
         public Long id;
     
         public String name;
@@ -13,15 +13,21 @@ public class VolunteerTasksResponse extends ResponseModel {
 
         public String description;
 
-        public Long taskOwnerId;
+        public Long ownerId;
 
-        public VolunteerTaskResponse(Long id, String name, String location, Integer need, String description, Long taskOwnerId) {
+        public String skillNeeded;
+
+        public Long photoId;
+
+        public VolunteerTaskResponse(Long id, String name, String location, Integer need, String description, Long ownerId, String skillNeeded, Long photoId) {
             this.id = id;
             this.name = name;
             this.location = location;
             this.need = need;
             this.description = description;
-            this.taskOwnerId = taskOwnerId;
+            this.ownerId = ownerId;
+            this.skillNeeded = skillNeeded;
+            this.photoId = photoId;
         }
     }
 

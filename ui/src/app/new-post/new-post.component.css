@@ -34,6 +34,16 @@ img.add-image {
   cursor: pointer;
 }
 
+p.formstatus {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #FF0000;
+}
+
 .label{
   margin: 0px;
 

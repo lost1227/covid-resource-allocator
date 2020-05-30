@@ -33,12 +33,13 @@ export class ToolbarComponent implements OnInit {
   public getOptionClass(option : NavOption) : string[] {
     if(option.label == this.selectedOption) {
       return ["nav-button", "nav-button-selected"]
-    } else {
+    } 
+    else {
       return ["nav-button"]
     }
   }
-}
 
+}
 class NavOption {
   constructor(
     public label : string,

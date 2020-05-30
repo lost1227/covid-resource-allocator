@@ -8,6 +8,7 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
 import { SupplyDetailsComponent } from './supplies/supply-details/supply-details.component';
 import { RegisterComponent } from './register/register.component';
+import {EditAccountComponent} from "@app/account/edit-account.component";
 
 
 const routes: Routes = [
@@ -22,7 +23,8 @@ const routes: Routes = [
       ]},
   { path: 'supplies', component: SuppliesListComponent},
   { path: 'supplies/details/:id', component: SupplyDetailsComponent},
-  { path: '', redirectTo: '/volunteer', pathMatch: 'full'}
+  { path: '', redirectTo: '/volunteer', pathMatch: 'full'},
+  { path: 'account/edit', component: EditAccountComponent}
 ];
 
 @NgModule({
