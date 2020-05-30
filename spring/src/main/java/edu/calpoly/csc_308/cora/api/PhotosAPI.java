@@ -76,7 +76,6 @@ public class PhotosAPI {
             return ResponseEntity.badRequest().body(new FailResponse());
           }
           PhotoDAO dao = new PhotoDAO(principal.id, "image/jpeg", converted);
-          logger.info("New photo: {}", dao);
           dao = repo.save(dao);
           return ResponseEntity.ok().body(new UploadPhotoResponse(dao.id));
         } catch (IOException e) {

@@ -56,8 +56,6 @@ public class MessengerAPI {
         User principal = ((AuthUser) authentication.getPrincipal()).user;
         Long uid = principal.id;
         
-        logger.info("ListConversationsFor: {}", uid);
-        
         ListConversationsResponse response = new ListConversationsResponse();
         response.userId = uid;
 

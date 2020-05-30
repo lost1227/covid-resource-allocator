@@ -37,7 +37,6 @@ public class LoginAPI {
 
     @PostMapping("/api/login/register") 
     public ResponseModel registerUser(@RequestBody NewUserRequestModel request) {
-      logger.info("Registering user {}", request.username);
       User user = new User(null, request.name, request.location, request.userType, request.description, request.skillset, -1L);
       userSerivce.registerNewUser(user, request.username, request.password);
       return new SuccessResponse();
@@ -46,7 +45,6 @@ public class LoginAPI {
     @PostMapping("/api/login/edit")
     public ResponseModel editUserInfo(Authentication authentication, @RequestBody EditUserRequestModel request) {
       AuthUser principal = ((AuthUser) authentication.getPrincipal());
-      logger.info("Editing user " + principal.getUsername());
       User user = new User(principal.user.id, request.name, request.location, principal.user.userType, request.description, request.skillset, request.photoId);
       AuthUser result = userSerivce.updateUser(principal, user, request.password);
       

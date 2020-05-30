@@ -38,7 +38,6 @@ public class AuthUserService implements UserDetailsService {
         if(dao == null) {
             throw new IllegalArgumentException("No such user " + username);
         }
-        logger.info("Authenticating user "+username);
         AuthUser authUser = new AuthUser(
             dao.username,
             dao.passwordHash,
@@ -82,7 +81,6 @@ public class AuthUserService implements UserDetailsService {
         dao.passwordHash = encoder.encode(password);
 
       dao = users.save(dao);
-      logger.info("post-edit: {}", dao);
 
       return new AuthUser(dao.username, dao.passwordHash, User.fromDao(dao));
     }
