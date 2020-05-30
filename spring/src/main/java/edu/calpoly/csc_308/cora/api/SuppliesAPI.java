@@ -36,7 +36,7 @@ public class SuppliesAPI {
     }
 
     @GetMapping("/api/supply")
-    public ResponseModel getUserInfo(@RequestParam Long id) {
+    public ResponseModel getSingleSupply(@RequestParam Long id) {
       SupplyDAO dao = suppRepo.findById(id).get();
       return new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.taskOwnerId, dao.type, dao.quantity);
     }
