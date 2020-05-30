@@ -108,6 +108,15 @@ export class LoginManagerService {
     })
   }
 
+  public logout(redirect? : string) : void {
+    this.loginApi.logout().subscribe(response => {
+      if(redirect) {
+        this.router.navigateByUrl(redirect);
+      }
+    });
+    this.loggedInUser = null;
+  }
+
   public registerNewUser(username : string, password : string, user : User, photo : File) {
 
     const newRequest = new NewUserRequest(user.name, user.location, user.userType, user.description, user.skillset, user.photoId, username, password);

@@ -17,6 +17,7 @@ public class AngularRouting {
       "/login/register",
       "/profile/*",
       "/profile/edit",
+      "/profile/logout",
       "/post/volunteer",
       "/post/supply"
     })
