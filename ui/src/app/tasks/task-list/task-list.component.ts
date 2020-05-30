@@ -3,6 +3,8 @@ import { TasksService } from '@app/tasks/tasks.service';
 import { Observable } from 'rxjs';
 import { VolunteerTask } from '@app/entities/volunteer-task';
 import { User } from '@app/entities/user';
+import { FormGroup, FormControl } from '@angular/forms';
+import { VolunteerTasksFilter } from '@app/api/tasks-api.service';
 
 @Component({
   selector: 'app-task-list',
@@ -13,47 +15,56 @@ export class TaskListComponent implements OnInit {
 
   tasks : Observable<VolunteerTask[]>;
   user : User;
-  //mockTasks : VolunteerTask[];
-  //task : VolunteerTask;
-  need : boolean = false;
-  match : boolean = false;
-  loc : boolean = false;
 
-  skillset : string[];
-  priority : number;
-  location : string;
-  keywords : string;
-  //filter : VolunteerFilterRequestModel;
+  filterForm : FormGroup
 
-  value : string;
+  constructor(
+    private tasksService : TasksService
+  ) {
+    this.filterForm = new FormGroup({
+      'high-need': new FormControl(false),
+      'low-need': new FormControl(false),
+      'match-skillset': new FormControl(false),
+      'location': new FormControl(false),
+      'search': new FormControl()
+    })
+  }
 
-  constructor(private tasksService : TasksService) { }
-
-  /*public createFilter() : VolunteerFilter{
-    this.filter = new VolunteerFilter(this.need, this.match, this.loc, this.value);
-    return this.filter;
-  }*/
 
   ngOnInit(): void {
-    //this.tasks = this.api.getVolunteerTasks(new VolunteerFilter(false, false, false, ""));
-    //this.tasks = this.api.getVolunteerTasks(this.filter);
-
     this.tasks = this.tasksService.listTasks();
   }
 
-  onChange(){
-    /*if(this.need){
-      this.priority = 1
-    }
-    if(this.match){
-      this.skillset = this.user.skillset
-    }
-    if(this.loc){
-      this.location = this.user.location
+  updateFilters() {
+    const value = this.filterForm.value;
+    const filter = new VolunteerTasksFilter([], [], -1, "", "")
+
+    if(value['high-need'] && value['low-need']) {
+      
+    } else if(value['high-need']) {
+      filter.enabledFilters.push("need");
+      filter.need = 1;
+    } else if(value['low-need']) {
+      filter.enabledFilters.push("need");
+      filter.need = 0;
     }
 
-    this.tasks = this.tasksService.listTasks(this.skillset, this.priority, this.location, this.value);
-    //getVolunteerTasks(this.createFilter());*/
+    if(value['match-skillset']) {
+      filter.enabledFilters.push("skillSet");
+      filter.skillSet = this.user.skillset;
+    }
+
+    if(value['location']) {
+      filter.enabledFilters.push("location");
+      filter.location = this.user.location;
+    }
+
+    if(value['search']) {
+      filter.enabledFilters.push("search");
+      filter.search = value['search'];
+    }
+
+    this.tasks = this.tasksService.listTasks(filter);
   }
 
   

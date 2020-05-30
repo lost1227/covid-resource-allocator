@@ -52,12 +52,10 @@ public class VolunteerTaskRepositoryImpl implements VolunteerTaskRepositoryCusto
           break;
         case "search":
           String searchStr = "%" + filters.search.toLowerCase() + "%";
-          logger.info("Searchstr: " + searchStr);
           predicates.add(
             builder.or(
               builder.like(builder.lower(task.get("name")), searchStr),
               builder.like(builder.lower(task.get("description")), searchStr)));
-          logger.info("Searchpred: " + predicates.get(predicates.size() - 1));
           break;
       }
     }

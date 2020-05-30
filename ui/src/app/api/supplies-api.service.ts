@@ -15,9 +15,9 @@ export class SuppliesApiService extends ApiService  {
     super();
   }
 
-  getSupplies(filters : SuppliesFilter) : Observable<SuppliesResponse> {
+  getSupplies(filters? : SuppliesFilter) : Observable<SuppliesResponse> {
     if(filters == null) {
-      filters = new SuppliesFilter([], null, 0, 0);
+      filters = new SuppliesFilter([], null, 0, "", "");
     }
     return super.verifyResponse(this.http.post<SuppliesResponse>("/api/supplies", filters));
   }
@@ -27,8 +27,9 @@ export class SuppliesFilter {
   constructor(
     public enabledFilters : string[],
     public type : SupplyType,
-    public priority : number,
-    public locationDistance : number
+    public need : number,
+    public location : string,
+    public search : string
   ) {}
 }
 
