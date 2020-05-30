@@ -11,29 +11,18 @@ public class Supply {
   }
 
 
-    public Long id;
-    
-    public String name;
-    public String location;
-    
-    public Integer need;
+  private final Long id;
+  
+  private final String name;
+  private final String location;
+  
+  private final Integer need;
 
-    public String description;
+  private final String description;
 
-    public Long ownerId;
-    public SupplyType type;
-    public Integer quantity;
+  private final Long ownerId;
+  private final SupplyType type;
+  private final Integer quantity;
 
-    public Long photoId;
-
-    public Supply(Long id, String name, String location, Integer need, String description, Long ownerId, SupplyType type, Integer quantity, Long photoId) {
-        this.name = name;
-        this.location = location;
-        this.need = need;
-        this.description = description;
-        this.ownerId = ownerId;
-        this.type = type;
-        this.quantity = quantity;
-        this.photoId = photoId;
-    }
+  private final Long photoId;
 }

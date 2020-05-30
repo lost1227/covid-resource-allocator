@@ -3,9 +3,6 @@ package edu.calpoly.csc_308.cora.api;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,8 +24,6 @@ import edu.calpoly.csc_308.cora.services.Messenger;
 @RestController
 public class MessengerAPI {
 
-    private Logger logger = LoggerFactory.getLogger(MessengerAPI.class);
-
     private Messenger mess;
 
     public MessengerAPI(Messenger mess) {
@@ -40,12 +35,12 @@ public class MessengerAPI {
       
         User principal = ((AuthUser) authentication.getPrincipal()).user;
 
-        Long id = principal.id;
-        if(id.equals(messageRequest.receiverId)) {
+        Long id = principal.getId();
+        if(id.equals(messageRequest.getReceiverId())) {
             throw new IllegalArgumentException("Cannot message self");
         }
 
-        Message message = new Message(-1L, id, messageRequest.receiverId, messageRequest.messageText, System.currentTimeMillis());
+        Message message = new Message(-1L, id, messageRequest.getReceiverId(), messageRequest.getMessageText(), System.currentTimeMillis());
         
         mess.postMessage(message);
         return new SuccessResponse();
@@ -54,17 +49,17 @@ public class MessengerAPI {
     @GetMapping("/api/message/conversations")
     public ResponseModel listConversations(Authentication authentication) {
         User principal = ((AuthUser) authentication.getPrincipal()).user;
-        Long uid = principal.id;
+        Long uid = principal.getId();
         
         ListConversationsResponse response = new ListConversationsResponse();
         response.userId = uid;
 
         List<Conversation> conversations = mess.listConversations(uid);
         List<ConversationResponse> responses = conversations.stream().map(convo -> {
-            Long otherId = convo.user1id.equals(uid) ? convo.user2id : convo.user1id;
+            Long otherId = convo.getUser1id().equals(uid) ? convo.getUser2id() : convo.getUser1id();
             ConversationResponse res = new ConversationResponse();
             res.userId = otherId;
-            res.messageHistory = convo.messages;
+            res.messageHistory = convo.getMessages();
             return res;
         }).collect(Collectors.toList());
 

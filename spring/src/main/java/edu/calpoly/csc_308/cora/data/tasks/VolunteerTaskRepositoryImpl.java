@@ -34,24 +34,24 @@ public class VolunteerTaskRepositoryImpl implements VolunteerTaskRepositoryCusto
 
     ArrayList<Predicate> predicates = new ArrayList<>();
 
-    for(String filter : filters.enabledFilters) {
+    for(String filter : filters.getEnabledFilters()) {
       switch(filter) {
         case "skillSet":
           predicates.add(
             builder.or(
-              Arrays.stream(filters.skillSet)
+              Arrays.stream(filters.getSkillSet())
               .map(skill -> builder.equal(builder.lower(task.get("skillNeeded")), skill.toLowerCase()))
               .collect(Collectors.toList())
               .toArray(new Predicate[]{})));
           break;
         case "need":
-          predicates.add(builder.equal(task.get("need"), filters.need));
+          predicates.add(builder.equal(task.get("need"), filters.getNeed()));
           break;
         case "location":
-          predicates.add(builder.like(builder.lower(task.get("location")), "%" + filters.location.toLowerCase() + "%"));
+          predicates.add(builder.like(builder.lower(task.get("location")), "%" + filters.getLocation().toLowerCase() + "%"));
           break;
         case "search":
-          String searchStr = "%" + filters.search.toLowerCase() + "%";
+          String searchStr = "%" + filters.getSearch().toLowerCase() + "%";
           predicates.add(
             builder.or(
               builder.like(builder.lower(task.get("name")), searchStr),

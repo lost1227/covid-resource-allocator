@@ -37,7 +37,7 @@ public class UserInfoAPI {
           return ResponseEntity.badRequest().body(new FailResponse());
         }
 
-        UserInfoResponse response = new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet, user.photoId);
+        UserInfoResponse response = UserInfoResponse.fromUser(user);
 
         return ResponseEntity.ok().body(response);
     }
@@ -46,9 +46,8 @@ public class UserInfoAPI {
     public ResponseModel findUserByName(@RequestParam String name) {
         List<User> users = userManager.findUsersByName(name);
         List<UserInfoResponse> responses = users.stream()
-                                                .map(user -> new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet, user.photoId))
+                                                .map(UserInfoResponse::fromUser)
                                                 .collect(Collectors.toList());
-        FindUsersResponse response = new FindUsersResponse(name, responses);
-        return response;
+        return new FindUsersResponse(name, responses);
     }
 }

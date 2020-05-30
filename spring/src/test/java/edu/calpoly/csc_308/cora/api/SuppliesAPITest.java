@@ -60,8 +60,8 @@ public class SuppliesAPITest {
     @Test
     public void testGetSupplies() {
         SuppliesFilterRequestModel request = new SuppliesFilterRequestModel();
-        request.enabledFilters = new String[]{};
-
+        request.setEnabledFilters(new String[]{});
+        
         SuppliesResponse response = this.restTemplate.postForObject(
             "http://localhost:"+this.port+"/api/supplies",
             request,

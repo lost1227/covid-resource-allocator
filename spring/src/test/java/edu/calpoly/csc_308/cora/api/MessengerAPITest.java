@@ -76,9 +76,9 @@ public class MessengerAPITest {
     @Test
     public void testSendMessage() {
         SendMessageRequestModel request = new SendMessageRequestModel();
-        request.receiverId = 1L;
-        request.messageText = "Test Message";
-
+        request.setReceiverId(1L);
+        request.setMessageText("Test Message");
+        
         ResponseEntity<SuccessResponse> entity = this.restTemplate.withBasicAuth("test", "password123").postForEntity(
             "http://localhost:"+this.port+"/api/message/post",
             request,

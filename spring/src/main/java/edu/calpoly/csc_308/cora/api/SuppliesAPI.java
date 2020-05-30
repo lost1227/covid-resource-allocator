@@ -23,9 +23,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
@@ -41,7 +38,7 @@ public class SuppliesAPI {
   public ResponseModel getSupplies(@RequestBody SuppliesFilterRequestModel request) {
 
     List<SupplyDAO> daos;
-    if(request.enabledFilters.length > 0) {
+    if(request.getEnabledFilters().length > 0) {
       daos = suppRepo.suppliesByFilters(request);
     } else {
       daos = suppRepo.findAll();
@@ -68,9 +65,10 @@ public class SuppliesAPI {
   @PostMapping("/api/supplies/post")
   public ResponseModel postSupplies(@RequestBody PostSupplyRequestModel postRequest){
 
-    Supply supply = new Supply(null, postRequest.name, postRequest.location, postRequest.need, postRequest.description, postRequest.ownerId, postRequest.type, postRequest.quantity, postRequest.photoId);
+    Supply supply = new Supply(null, postRequest.getName(), postRequest.getLocation(), postRequest.getNeed(), postRequest.getDescription(), postRequest.getOwnerId(), postRequest.getType(), postRequest.getQuantity(), postRequest.getPhotoId());
+
     supply = supp.postSupply(supply);
-    return new SupplyResponse(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, supply.photoId);
+    return SupplyResponse.fromSupply(supply);
   }
 
 }

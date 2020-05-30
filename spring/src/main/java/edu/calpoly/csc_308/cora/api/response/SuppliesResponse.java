@@ -2,6 +2,7 @@ package edu.calpoly.csc_308.cora.api.response;
 
 import java.util.List;
 
+import edu.calpoly.csc_308.cora.entities.Supply;
 import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
 
 public class SuppliesResponse extends ResponseModel {
@@ -33,6 +34,19 @@ public class SuppliesResponse extends ResponseModel {
             this.type = type;
             this.quantity = quantity;
             this.photoId = photoId;
+        }
+
+        public static SupplyResponse fromSupply(Supply supply) {
+          return new SupplyResponse(
+            supply.getId(),
+            supply.getName(), 
+            supply.getLocation(), 
+            supply.getNeed(),
+            supply.getDescription(),
+            supply.getOwnerId(),
+            supply.getType(),
+            supply.getQuantity(),
+            supply.getPhotoId());
         }
     }
 

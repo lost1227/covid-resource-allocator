@@ -2,12 +2,17 @@ package edu.calpoly.csc_308.cora.api.request;
 
 import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 public class SuppliesFilterRequestModel {
-    public String[] enabledFilters;
+    private String[] enabledFilters;
 
-    public SupplyType type;
-    public Integer need;
-    public String location;
+    private SupplyType type;
+    private Integer need;
+    private String location;
 
-    public String search;
+    private String search;
 }

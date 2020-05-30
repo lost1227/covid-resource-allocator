@@ -1,13 +1,18 @@
 package edu.calpoly.csc_308.cora.api.request;
 
-public class NewUserRequestModel implements RequestModel {
-  public Long id;
-  public String name;
-  public String location;
-  public String userType;
-  public String description;
-  public String[] skillset;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-  public String username;
-  public String password;
+@Data
+@NoArgsConstructor
+public class NewUserRequestModel implements RequestModel {
+  private Long id;
+  private String name;
+  private String location;
+  private String userType;
+  private String description;
+  private String[] skillset;
+
+  private String username;
+  private String password;
 }

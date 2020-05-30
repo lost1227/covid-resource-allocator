@@ -49,7 +49,7 @@ public class AuthUserService implements UserDetailsService {
 
     public AuthUser registerNewUser(User user, String username, String password) {
       String hashedPassword = encoder.encode(password);
-      UserDAO dao = new UserDAO(user.name, user.location, user.userType, user.description, user.skillSet, user.photoId, username, hashedPassword);
+      UserDAO dao = new UserDAO(user.getName(), user.getLocation(), user.getUserType(), user.getDescription(), user.getSkillSet(), user.getPhotoId(), username, hashedPassword);
 
       UserDAO preexisting = users.findByUsername(username);
       if(preexisting != null) {
@@ -62,21 +62,21 @@ public class AuthUserService implements UserDetailsService {
     }
 
     public AuthUser updateUser(AuthUser principal, User user, String password) {
-      Optional<UserDAO> opDao = users.findById(principal.user.id);
+      Optional<UserDAO> opDao = users.findById(principal.user.getId());
       if(!opDao.isPresent()) {
         throw new IllegalArgumentException("Principal does not exist!");
       }
       UserDAO dao = opDao.get();
-      if(!user.name.isEmpty())
-        dao.name = user.name;
-      if(!user.photoId.equals(-1L))
-        dao.photoId = user.photoId;
-      if(!user.location.isEmpty())
-        dao.location = user.location;
-      if(!user.description.isEmpty())
-        dao.description = user.description;
-      if(user.skillSet.length > 0)
-        dao.skillSet = user.skillSet;
+      if(!user.getName().isEmpty())
+        dao.name = user.getName();
+      if(!user.getPhotoId().equals(-1L))
+        dao.photoId = user.getPhotoId();
+      if(!user.getLocation().isEmpty())
+        dao.location = user.getLocation();
+      if(!user.getDescription().isEmpty())
+        dao.description = user.getDescription();
+      if(user.getSkillSet().length > 0)
+        dao.skillSet = user.getSkillSet();
       if(!password.isEmpty())
         dao.passwordHash = encoder.encode(password);
 

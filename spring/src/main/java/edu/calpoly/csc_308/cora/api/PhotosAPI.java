@@ -1,8 +1,5 @@
 package edu.calpoly.csc_308.cora.api;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,8 +38,7 @@ import edu.calpoly.csc_308.cora.entities.User;
 @RestController
 public class PhotosAPI {
 
-  
-  private Logger logger = LoggerFactory.getLogger(MessengerAPI.class);
+  private static final String JPEG_MIME = "image/jpeg";
 
   @Autowired
   private PhotoRepository repo;
@@ -51,13 +47,12 @@ public class PhotosAPI {
   public ResponseEntity<Resource> getPhoto(@RequestParam Long id) {
     Optional<PhotoDAO> optionalDao = repo.findById(id);
     if(!optionalDao.isPresent()) {
-      return ResponseEntity.status(404).header(HttpHeaders.CONTENT_TYPE, "image/jpeg").body(new ClassPathResource("placeholder.jpg"));
+      return ResponseEntity.status(404).header(HttpHeaders.CONTENT_TYPE, JPEG_MIME).body(new ClassPathResource("placeholder.jpg"));
     }
     PhotoDAO dao = optionalDao.get();
     Resource resource = new ByteArrayResource(dao.data);
 
-    ResponseEntity<Resource> response = ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, dao.contentType).body(resource);
-    return response;
+    return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, dao.contentType).body(resource);
   }
   
   @PostMapping("/api/photo/post")
@@ -66,7 +61,7 @@ public class PhotosAPI {
     switch(file.getContentType()) {
       case "image/bmp":
       case "image/gif":
-      case "image/jpeg":
+      case JPEG_MIME:
       case "image/png":
       case "image/webp":
         try {
@@ -75,10 +70,12 @@ public class PhotosAPI {
           if(converted == null) {
             return ResponseEntity.badRequest().body(new FailResponse());
           }
-          PhotoDAO dao = new PhotoDAO(principal.id, "image/jpeg", converted);
+          PhotoDAO dao = new PhotoDAO(principal.getId(), JPEG_MIME, converted);
           dao = repo.save(dao);
           return ResponseEntity.ok().body(new UploadPhotoResponse(dao.id));
         } catch (IOException e) {
+          return ResponseEntity.badRequest().body(new FailResponse());
+        } catch (IllegalArgumentException e) {
           return ResponseEntity.badRequest().body(new FailResponse());
         }
         
@@ -87,18 +84,16 @@ public class PhotosAPI {
     }
   }
 
-  private static byte[] convertToJpg(byte[] image) {
+  private static byte[] convertToJpg(byte[] image) throws IOException {
     try(ByteArrayInputStream bais = new ByteArrayInputStream(image);
         ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
       BufferedImage img = ImageIO.read(bais);
       if(img == null) {
-        return null;
+        throw new IllegalArgumentException("Not an image");
       }
       ImageIO.write(img, "jpg", baos);
       baos.flush();
       return baos.toByteArray();
-    } catch (IOException e) {
-      return null;
     }
   }
 

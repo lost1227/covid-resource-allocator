@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpHeaders;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -41,7 +40,7 @@ public class TasksAPI {
     @PostMapping("/api/tasks")
     public ResponseModel getVolunteerTasks(@RequestBody VolunteerFilterRequestModel request) {
       List<VolunteerTaskDAO> daoList;
-      if(request.enabledFilters.length > 0) {
+      if(request.getEnabledFilters().length > 0) {
         daoList = repo.tasksByFilters(request);
       } else {
         daoList = repo.findAll();
@@ -68,7 +67,7 @@ public class TasksAPI {
 
     @PostMapping("/api/tasks/post")
     public ResponseModel postVolunteerTask(@RequestBody PostVolunteerTaskRequestModel request) {
-      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.name, request.location, request.need, request.description, request.ownerId, request.skillNeeded, request.photoId);
+      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.getName(), request.getLocation(), request.getNeed(), request.getDescription(), request.getOwnerId(), request.getSkillNeeded(), request.getPhotoId());
       dao = repo.save(dao);
       return new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId);
     }

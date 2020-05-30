@@ -22,7 +22,7 @@ public class Messenger {
     }
 
     private MessageDAO convertMessageDAO(Message message) {
-        MessageDAO dao = new MessageDAO(message.sender, message.receiver, message.messageText, message.sentTs);
+        MessageDAO dao = new MessageDAO(message.getSender(), message.getReceiver(), message.getMessageText(), message.getSentTs());
         return dao;
     }
 

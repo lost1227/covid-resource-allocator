@@ -32,19 +32,19 @@ public class SupplyRepositoryImpl implements SupplyRepositoryCustom {
 
     ArrayList<Predicate> predicates = new ArrayList<>();
 
-    for(String filter : filters.enabledFilters) {
+    for(String filter : filters.getEnabledFilters()) {
       switch(filter) {
         case "type":
-          predicates.add(builder.equal(supply.get("type"), filters.type));
+          predicates.add(builder.equal(supply.get("type"), filters.getType()));
           break;
         case "need":
-          predicates.add(builder.equal(supply.get("need"), filters.need));
+          predicates.add(builder.equal(supply.get("need"), filters.getNeed()));
           break;
         case "location":
-          predicates.add(builder.like(builder.lower(supply.get("location")), "%" + filters.location.toLowerCase() + "%"));
+          predicates.add(builder.like(builder.lower(supply.get("location")), "%" + filters.getLocation().toLowerCase() + "%"));
           break;
         case "search":
-          String searchStr = "%" + filters.search.toLowerCase() + "%";
+          String searchStr = "%" + filters.getSearch().toLowerCase() + "%";
           predicates.add(
             builder.or(
               builder.like(builder.lower(supply.get("name")), searchStr),
