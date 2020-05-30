@@ -4,6 +4,7 @@ import { ApiService, ResponseModel } from '@app/api/api.service';
 import { Observable } from 'rxjs';
 import { SupplyType } from '@app/entities/supply';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +22,12 @@ export class SuppliesApiService extends ApiService  {
     }
     return super.verifyResponse(this.http.post<SuppliesResponse>("/api/supplies", filters));
   }
+
+
+  postSupplies(supply : PostSupplyRequestModel) : Observable<SupplyResponse> {
+    return super.verifyResponse(this.http.post<SupplyResponse>("/api/supplies/post",supply))
+  }
+   
 }
 
 export class SuppliesFilter {
@@ -32,8 +39,20 @@ export class SuppliesFilter {
     public search : string
   ) {}
 }
+export class PostSupplyRequestModel {
+  constructor(
+    public  name : string,
+    public location : string,
+    public need : number,
+    public description : string,
+    public ownerId : number,
+    public type : SupplyType,
+    public quantity : number,
+    public photoId : number
+  ) { }
+}
 
-export interface SupplyResponse {
+export interface SupplyResponse extends ResponseModel {
   id : number
   name : string
   location : string
@@ -42,6 +61,7 @@ export interface SupplyResponse {
   ownerId : number
   type : SupplyType
   quantity : number
+  photoId : number
 }
 export interface SuppliesResponse extends ResponseModel {
   supplies : SupplyResponse[]

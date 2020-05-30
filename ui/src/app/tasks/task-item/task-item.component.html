@@ -1,6 +1,6 @@
 <div class="task-item">
     <div class="task-image-box">
-        <img class="task-image" src="/assets/placeholder.png" alt="placeholder">
+        <img class="task-image" [src]="'/api/photo/get?id='+task.photoId" alt="placeholder">
     </div>
     <div class="task-details">
         <p class="task-title">{{task.name}}</p>

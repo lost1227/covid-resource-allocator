@@ -6,6 +6,7 @@ export class VolunteerTask {
     public need : number,
     public description : string,
     public ownerId : number,
-    public skillNeeded : string
+    public skillNeeded : string,
+    public photoId : number
   ) {}
 }

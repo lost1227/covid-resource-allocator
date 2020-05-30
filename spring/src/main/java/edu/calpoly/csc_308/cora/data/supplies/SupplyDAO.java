@@ -5,11 +5,12 @@ import lombok.Data;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
+
+import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
 
 @Data
 @Entity
+
 public class SupplyDAO {
     public @Id @GeneratedValue Long id;
     
@@ -20,22 +21,22 @@ public class SupplyDAO {
 
     public String description;
 
-    public Long taskOwnerId;
-
-    @Enumerated(EnumType.STRING)
+    public long ownerId;
     public SupplyType type;
-
     public Integer quantity;
 
-    public SupplyDAO() {};
+    public Long photoId;
 
-    public SupplyDAO(String name, String location, Integer need, String description, Long taskOwnerId, SupplyType type, Integer quantity) {
+    public SupplyDAO() {}
+
+    public SupplyDAO(String name, String location, Integer need, String description, long ownerId, SupplyType type, Integer quantity, Long photoId) {
         this.name = name;
         this.location = location;
         this.need = need;
         this.description = description;
-        this.taskOwnerId = taskOwnerId;
+        this.ownerId = ownerId;
         this.type = type;
         this.quantity = quantity;
+        this.photoId = photoId;
     }
 }

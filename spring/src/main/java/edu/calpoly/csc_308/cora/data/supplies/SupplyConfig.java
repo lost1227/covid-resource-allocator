@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
+
 @Configuration
 public class SupplyConfig {
     Logger logger = LoggerFactory.getLogger(SupplyConfig.class);
@@ -21,7 +23,8 @@ public class SupplyConfig {
                     "In need of extra KN-95 medical grade masks.",
                     5L,
                     SupplyType.REQUEST,
-                    0
+                    0,
+                    -1L
                 )));
         };
     }

@@ -1,0 +1,15 @@
+input.img-input {
+  display: none;
+}
+
+img.maindiv {
+  width: 300px;
+  height: 300px;
+}
+
+img.add-image {
+
+  width: 300px;
+
+  cursor: pointer;
+}

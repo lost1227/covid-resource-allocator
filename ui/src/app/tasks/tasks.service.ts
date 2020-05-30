@@ -19,7 +19,7 @@ export class TasksService {
       filter = new VolunteerTasksFilter([], [], -1, "", "")
     }
     return this.api.getTasks(filter).pipe(
-      map(response => response.tasks.map(task => new VolunteerTask(task.id, task.name, task.location, task.need, task.description, task.taskOwnerId, task.skillNeeded)))
+      map(response => response.tasks.map(task => new VolunteerTask(task.id, task.name, task.location, task.need, task.description, task.ownerId, task.skillNeeded, task.photoId)))
     )
   }
 }

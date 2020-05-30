@@ -59,7 +59,8 @@ describe('TaskItemComponent', () => {
       "need": 0,
       "description": "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
       "ownerId": 3,
-      "skillNeeded": ""
+      "skillNeeded": "",
+      "photoId": -1
     }
     fixture.detectChanges();
 
@@ -75,7 +76,8 @@ describe('TaskItemComponent', () => {
       "need": 2,
       "description": "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
       "ownerId": 4,
-      "skillNeeded": "Graphic Design"
+      "skillNeeded": "Graphic Design",
+      "photoId": -1
     }
     fixture.detectChanges();
 

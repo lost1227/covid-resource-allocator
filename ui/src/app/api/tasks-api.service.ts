@@ -20,6 +20,10 @@ export class TasksApiService extends ApiService {
     }
     return super.verifyResponse(this.http.post<VolunteerTasksResponse>("/api/tasks", filters));
   }
+
+  postNewTask(task : PostVolunteerTaskRequest) : Observable<VolunteerTaskResponse> {
+    return super.verifyResponse(this.http.post<VolunteerTaskResponse>("/api/tasks/post", task));
+  } 
 }
 
 export class VolunteerTasksFilter {
@@ -32,14 +36,27 @@ export class VolunteerTasksFilter {
   ) {}
 }
 
-export interface VolunteerTaskResponse {
+export class PostVolunteerTaskRequest {
+  constructor(
+    public name : string,
+    public location : string,
+    public need : number,
+    public description : string,
+    public ownerId : number,
+    public skillNeeded : string,
+    public photoId : number
+  ) {}
+}
+
+export interface VolunteerTaskResponse extends ResponseModel {
   id : number
   name : string
   location : string
   need : number
   description : string
-  taskOwnerId : number
+  ownerId : number
   skillNeeded : string
+  photoId : number
 }
 export interface VolunteerTasksResponse extends ResponseModel {
   tasks : VolunteerTaskResponse[]

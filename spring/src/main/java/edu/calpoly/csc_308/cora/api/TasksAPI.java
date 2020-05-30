@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import edu.calpoly.csc_308.cora.api.request.PostVolunteerTaskRequestModel;
 import edu.calpoly.csc_308.cora.api.request.VolunteerFilterRequestModel;
 import edu.calpoly.csc_308.cora.api.response.ResponseModel;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskDAO;
@@ -41,10 +42,17 @@ public class TasksAPI {
       }
       
       List<VolunteerTaskResponse> tasks = daoList.stream().map( dao ->
-          new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.taskOwnerId, dao.skillNeeded)
+          new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId)
       ).collect(Collectors.toList());
 
       return new VolunteerTasksResponse(tasks);
+    }
+
+    @PostMapping("/api/tasks/post")
+    public ResponseModel postVolunteerTask(@RequestBody PostVolunteerTaskRequestModel request) {
+      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.name, request.location, request.need, request.description, request.ownerId, request.skillNeeded, request.photoId);
+      dao = repo.save(dao);
+      return new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId);
     }
     
 }

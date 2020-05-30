@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { UserInfoResponseModel } from './api/userinfo-api.service';
 import { LoginApiService } from './api/login-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PhotosApiService } from './api/photos-api.service';
 
 describe('LoginmanagerService', () => {
   let service: LoginManagerService;
@@ -18,7 +19,8 @@ describe('LoginmanagerService', () => {
         location : "somewhere",
         userType : "sometype",
         description : "A user for testing",
-        skillset : []
+        skillset : [],
+        photoId: -1
       });
     }
   }
@@ -35,11 +37,16 @@ describe('LoginmanagerService', () => {
     })
   }
 
+  let mockPhotos = {
+    postPhotos(photo : File) {}
+  }
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers : [{ provide : LoginApiService, useValue : mockLoginApi },
                   { provide : Router, useValue : mockRouter },
-                  { provide : ActivatedRoute, useValue : mockRoute } ]
+                  { provide : ActivatedRoute, useValue : mockRoute },
+                  { provide : PhotosApiService, useValue: mockPhotos } ]
     });
     service = TestBed.inject(LoginManagerService);
   });

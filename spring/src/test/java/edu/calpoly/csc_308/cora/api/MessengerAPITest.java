@@ -60,6 +60,7 @@ public class MessengerAPITest {
                     "volunteer",
                     "Student living in Long Beach, CA", 
                     new String[] { "programming" },
+                    -1L,
                     "test",
                     encoder.encode("password123"));
         dao.id = 0L;

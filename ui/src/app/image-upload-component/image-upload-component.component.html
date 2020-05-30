@@ -1,0 +1,4 @@
+<div class="maindiv">
+  <input class="img-input" type="file" accept="image" #imgInput (change)="photoChange($event.target.files)" >
+  <img class="add-image" [src]="imgSrc" alt="add" (click)="imgInput.click()">
+</div>

@@ -33,7 +33,8 @@ describe('UserinfoApiService', () => {
       location: "Long Beach, CA",
       userType: "provider",
       description: "Hospital located in Long Beach, California",
-      skillset: ["n/a"]
+      skillset: ["n/a"],
+      photoId: -1
     }
 
     service.getUserInfo(0).subscribe(result => {
