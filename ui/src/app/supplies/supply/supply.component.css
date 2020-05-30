@@ -34,7 +34,7 @@ img.supply-image {
 
 p.supply-title {
     margin: 50px 0px 0px 0px;
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: 500;
     font-size: 36px;
@@ -45,7 +45,7 @@ p.supply-title {
 p.supply-description {
     margin: 20px 0px 0px 0px;
 
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -57,7 +57,7 @@ p.supply-description {
 p.supply-type {
     margin: 30px 0px 0px 0px;
     
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
@@ -76,7 +76,7 @@ p.supply-type-offer {
 p.supply-loc {
     margin: 20px 0px 0px 0px;
 
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -89,7 +89,7 @@ p.supply-loc {
 p.supply-need {
     margin: 20px 0px 0px 00px;
 
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;

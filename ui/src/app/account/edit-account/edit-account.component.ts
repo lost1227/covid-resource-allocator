@@ -51,7 +51,6 @@ export class EditAccountComponent implements OnInit {
   }
 
   onSubmit(formValue : any) {
-    console.log(formValue);
 
     let options = new EditUserRequest();
 

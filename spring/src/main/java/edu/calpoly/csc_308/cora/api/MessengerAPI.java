@@ -63,7 +63,7 @@ public class MessengerAPI {
 
         List<Conversation> conversations = mess.listConversations(uid);
         List<ConversationResponse> responses = conversations.stream().map(convo -> {
-            Long otherId = (convo.user1id == uid) ? convo.user2id : convo.user1id;
+            Long otherId = convo.user1id.equals(uid) ? convo.user2id : convo.user1id;
             ConversationResponse res = new ConversationResponse();
             res.userId = otherId;
             res.messageHistory = convo.messages;

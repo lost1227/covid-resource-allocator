@@ -1,6 +1,7 @@
 package edu.calpoly.csc_308.cora.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -19,7 +20,11 @@ public class UserManager {
     }
 
     public User getUser(Long id) {
-        UserDAO dao = repo.findById(id).get();
+        Optional<UserDAO> opDao = repo.findById(id);
+        if(!opDao.isPresent()) {
+          return null;
+        }
+        UserDAO dao = opDao.get();
         User user = User.fromDao(dao);
 
         return user;

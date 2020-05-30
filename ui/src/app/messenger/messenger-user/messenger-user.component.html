@@ -1,6 +1,6 @@
 <button mat-button (click)="buttonClicked()" class="button">
     <div [ngClass]="getClass()">
-        <img src="/assets/placeholder.png" class="thumb">
+        <img [src]="'/api/photo/get?id='+conversation.receiver.photoId" class="thumb" alt="profile picture">
         <p class="name">{{conversation.receiver.name}}</p>
     </div>
 </button>

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.http.ResponseEntity;
+
+import edu.calpoly.csc_308.cora.api.response.FailResponse;
 import edu.calpoly.csc_308.cora.api.response.FindUsersResponse;
 import edu.calpoly.csc_308.cora.api.response.ResponseModel;
 import edu.calpoly.csc_308.cora.api.response.UserInfoResponse;
@@ -28,12 +31,15 @@ public class UserInfoAPI {
     }
 
     @GetMapping("/api/user/info")
-    public ResponseModel getUserInfo(@RequestParam Long id) {
-
+    public ResponseEntity<ResponseModel> getUserInfo(@RequestParam Long id) {
         User user = userManager.getUser(id);
+        if(user == null) {
+          return ResponseEntity.badRequest().body(new FailResponse());
+        }
+
         UserInfoResponse response = new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet, user.photoId);
 
-        return response;
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/api/user/find")

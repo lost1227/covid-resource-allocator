@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MessengerService, Conversation } from '../messenger.service';
+import { UserinfoApiService } from '@app/api/userinfo-api.service';
 
 @Component({
   selector: 'app-messenger-user',
@@ -20,6 +21,7 @@ export class MessengerUserComponent implements OnInit {
     this.messengerService.selectedConversation.subscribe(convo => {
       this.currConvo = convo;
     })
+
   }
 
   buttonClicked() {

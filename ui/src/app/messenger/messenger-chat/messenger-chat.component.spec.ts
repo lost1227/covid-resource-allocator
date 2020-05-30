@@ -52,8 +52,8 @@ describe('MessengerChatComponent', () => {
   it('should respond to conversation changes', () => {
     expect(component.currConvo).toBeFalsy();
     const testconvo = new Conversation(
-      new MessageUser(1, "User 1"),
-      new MessageUser(2, "User 2"),
+      new MessageUser(1, "User 1", -1),
+      new MessageUser(2, "User 2", -1),
       []
     )
     mockMessengerService.selectedConversation.next(testconvo);

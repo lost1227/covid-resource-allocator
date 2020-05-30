@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(formValue) : void {
-    console.log(formValue);
     if(formValue.photo 
       && formValue.name 
       && formValue.location 

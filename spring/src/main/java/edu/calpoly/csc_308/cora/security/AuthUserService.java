@@ -1,5 +1,7 @@
 package edu.calpoly.csc_308.cora.security;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,8 +63,11 @@ public class AuthUserService implements UserDetailsService {
     }
 
     public AuthUser updateUser(AuthUser principal, User user, String password) {
-      UserDAO dao = users.findById(principal.user.id).get();
-      logger.info("pre-edit: {}", dao);
+      Optional<UserDAO> opDao = users.findById(principal.user.id);
+      if(!opDao.isPresent()) {
+        throw new IllegalArgumentException("Principal does not exist!");
+      }
+      UserDAO dao = opDao.get();
       if(!user.name.isEmpty())
         dao.name = user.name;
       if(!user.photoId.equals(-1L))

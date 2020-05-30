@@ -34,7 +34,7 @@ img.task-image {
 
 p.task-title {
     margin: 50px 0px 0px 0px;
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: 500;
     font-size: 36px;
@@ -45,7 +45,7 @@ p.task-title {
 p.task-description {
     margin: 20px 0px 0px 0px;
 
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -57,7 +57,7 @@ p.task-description {
 p.task-loc {
     margin: 30px 0px 0px 0px;
 
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -70,7 +70,7 @@ p.task-loc {
 p.task-need {
     margin: 20px 0px 0px 00px;
 
-    font-family: Roboto;
+    font-family: Roboto, sans;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;

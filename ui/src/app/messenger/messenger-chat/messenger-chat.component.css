@@ -38,7 +38,7 @@ div.sendmessage {
 textarea.messagecomposer {
   width: 100%;
 
-  font-family: Roboto;
+  font-family: Roboto, sans;
 }
 
 div.message-outer {
@@ -62,7 +62,7 @@ div.message-inner {
   padding: 5px 15px;
   width: 50%;
 
-  font-family: Roboto;
+  font-family: Roboto, sans;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;

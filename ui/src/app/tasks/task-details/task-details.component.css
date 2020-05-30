@@ -32,7 +32,7 @@ img.item-image {
 }
 
 p.title {
-  font-family: Roboto;
+  font-family: Roboto, sans;
   font-style: normal;
   font-weight: normal;
   font-size: 64px;
@@ -44,7 +44,7 @@ p.title {
 p.label {
   margin: 10px 0px 0px 0px;
 
-  font-family: Roboto;
+  font-family: Roboto, sans;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -54,7 +54,7 @@ p.label {
 }
 
 p.description {
-  font-family: Roboto;
+  font-family: Roboto, sans;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -91,7 +91,7 @@ p.description {
 
   line-height: 100%;
 
-  font-family: Roboto;
+  font-family: Roboto, sans;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -106,7 +106,7 @@ p.description {
 p.task-loc {
   margin: 20px 0px 0px 0px;
 
-  font-family: Roboto;
+  font-family: Roboto, sans;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -119,7 +119,7 @@ p.task-loc {
 p.task-need {
   margin: 20px 0px 0px 00px;
 
-  font-family: Roboto;
+  font-family: Roboto, sans;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;

@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.http.ResponseEntity;
+
 import edu.calpoly.csc_308.cora.api.request.SuppliesFilterRequestModel;
 import edu.calpoly.csc_308.cora.api.request.PostSupplyRequestModel;
+import edu.calpoly.csc_308.cora.api.response.FailResponse;
 import edu.calpoly.csc_308.cora.api.response.ResponseModel;
 import edu.calpoly.csc_308.cora.api.response.SuppliesResponse;
 import edu.calpoly.csc_308.cora.api.response.SuppliesResponse.SupplyResponse;
@@ -17,6 +20,7 @@ import edu.calpoly.csc_308.cora.entities.Supply;
 import edu.calpoly.csc_308.cora.services.SupplyManager;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -52,9 +56,13 @@ public class SuppliesAPI {
   }
 
   @GetMapping("/api/supply")
-  public ResponseModel getSingleSupply(@RequestParam Long id) {
-    SupplyDAO dao = suppRepo.findById(id).get();
-    return new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId);
+  public ResponseEntity<ResponseModel> getSingleSupply(@RequestParam Long id) {
+    Optional<SupplyDAO> opDao = suppRepo.findById(id);
+    if(!opDao.isPresent()) {
+      return ResponseEntity.badRequest().body(new FailResponse());
+    }
+    SupplyDAO dao = opDao.get();
+    return ResponseEntity.ok().body(new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId));
   }
 
   @PostMapping("/api/supplies/post")
