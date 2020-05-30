@@ -17,11 +17,11 @@ public class SupplyManager {
         this.repo = repo;
     }
     private SupplyDAO convertSupplyDAO(Supply supply) {
-        SupplyDAO dao = new SupplyDAO(supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, supply.photoId);
+        SupplyDAO dao = new SupplyDAO(supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, supply.photoId, supply.acceptorId);
         return dao;
     }
     private Supply convertSupply(SupplyDAO dao) {
-        Supply supply = new Supply(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId);
+        Supply supply = new Supply(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId, dao.acceptorId);
         return supply;
     }
     public Supply postSupply(Supply supply) {

@@ -26,9 +26,11 @@ public class VolunteerTaskDAO {
 
     public String skillNeeded;
 
+    public Long acceptorId;
+
     public VolunteerTaskDAO() {};
 
-    public VolunteerTaskDAO(String name, String location, Integer need, String description, Long ownerId, String skillNeeded, Long photoId) {
+    public VolunteerTaskDAO(String name, String location, Integer need, String description, Long ownerId, String skillNeeded, Long photoId, Long acceptorId) {
         this.name = name;
         this.location = location;
         this.need = need;
@@ -36,5 +38,6 @@ public class VolunteerTaskDAO {
         this.ownerId = ownerId;
         this.skillNeeded = skillNeeded;     
         this.photoId = photoId;
+        this.acceptorId = acceptorId;
     }
 }

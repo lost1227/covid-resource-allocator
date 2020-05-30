@@ -23,7 +23,9 @@ public class SuppliesResponse extends ResponseModel {
 
         public Long photoId;
 
-        public SupplyResponse(Long id, String name, String location, Integer need, String description, Long ownerId, SupplyType type, Integer quantity, Long photoId) {
+        public Long acceptorId;
+
+        public SupplyResponse(Long id, String name, String location, Integer need, String description, Long ownerId, SupplyType type, Integer quantity, Long photoId, Long acceptorId) {
             this.id = id;
             this.name = name;
             this.location = location;
@@ -33,6 +35,7 @@ public class SuppliesResponse extends ResponseModel {
             this.type = type;
             this.quantity = quantity;
             this.photoId = photoId;
+            this.acceptorId = acceptorId;
         }
     }
 

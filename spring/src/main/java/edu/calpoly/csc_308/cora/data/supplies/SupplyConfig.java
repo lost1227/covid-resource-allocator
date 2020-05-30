@@ -24,7 +24,8 @@ public class SupplyConfig {
                     5L,
                     SupplyType.REQUEST,
                     0,
-                    -1L
+                    -1L,
+                    null
                 )));
         };
     }

@@ -45,7 +45,7 @@ public class SuppliesAPI {
 
 
     List<SupplyResponse> supplies = daos.stream().map(
-      dao -> new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId)
+      dao -> new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId, dao.acceptorId)
     ).collect(Collectors.toList());
     
     return new SuppliesResponse(supplies);
@@ -54,15 +54,15 @@ public class SuppliesAPI {
   @GetMapping("/api/supply")
   public ResponseModel getSingleSupply(@RequestParam Long id) {
     SupplyDAO dao = suppRepo.findById(id).get();
-    return new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId);
+    return new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId, dao.acceptorId);
   }
 
   @PostMapping("/api/supplies/post")
   public ResponseModel postSupplies(@RequestBody PostSupplyRequestModel postRequest){
 
-    Supply supply = new Supply(null, postRequest.name, postRequest.location, postRequest.need, postRequest.description, postRequest.ownerId, postRequest.type, postRequest.quantity, postRequest.photoId);
+    Supply supply = new Supply(null, postRequest.name, postRequest.location, postRequest.need, postRequest.description, postRequest.ownerId, postRequest.type, postRequest.quantity, postRequest.photoId, null);
     supply = supp.postSupply(supply);
-    return new SupplyResponse(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, supply.photoId);
+    return new SupplyResponse(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, supply.photoId, supply.acceptorId);
   }
 
 }

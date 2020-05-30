@@ -47,7 +47,8 @@ public class SuppliesAPITest {
             5L,
             SupplyType.REQUEST,
             0,
-            -1L
+            -1L,
+            null
         );
         Mockito.doReturn(Arrays.asList(mockSupply1)).when(messengerService).findAll();
     }

@@ -27,9 +27,11 @@ public class SupplyDAO {
 
     public Long photoId;
 
+    public Long acceptorId;
+
     public SupplyDAO() {}
 
-    public SupplyDAO(String name, String location, Integer need, String description, long ownerId, SupplyType type, Integer quantity, Long photoId) {
+    public SupplyDAO(String name, String location, Integer need, String description, long ownerId, SupplyType type, Integer quantity, Long photoId, Long acceptorId) {
         this.name = name;
         this.location = location;
         this.need = need;
@@ -38,5 +40,6 @@ public class SupplyDAO {
         this.type = type;
         this.quantity = quantity;
         this.photoId = photoId;
+        this.acceptorId = acceptorId;
     }
 }

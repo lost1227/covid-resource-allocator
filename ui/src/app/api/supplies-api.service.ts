@@ -67,6 +67,7 @@ export interface SupplyResponse extends ResponseModel {
   type : SupplyType
   quantity : number
   photoId : number
+  acceptorId : number
 }
 export interface SuppliesResponse extends ResponseModel {
   supplies : SupplyResponse[]

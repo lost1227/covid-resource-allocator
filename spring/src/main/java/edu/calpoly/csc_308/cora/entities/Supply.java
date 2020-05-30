@@ -26,7 +26,9 @@ public class Supply {
 
     public Long photoId;
 
-    public Supply(Long id, String name, String location, Integer need, String description, Long ownerId, SupplyType type, Integer quantity, Long photoId) {
+    public Long acceptorId;
+
+    public Supply(Long id, String name, String location, Integer need, String description, Long ownerId, SupplyType type, Integer quantity, Long photoId, Long acceptorId) {
         this.name = name;
         this.location = location;
         this.need = need;
@@ -35,5 +37,6 @@ public class Supply {
         this.type = type;
         this.quantity = quantity;
         this.photoId = photoId;
+        this.acceptorId = acceptorId;
     }
 }

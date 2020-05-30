@@ -23,7 +23,8 @@ public class TaskConfig {
                      "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
                      3L,
                      "",
-                     -1L
+                     -1L,
+                     null
                 )));
                 logger.info("Preloading " + repository.save(
                 new VolunteerTaskDAO(
@@ -33,7 +34,8 @@ public class TaskConfig {
                     "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
                     4L,
                     "Graphic Design",
-                    -1L
+                    -1L,
+                    null
                 )));
         };
     }

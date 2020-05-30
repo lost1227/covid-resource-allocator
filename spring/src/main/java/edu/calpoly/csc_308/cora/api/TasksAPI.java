@@ -48,7 +48,7 @@ public class TasksAPI {
       }
       
       List<VolunteerTaskResponse> tasks = daoList.stream().map( dao ->
-          new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId)
+          new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId, dao.acceptorId)
       ).collect(Collectors.toList());
 
       return new VolunteerTasksResponse(tasks);
@@ -62,15 +62,15 @@ public class TasksAPI {
       }
       VolunteerTaskDAO dao = opDao.get();
       
-      VolunteerTaskResponse response = new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId);
+      VolunteerTaskResponse response = new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId, dao.acceptorId);
       return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/api/tasks/post")
     public ResponseModel postVolunteerTask(@RequestBody PostVolunteerTaskRequestModel request) {
-      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.name, request.location, request.need, request.description, request.ownerId, request.skillNeeded, request.photoId);
+      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.name, request.location, request.need, request.description, request.ownerId, request.skillNeeded, request.photoId, null);
       dao = repo.save(dao);
-      return new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId);
+      return new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId, dao.acceptorId);
     }
     
 }

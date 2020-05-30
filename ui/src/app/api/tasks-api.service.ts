@@ -63,6 +63,7 @@ export interface VolunteerTaskResponse extends ResponseModel {
   ownerId : number
   skillNeeded : string
   photoId : number
+  acceptorId : number
 }
 export interface VolunteerTasksResponse extends ResponseModel {
   tasks : VolunteerTaskResponse[]
