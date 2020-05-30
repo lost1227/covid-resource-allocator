@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -15,8 +15,9 @@ import { NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class ImageUploadComponentComponent implements OnInit {
 
+  @Input() imgSrc : string = "/assets/add.png"
+
   private file : File = null
-  imgSrc = "/assets/add.png"
   onChange : Function;
 
   constructor(private host: ElementRef<HTMLInputElement>) { }

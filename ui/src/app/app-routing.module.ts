@@ -7,9 +7,10 @@ import { LoginComponent } from '@app/login/login.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
 import { SupplyDetailsComponent } from './supplies/supply-details/supply-details.component';
-import { RegisterComponent } from './register/register.component';
-import { EditAccountComponent } from "@app/account/edit-account.component";
+import { RegisterComponent } from './account/register/register.component';
+import { EditAccountComponent } from "@app/account/edit-account/edit-account.component";
 import { TaskDetailsComponent } from './tasks/task-details/task-details.component';
+import { ProfileComponent } from './account/profile/profile.component';
 
 
 const routes: Routes = [
@@ -20,13 +21,14 @@ const routes: Routes = [
   { path: 'message', component: MessengerComponent},
   { path: 'login', component: LoginComponent },
   { path: 'login/register', component: RegisterComponent },
+  { path: 'profile/edit', component: EditAccountComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: 'post', 
       children: [
         { path: 'volunteer', component: NewPostComponent },
         { path: 'supply', component: NewPostComponent }
       ]},
-  { path: '', redirectTo: '/volunteer', pathMatch: 'full'},
-  { path: 'account/edit', component: EditAccountComponent}
+  { path: '', redirectTo: '/volunteer', pathMatch: 'full'}
 ];
 
 @NgModule({

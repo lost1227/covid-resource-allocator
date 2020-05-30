@@ -10,14 +10,15 @@ public class AngularRouting {
     @RequestMapping({
       "/volunteer",
       "/supplies",
+      "/supplies/details/*",
+      "/volunteer/details/*",
       "/message",
       "/login",
       "/login/register",
+      "/profile/*",
+      "/profile/edit",
       "/post/volunteer",
-      "/post/supply",
-      "/supplies/details/*",
-      "/volunteer/details/*",
-      "/account/edit"
+      "/post/supply"
     })
     public String index() {
         return "forward:/index.html";

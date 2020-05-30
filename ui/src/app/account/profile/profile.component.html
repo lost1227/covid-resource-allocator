@@ -1,0 +1,14 @@
+<app-toolbar></app-toolbar>
+<div class="main" *ngIf="user">
+  <div class="left-container">
+    <img class="user-image" [src]="'/api/photo/get?id='+user.photoId" alt="image">
+  </div>
+  <div class="middle-container">
+    <p class="title">{{user.name}}</p>
+    <p class="label">Description:</p>
+    <p class="description">{{user.description}}</p>
+  </div>
+  <div class="right-container">
+    <p class="loc">{{user.location}}</p>
+  </div>
+</div>

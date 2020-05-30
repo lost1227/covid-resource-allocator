@@ -29,11 +29,12 @@ import { SuppliesListComponent } from '@app/supplies/supplies-list/supplies-list
 import { SupplyComponent } from './supplies/supply/supply.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { SupplyDetailsComponent } from './supplies/supply-details/supply-details.component';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './account/register/register.component';
 import { ImageUploadComponentComponent } from './image-upload-component/image-upload-component.component';
 
-import { EditAccountComponent} from "@app/account/edit-account.component";
+import { EditAccountComponent} from "@app/account/edit-account/edit-account.component";
 import { TaskDetailsComponent } from './tasks/task-details/task-details.component';
+import { ProfileComponent } from './account/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { TaskDetailsComponent } from './tasks/task-details/task-details.componen
     RegisterComponent,
     ImageUploadComponentComponent,
     EditAccountComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -67,7 +67,14 @@ export class EditUserRequest {
     public photoId : number = -1
   ) {}
 
-  static editPhotoId(photoId : number) : EditUserRequest {
-    return new EditUserRequest("", "", "", [], "", photoId);
+  static makeRequest(options : {
+    name? : string,
+    location? : string,
+    description? : string,
+    skillset? : string[],
+    password? : string,
+    photoId? : number
+  }) {
+    return new EditUserRequest(options.name, options.location, options.description, options.skillset, options.password, options.photoId);
   }
 }
