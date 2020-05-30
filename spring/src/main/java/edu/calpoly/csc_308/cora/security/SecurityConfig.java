@@ -34,6 +34,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                   "/api/user/info",
                   "/api/user/find", 
                   "/api/tasks",
+                  "/api/task",
                   "/api/supplies",
                   "/api/supply",
                   "/api/login/register"

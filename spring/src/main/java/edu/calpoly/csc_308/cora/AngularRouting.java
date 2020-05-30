@@ -16,6 +16,7 @@ public class AngularRouting {
       "/post/volunteer",
       "/post/supply",
       "/supplies/details/*",
+      "/volunteer/details/*",
       "/account/edit"
     })
     public String index() {

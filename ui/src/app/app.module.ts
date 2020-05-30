@@ -33,6 +33,7 @@ import { RegisterComponent } from './register/register.component';
 import { ImageUploadComponentComponent } from './image-upload-component/image-upload-component.component';
 
 import { EditAccountComponent} from "@app/account/edit-account.component";
+import { TaskDetailsComponent } from './tasks/task-details/task-details.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { EditAccountComponent} from "@app/account/edit-account.component";
     SupplyDetailsComponent,
     RegisterComponent,
     ImageUploadComponentComponent,
-    EditAccountComponent
+    EditAccountComponent,
+    TaskDetailsComponent
   ],
   imports: [
     BrowserModule,

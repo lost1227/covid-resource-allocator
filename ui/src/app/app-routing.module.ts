@@ -8,11 +8,15 @@ import { NewPostComponent } from './new-post/new-post.component';
 import { SuppliesListComponent } from './supplies/supplies-list/supplies-list.component';
 import { SupplyDetailsComponent } from './supplies/supply-details/supply-details.component';
 import { RegisterComponent } from './register/register.component';
-import {EditAccountComponent} from "@app/account/edit-account.component";
+import { EditAccountComponent } from "@app/account/edit-account.component";
+import { TaskDetailsComponent } from './tasks/task-details/task-details.component';
 
 
 const routes: Routes = [
-  { path: 'volunteer', component: TaskListComponent},
+  { path: 'volunteer', component: TaskListComponent },
+  { path: 'supplies', component: SuppliesListComponent },
+  { path: 'supplies/details/:id', component: SupplyDetailsComponent },
+  { path: 'volunteer/details/:id', component: TaskDetailsComponent },
   { path: 'message', component: MessengerComponent},
   { path: 'login', component: LoginComponent },
   { path: 'login/register', component: RegisterComponent },
@@ -21,8 +25,6 @@ const routes: Routes = [
         { path: 'volunteer', component: NewPostComponent },
         { path: 'supply', component: NewPostComponent }
       ]},
-  { path: 'supplies', component: SuppliesListComponent},
-  { path: 'supplies/details/:id', component: SupplyDetailsComponent},
   { path: '', redirectTo: '/volunteer', pathMatch: 'full'},
   { path: 'account/edit', component: EditAccountComponent}
 ];

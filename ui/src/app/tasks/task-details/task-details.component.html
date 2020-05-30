@@ -1,4 +1,4 @@
-<app-toolbar selected="Supplies"></app-toolbar>
+<app-toolbar selected="Volunteer"></app-toolbar>
 <div class="main" *ngIf="item">
   <div class="left-container">
     <img class="item-image" [src]="'/api/photo/get?id='+item.photoId" alt="image">
@@ -13,8 +13,7 @@
     <p class="description">{{item.description}}</p>
   </div>
   <div class="right-container">
-    <p [ngClass]="getTypeClass()">{{getTypeText()}}</p>
-    <p class="supply-loc">{{item.location}}</p>
+    <p class="task-loc">{{item.location}}</p>
     <p [ngClass]="getNeedClass()">{{getNeedText()}}</p>
   </div>
 </div>

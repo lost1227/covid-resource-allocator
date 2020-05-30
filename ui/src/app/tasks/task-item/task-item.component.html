@@ -1,3 +1,4 @@
+<a class="details-link" [routerLink]="['/volunteer/details', task.id]">
 <div class="task-item">
     <div class="task-image-box">
         <img class="task-image" [src]="'/api/photo/get?id='+task.photoId" alt="placeholder">
@@ -11,3 +12,4 @@
         <p [ngClass]="getClass()">{{getNeedDesc()}}</p>
     </div>
 </div>
+</a>
