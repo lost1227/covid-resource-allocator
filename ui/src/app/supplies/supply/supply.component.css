@@ -1,7 +1,16 @@
+a.details-link {
+  text-decoration: none;
+  color: #000000;
+}
+
 div.supply {
     border-bottom: 1px solid black;
     display: flex;
     justify-content: space-between;
+}
+
+div.supply:hover {
+  background-color: #EEEEEE;
 }
 
 img.supply-image-box {

@@ -1,19 +1,26 @@
 package edu.calpoly.csc_308.cora.api;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpHeaders;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.calpoly.csc_308.cora.api.request.PostVolunteerTaskRequestModel;
 import edu.calpoly.csc_308.cora.api.request.VolunteerFilterRequestModel;
+import edu.calpoly.csc_308.cora.api.response.FailResponse;
 import edu.calpoly.csc_308.cora.api.response.ResponseModel;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskDAO;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskRepository;
@@ -34,7 +41,6 @@ public class TasksAPI {
     @PostMapping("/api/tasks")
     public ResponseModel getVolunteerTasks(@RequestBody VolunteerFilterRequestModel request) {
       List<VolunteerTaskDAO> daoList;
-      logger.info("Filters: "+ request);
       if(request.enabledFilters.length > 0) {
         daoList = repo.tasksByFilters(request);
       } else {
@@ -46,6 +52,18 @@ public class TasksAPI {
       ).collect(Collectors.toList());
 
       return new VolunteerTasksResponse(tasks);
+    }
+
+    @GetMapping("/api/task")
+    public ResponseEntity<ResponseModel> getSingleVolunteerTask(@RequestParam Long id) {
+      Optional<VolunteerTaskDAO> opDao = repo.findById(id);
+      if(!opDao.isPresent()) {
+        return ResponseEntity.badRequest().body(new FailResponse());
+      }
+      VolunteerTaskDAO dao = opDao.get();
+      
+      VolunteerTaskResponse response = new VolunteerTaskResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.skillNeeded, dao.photoId);
+      return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/api/tasks/post")

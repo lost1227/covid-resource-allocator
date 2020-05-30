@@ -1,7 +1,16 @@
+a.details-link {
+  text-decoration: none;
+  color: #000000;
+}
+
 div.task-item {
     border-bottom: 1px solid black;
     display: flex;
     justify-content: space-between;
+}
+
+div.task-item:hover {
+  background-color: #EEEEEE;
 }
 
 img.task-image-box {

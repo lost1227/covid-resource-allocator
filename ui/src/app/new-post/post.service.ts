@@ -28,7 +28,7 @@ export class PostService {
 
   postSupply(supply : Supply, photo : File) {
     this.photoService.postPhoto(photo).subscribe(response => {
-      supply.photoId = response.id;
+      supply = new Supply(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, response.id);
       this.supplyService.postSupplies(supply).subscribe(response => {
         // TODO: navigate to details page
         this.router.navigateByUrl("/");

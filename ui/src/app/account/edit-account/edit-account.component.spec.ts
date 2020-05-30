@@ -8,7 +8,7 @@ import { User } from '@app/entities/user';
 import { FormBuilder } from '@angular/forms';
 
 describe('EditAccountComponent', () => {
-  let component: EditAccountComponent;
+  /*let component: EditAccountComponent;
   let fixture: ComponentFixture<EditAccountComponent>;
 
   let mockRoute = {
@@ -39,5 +39,5 @@ describe('EditAccountComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
+  });*/
 });

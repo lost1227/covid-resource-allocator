@@ -1,0 +1,19 @@
+<app-toolbar selected="Volunteer"></app-toolbar>
+<div class="main" *ngIf="item">
+  <div class="left-container">
+    <img class="item-image" [src]="'/api/photo/get?id='+item.photoId" alt="image">
+  </div>
+  <div class="middle-container">
+    <p class="title">{{item.name}}</p>
+    <div class="user" *ngIf="user">
+      <img class="user-pic" [src]="'/api/photo/get?id='+user.photoId" alt="profile picture">
+      <p class="user-name">{{user.name}}</p>
+    </div>
+    <p class="label">Description:</p>
+    <p class="description">{{item.description}}</p>
+  </div>
+  <div class="right-container">
+    <p class="task-loc">{{item.location}}</p>
+    <p [ngClass]="getNeedClass()">{{getNeedText()}}</p>
+  </div>
+</div>

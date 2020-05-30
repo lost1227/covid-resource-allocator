@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ApiService, ResponseModel } from '@app/api/api.service';
 import { Observable } from 'rxjs';
 import { SupplyType } from '@app/entities/supply';
@@ -23,6 +23,11 @@ export class SuppliesApiService extends ApiService  {
     return super.verifyResponse(this.http.post<SuppliesResponse>("/api/supplies", filters));
   }
 
+  getSupply(id : number) : Observable<SupplyResponse> {
+    let params = new HttpParams();
+    params = params.append("id", String(id));
+    return super.verifyResponse(this.http.get<SupplyResponse>("/api/supply", {params : params}));
+  }
 
   postSupplies(supply : PostSupplyRequestModel) : Observable<SupplyResponse> {
     return super.verifyResponse(this.http.post<SupplyResponse>("/api/supplies/post",supply))

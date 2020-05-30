@@ -1,0 +1,26 @@
+<app-toolbar></app-toolbar>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" *ngIf="user">
+  <div class="main">
+    <div class="left-container">
+      <app-image-upload-component [imgSrc]="getPhotoUrl()" formControlName="image"></app-image-upload-component>
+    </div>
+    <div class="middle-container">
+      <p class="label">Name:</p>
+      <input class="textbox" type="text" formControlName="name">
+
+      <p class="label">Description:</p>
+      <textarea class="description" formControlName="description"></textarea>
+
+      <p class="label">New Password:</p>
+      <input class="textbox" type="password" formControlName="password">
+      <p class="label">Confirm Password:</p>
+      <input class="textbox" type="password" formControlName="passwordConf">
+      <button class="update-button">Update</button>
+    </div>
+    <div class="right-container">
+      <p class="label">Location:</p>
+      <input class="textbox" type="text" formControlName="location">
+    </div>
+  </div>
+</form>

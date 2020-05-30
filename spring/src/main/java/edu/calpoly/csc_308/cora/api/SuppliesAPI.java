@@ -1,6 +1,8 @@
 package edu.calpoly.csc_308.cora.api;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,6 +43,7 @@ public class SuppliesAPI {
       daos = suppRepo.findAll();
     }
 
+
     List<SupplyResponse> supplies = daos.stream().map(
       dao -> new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId)
     ).collect(Collectors.toList());
@@ -48,6 +51,11 @@ public class SuppliesAPI {
     return new SuppliesResponse(supplies);
   }
 
+  @GetMapping("/api/supply")
+  public ResponseModel getSingleSupply(@RequestParam Long id) {
+    SupplyDAO dao = suppRepo.findById(id).get();
+    return new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId);
+  }
 
   @PostMapping("/api/supplies/post")
   public ResponseModel postSupplies(@RequestBody PostSupplyRequestModel postRequest){

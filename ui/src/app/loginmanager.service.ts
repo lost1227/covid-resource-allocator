@@ -114,13 +114,20 @@ export class LoginManagerService {
     this.loginApi.registerNewUser(newRequest).subscribe(registerResponse => {
       this.loginApi.login(username, password).subscribe(loginResponse => {
         this.photos.postPhoto(photo).subscribe(photoResponse => {
-          const editRequest = EditUserRequest.editPhotoId(photoResponse.id);
+          const editRequest = EditUserRequest.makeRequest({photoId : photoResponse.id});
           this.loginApi.editUser(editRequest).subscribe(editResponse => {
             this.loggedInUser = null;
             this.router.navigateByUrl("/");
           })
         })
       })
+    })
+  }
+
+  public editUser(request: EditUserRequest) {
+    this.loginApi.editUser(request).subscribe(response => {
+      this.loggedInUser = null;
+      this.router.navigateByUrl("/profile/"+response.id);
     })
   }
 }
