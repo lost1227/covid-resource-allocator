@@ -15,19 +15,8 @@ export class SuppliesService {
     private api : SuppliesApiService
   ) { }
 
-  listSupplies(type? : SupplyType, priority? : number, distance? : number) : Observable<Supply[]> {
-    var filters = [];
-    if(type) {
-      filters.push("SupplyType");
-    }
-    if(priority) {
-      filters.push("Priority");
-    }
-    if(distance) {
-      filters.push("LocationDistance");
-    }
-    const filterObj = new SuppliesFilter(filters, type, priority, distance);
-    return this.api.getSupplies(filterObj).pipe(
+  listSupplies(filter? : SuppliesFilter) : Observable<Supply[]> {
+    return this.api.getSupplies(filter).pipe(
       map(response => response.supplies.map(supply => new Supply(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, supply.photoId)))
     )
   }

@@ -15,15 +15,18 @@ public class VolunteerTasksResponse extends ResponseModel {
 
         public Long ownerId;
 
+        public String skillNeeded;
+
         public Long photoId;
 
-        public VolunteerTaskResponse(Long id, String name, String location, Integer need, String description, Long ownerId, Long photoId) {
+        public VolunteerTaskResponse(Long id, String name, String location, Integer need, String description, Long ownerId, String skillNeeded, Long photoId) {
             this.id = id;
             this.name = name;
             this.location = location;
             this.need = need;
             this.description = description;
             this.ownerId = ownerId;
+            this.skillNeeded = skillNeeded;
             this.photoId = photoId;
         }
     }

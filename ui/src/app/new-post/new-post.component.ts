@@ -94,6 +94,7 @@ export class NewPostComponent implements OnInit {
             parseInt(formValue.need),
             formValue.description,
             this.user.id,
+            "",
             -1
           )
           this.postService.postTask(task, formValue.image);

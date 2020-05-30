@@ -7,5 +7,7 @@ public class SuppliesFilterRequestModel {
 
     public SupplyType type;
     public Integer need;
-    public Integer locationDistance;
+    public String location;
+
+    public String search;
 }
