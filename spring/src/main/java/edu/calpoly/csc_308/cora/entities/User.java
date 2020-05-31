@@ -16,6 +16,6 @@ public class User {
   private final Long photoId;
 
   public static User fromDao(UserDAO dao) {
-    return new User(dao.id, dao.name, dao.location, dao.userType, dao.description, dao.skillSet, dao.photoId);
+    return new User(dao.getId(), dao.getName(), dao.getLocation(), dao.getUserType(), dao.getDescription(), dao.getSkillSet(), dao.getPhotoId());
   }
 }

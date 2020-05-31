@@ -1,53 +1,52 @@
 package edu.calpoly.csc_308.cora.data.users;
 
-import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
+@NoArgsConstructor
 @Entity
 public class UserDAO {
-    public @Id @GeneratedValue Long id;
+  private @Id @GeneratedValue Long id;
 
-    public String name;
+  private String name;
 
-    public String location;
-    public String userType;
-    public String description;
-    public String[] skillSet;
+  private String location;
+  private String userType;
+  private String description;
+  private String[] skillSet;
 
-    public Long photoId;
+  private Long photoId;
 
-    @Column(unique = true)
-    public String username;
-    public String passwordHash;
+  @Column(unique = true)
+  private String username;
+  private String passwordHash;
 
-    public UserDAO() {}
+  @Data
+  public static class ProfileInfo {
+    private final String name;
+    private final String location;
+    private final String userType;
+    private final String description;
+    private final String[] skillSet;
+  }
 
-    public UserDAO(
-        String name,
-        String location,
-        String userType,
-        String description,
-        String[] skillSet,
 
-        Long photoId,
+  public UserDAO(ProfileInfo profile, Long photoId, String username, String passwordHash) {
+    this.name = profile.getName();
+    this.location = profile.getLocation();
+    this.userType = profile.getUserType();
+    this.description = profile.getDescription();
+    this.skillSet = profile.getSkillSet();
 
-        String username, 
-        String passwordHash
-        ) {
-        this.name = name;
-        this.location = location;
-        this.userType = userType;
-        this.description = description;
-        this.skillSet = skillSet;
+    this.photoId = photoId;
 
-        this.photoId = photoId;
-
-        this.username = username;
-        this.passwordHash = passwordHash;
-    }
+    this.username = username;
+    this.passwordHash = passwordHash;
+  }
 }

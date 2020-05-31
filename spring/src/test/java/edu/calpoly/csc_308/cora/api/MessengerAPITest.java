@@ -55,15 +55,16 @@ public class MessengerAPITest {
         Mockito.doReturn(conversations).when(messengerService).listConversations(Mockito.any());
 
         UserDAO dao = new UserDAO(
-                    "Jordan Powers",
-                    "Long Beach, CA",
-                    "volunteer",
-                    "Student living in Long Beach, CA", 
-                    new String[] { "programming" },
-                    -1L,
-                    "test",
-                    encoder.encode("password123"));
-        dao.id = 0L;
+            new UserDAO.ProfileInfo(
+            "Jordan Powers",
+            "Long Beach, CA",
+            "volunteer",
+            "Student living in Long Beach, CA", 
+            new String[] { "programming" }),
+          -1L,
+          "test",
+          encoder.encode("password123"));
+        dao.setId(0L);
         Mockito.doReturn(dao).when(userService).findByUsername("test");
     }
 

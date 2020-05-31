@@ -20,14 +20,11 @@ public class SupplyManager {
         SupplyDAO dao = new SupplyDAO(supply.getName(), supply.getLocation(), supply.getNeed(), supply.getDescription(), supply.getOwnerId(), supply.getType(), supply.getQuantity(), supply.getPhotoId());
         return dao;
     }
-    private Supply convertSupply(SupplyDAO dao) {
-        Supply supply = new Supply(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId);
-        return supply;
-    }
+
     public Supply postSupply(Supply supply) {
       SupplyDAO dao = convertSupplyDAO(supply);  
-      dao = repo.save(convertSupplyDAO(supply));
-      return convertSupply(dao);
+      dao = repo.save(dao);
+      return Supply.fromDAO(dao);
     }
     
 }

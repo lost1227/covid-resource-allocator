@@ -27,7 +27,7 @@ public class Messenger {
     }
 
     private Message convertMessage(MessageDAO dao) {
-        Message message = new Message(dao.id, dao.sender, dao.receiver, dao.messageText, dao.sentTs);
+        Message message = Message.fromDAO(dao);
         return message;
     }
 
@@ -37,7 +37,7 @@ public class Messenger {
 
     public List<Conversation> listConversations(Long userId) {
         List<MessageDAO> ungrouped = repo.findBySenderOrReceiver(userId);
-        Map<Long, List<MessageDAO>> grouped = ungrouped.stream().collect(Collectors.groupingBy(message -> message.receiver.equals(userId) ? message.sender : message.receiver));
+        Map<Long, List<MessageDAO>> grouped = ungrouped.stream().collect(Collectors.groupingBy(message -> message.getReceiver().equals(userId) ? message.getSender() : message.getReceiver()));
         ArrayList<Conversation> conversations = new ArrayList<>();
         for(Long otherId : grouped.keySet()) {
             List<MessageDAO> daos = grouped.get(otherId);
