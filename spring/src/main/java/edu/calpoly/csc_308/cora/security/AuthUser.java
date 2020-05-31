@@ -2,6 +2,7 @@ package edu.calpoly.csc_308.cora.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -68,5 +69,10 @@ public class AuthUser extends org.springframework.security.core.userdetails.User
     } else {
       return false;
     }
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), this.user);
   }
 }
