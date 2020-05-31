@@ -1,9 +1,11 @@
 package edu.calpoly.csc_308.cora.api.response;
 
-public class UploadPhotoResponse extends ResponseModel {
-  public Long id;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-  public UploadPhotoResponse(Long id) {
-    this.id = id;
-  }
+@Data
+@EqualsAndHashCode(callSuper=true)
+public class UploadPhotoResponse extends ResponseModel {
+  private final Long id;
+
 }

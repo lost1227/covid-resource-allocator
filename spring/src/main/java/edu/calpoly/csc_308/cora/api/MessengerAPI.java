@@ -50,22 +50,14 @@ public class MessengerAPI {
     public ResponseModel listConversations(Authentication authentication) {
         User principal = ((AuthUser) authentication.getPrincipal()).user;
         Long uid = principal.getId();
-        
-        ListConversationsResponse response = new ListConversationsResponse();
-        response.userId = uid;
 
         List<Conversation> conversations = mess.listConversations(uid);
         List<ConversationResponse> responses = conversations.stream().map(convo -> {
             Long otherId = convo.getUser1id().equals(uid) ? convo.getUser2id() : convo.getUser1id();
-            ConversationResponse res = new ConversationResponse();
-            res.userId = otherId;
-            res.messageHistory = convo.getMessages();
-            return res;
+            return new ConversationResponse(otherId, convo.getMessages());
         }).collect(Collectors.toList());
 
-        response.conversations = responses;
-
-        return response;
+        return new ListConversationsResponse(uid, responses);
     }
     
 }

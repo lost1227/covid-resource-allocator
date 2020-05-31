@@ -17,7 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.mockito.Mockito;
 
 import edu.calpoly.csc_308.cora.api.request.SuppliesFilterRequestModel;
-import edu.calpoly.csc_308.cora.api.response.SuppliesResponse;
+import edu.calpoly.csc_308.cora.api.response.SuccessResponse;
 import edu.calpoly.csc_308.cora.data.supplies.SupplyDAO;
 import edu.calpoly.csc_308.cora.data.supplies.SupplyRepository;
 import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
@@ -62,14 +62,14 @@ public class SuppliesAPITest {
         SuppliesFilterRequestModel request = new SuppliesFilterRequestModel();
         request.setEnabledFilters(new String[]{});
         
-        SuppliesResponse response = this.restTemplate.postForObject(
+        SuccessResponse response = this.restTemplate.postForObject(
             "http://localhost:"+this.port+"/api/supplies",
             request,
-            SuppliesResponse.class
+            SuccessResponse.class
         );
 
         assertThat(response).isNotNull();
-        assertThat(response.ok).isTrue();
+        assertThat(response.getOk()).isTrue();
     }
     
 }
