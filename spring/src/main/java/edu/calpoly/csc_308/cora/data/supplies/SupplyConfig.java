@@ -17,10 +17,12 @@ public class SupplyConfig {
       return args -> {
         SupplyDAO supply = supplyrepository.save(
           new SupplyDAO(
-            "KN-95 Masks",
-            "Tempe, AZ",
+            new SupplyDAO.Description(
+              "KN-95 Masks",
+              "Tempe, AZ",
+              "In need of extra KN-95 medical grade masks."
+            ),
             1,
-            "In need of extra KN-95 medical grade masks.",
             5L,
             SupplyType.REQUEST,
             0,

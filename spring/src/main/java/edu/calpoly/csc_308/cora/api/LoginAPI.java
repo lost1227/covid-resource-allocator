@@ -26,7 +26,7 @@ public class LoginAPI {
 
     @GetMapping("/api/login")
     public ResponseModel login(Authentication authentication) {
-        User principal = ((AuthUser) authentication.getPrincipal()).user;
+        User principal = ((AuthUser) authentication.getPrincipal()).getUser();
         return new UserInfoResponse(principal.getId(), principal.getName(), principal.getLocation(), principal.getUserType(), principal.getDescription(), principal.getSkillSet(), principal.getPhotoId());
     }
 
@@ -40,11 +40,11 @@ public class LoginAPI {
     @PostMapping("/api/login/edit")
     public ResponseModel editUserInfo(Authentication authentication, @RequestBody EditUserRequestModel request) {
       AuthUser principal = ((AuthUser) authentication.getPrincipal());
-      User user = new User(principal.user.getId(), request.getName(), request.getLocation(), principal.user.getUserType(), request.getDescription(), request.getSkillset(), request.getPhotoId());
+      User user = new User(principal.getUser().getId(), request.getName(), request.getLocation(), principal.getUser().getUserType(), request.getDescription(), request.getSkillset(), request.getPhotoId());
       AuthUser result = userSerivce.updateUser(principal, user, request.getPassword());
       
-      principal.user = result.user;
+      principal.setUser(result.getUser());
 
-      return UserInfoResponse.fromUser(result.user);
+      return UserInfoResponse.fromUser(result.getUser());
     }
 }

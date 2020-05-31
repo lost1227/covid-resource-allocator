@@ -25,17 +25,14 @@ public class UserManager {
           return null;
         }
         UserDAO dao = opDao.get();
-        User user = User.fromDao(dao);
-
-        return user;
+        return User.fromDao(dao);
     }
 
     public List<User> findUsersByName(String name) {
         List<UserDAO> daos = repo.findByName(name);
-        List<User> users = daos.stream()
-                                .map(dao -> User.fromDao(dao))
-                                .collect(Collectors.toList());
-        return users;
+        return daos.stream()
+          .map(User::fromDao)
+          .collect(Collectors.toList());
     }
 
 }

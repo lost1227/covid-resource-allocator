@@ -17,8 +17,9 @@ public class SupplyManager {
         this.repo = repo;
     }
     private SupplyDAO convertSupplyDAO(Supply supply) {
-        SupplyDAO dao = new SupplyDAO(supply.getName(), supply.getLocation(), supply.getNeed(), supply.getDescription(), supply.getOwnerId(), supply.getType(), supply.getQuantity(), supply.getPhotoId());
-        return dao;
+        return new SupplyDAO(
+          new SupplyDAO.Description(supply.getName(), supply.getLocation(), supply.getDescription()),
+          supply.getNeed(), supply.getOwnerId(), supply.getType(), supply.getQuantity(), supply.getPhotoId());
     }
 
     public Supply postSupply(Supply supply) {

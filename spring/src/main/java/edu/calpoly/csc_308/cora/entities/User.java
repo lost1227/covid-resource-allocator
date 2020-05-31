@@ -1,11 +1,15 @@
 package edu.calpoly.csc_308.cora.entities;
 
+import java.io.Serializable;
+
 import edu.calpoly.csc_308.cora.data.users.UserDAO;
 import lombok.Data;
 
 @Data
-public class User {
-  private final Long id;    
+public class User implements Serializable {
+  private static final long serialVersionUID = 1L;
+  
+  private final Long id;
   private final String name;
 
   private final String location;

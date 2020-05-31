@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class UserConfig {
+  private static final String PRELOADING = "Preloading {}";
 
   Logger logger = LoggerFactory.getLogger(UserConfig.class);
 
@@ -34,9 +35,9 @@ public class UserConfig {
         new UserDAO(
           new UserDAO.ProfileInfo(
             "Blue Shield of California",
-            "Long Beach, CA",
+            "Los Angeles, CA",
             "provider",
-            "Insurance company serving Long Beach, California",
+            "Insurance company serving Los Angeles, California",
             new String[] {}),
           -1L,
           "bshield",
@@ -46,7 +47,7 @@ public class UserConfig {
         new UserDAO(
           new UserDAO.ProfileInfo(
             "Jordan Powers",
-            "Long Beach, CA",
+            "Long Beach",
             "volunteer",
             "Student living in Long Beach, CA",
             new String[] { "programming" }),
@@ -67,10 +68,10 @@ public class UserConfig {
           encoder.encode("password123"))
       );
 
-      logger.info("Preloading {}", user1);
-      logger.info("Preloading {}", user2);
-      logger.info("Preloading {}", user3);
-      logger.info("Preloading {}", user4);
+      logger.info(PRELOADING, user1);
+      logger.info(PRELOADING, user2);
+      logger.info(PRELOADING, user3);
+      logger.info(PRELOADING, user4);
       };
 
   }

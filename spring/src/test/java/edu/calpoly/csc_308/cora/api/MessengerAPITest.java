@@ -30,7 +30,7 @@ import edu.calpoly.csc_308.cora.entities.Conversation;
 import edu.calpoly.csc_308.cora.services.Messenger;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class MessengerAPITest {
+class MessengerAPITest {
 
     @LocalServerPort
     private int port;
@@ -69,13 +69,13 @@ public class MessengerAPITest {
     }
 
     @Test
-    public void contextLoads() throws Exception {
+    void contextLoads() throws Exception {
         assertThat(api).isNotNull();
     }
 
 
     @Test
-    public void testSendMessage() {
+    void testSendMessage() {
         SendMessageRequestModel request = new SendMessageRequestModel();
         request.setReceiverId(1L);
         request.setMessageText("Test Message");
@@ -96,7 +96,7 @@ public class MessengerAPITest {
     }
 
     @Test
-    public void testListConversation() {
+    void testListConversation() {
         ListConversationsResponse response = this.restTemplate.withBasicAuth("test", "password123").getForObject(
             "http://localhost:"+this.port+"/api/message/conversations",
             ListConversationsResponse.class);

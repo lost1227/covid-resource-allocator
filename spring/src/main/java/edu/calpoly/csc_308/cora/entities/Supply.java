@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Supply {
 
-  public static enum SupplyType {
+  public enum SupplyType {
     REQUEST,
     OFFER
   }

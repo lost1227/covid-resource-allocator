@@ -20,7 +20,7 @@ import edu.calpoly.csc_308.cora.api.request.VolunteerFilterRequestModel;
 
 public class VolunteerTaskRepositoryImpl implements VolunteerTaskRepositoryCustom {
 
-  Logger logger = LoggerFactory.getLogger(VolunteerTaskRepositoryCustom.class);
+  Logger logger = LoggerFactory.getLogger(VolunteerTaskRepositoryImpl.class);
   
   @PersistenceContext
   private EntityManager em;
@@ -56,6 +56,8 @@ public class VolunteerTaskRepositoryImpl implements VolunteerTaskRepositoryCusto
             builder.or(
               builder.like(builder.lower(task.get("name")), searchStr),
               builder.like(builder.lower(task.get("description")), searchStr)));
+          break;
+        default:
           break;
       }
     }

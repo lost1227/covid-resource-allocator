@@ -38,12 +38,12 @@ public class AuthUserService implements UserDetailsService {
         if(dao == null) {
             throw new IllegalArgumentException("No such user " + username);
         }
-        AuthUser authUser = new AuthUser(
+        return new AuthUser(
+          new AuthUser.Auth(
             dao.getUsername(),
-            dao.getPasswordHash(),
-            User.fromDao(dao)
+            dao.getPasswordHash()),
+          User.fromDao(dao)
         );
-        return authUser;
     }
     
 
@@ -60,11 +60,11 @@ public class AuthUserService implements UserDetailsService {
 
       dao = users.save(dao);
       User ret = User.fromDao(dao);
-      return new AuthUser(username, hashedPassword, ret);
+      return new AuthUser(new AuthUser.Auth(username, hashedPassword), ret);
     }
 
     public AuthUser updateUser(AuthUser principal, User user, String password) {
-      Optional<UserDAO> opDao = users.findById(principal.user.getId());
+      Optional<UserDAO> opDao = users.findById(principal.getUser().getId());
       if(!opDao.isPresent()) {
         throw new IllegalArgumentException("Principal does not exist!");
       }
@@ -84,7 +84,7 @@ public class AuthUserService implements UserDetailsService {
 
       dao = users.save(dao);
 
-      return new AuthUser(dao.getUsername(), dao.getPasswordHash(), User.fromDao(dao));
+      return new AuthUser(new AuthUser.Auth(dao.getUsername(), dao.getPasswordHash()), User.fromDao(dao));
     }
     
 }

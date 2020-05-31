@@ -15,6 +15,13 @@ import lombok.NoArgsConstructor;
 @Entity
 public class SupplyDAO {
     private @Id @GeneratedValue Long id;
+
+    @Data
+    public static class Description {
+      private final String name;
+      private final String location;
+      private final String description;
+    }
     
     private String name;
     private String location;
@@ -29,11 +36,11 @@ public class SupplyDAO {
 
     private Long photoId;
 
-    public SupplyDAO(String name, String location, Integer need, String description, long ownerId, SupplyType type, Integer quantity, Long photoId) {
-        this.name = name;
-        this.location = location;
+    public SupplyDAO(Description description, Integer need, long ownerId, SupplyType type, Integer quantity, Long photoId) {
+        this.name = description.getName();
+        this.location = description.getLocation();
         this.need = need;
-        this.description = description;
+        this.description = description.getDescription();
         this.ownerId = ownerId;
         this.type = type;
         this.quantity = quantity;

@@ -23,7 +23,7 @@ import edu.calpoly.csc_308.cora.data.supplies.SupplyRepository;
 import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class SuppliesAPITest {
+class SuppliesAPITest {
 
     @LocalServerPort
     private int port;
@@ -38,27 +38,28 @@ public class SuppliesAPITest {
     private SupplyRepository messengerService;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         SupplyDAO mockSupply1 = new SupplyDAO(
+          new SupplyDAO.Description(
             "KN-95 Masks",
             "Tempe, AZ",
-            1,
-            "In need of extra KN-95 medical grade masks.",
-            5L,
-            SupplyType.REQUEST,
-            0,
-            -1L
+            "In need of extra KN-95 medical grade masks."),
+          1,
+          5L,
+          SupplyType.REQUEST,
+          0,
+          -1L
         );
         Mockito.doReturn(Arrays.asList(mockSupply1)).when(messengerService).findAll();
     }
 
     @Test
-    public void testContextLoads() throws Exception {
+    void testContextLoads() throws Exception {
         assertThat(api).isNotNull();
     }
 
     @Test
-    public void testGetSupplies() {
+    void testGetSupplies() {
         SuppliesFilterRequestModel request = new SuppliesFilterRequestModel();
         request.setEnabledFilters(new String[]{});
         

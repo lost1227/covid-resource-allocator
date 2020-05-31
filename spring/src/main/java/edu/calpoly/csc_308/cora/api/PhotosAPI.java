@@ -57,7 +57,7 @@ public class PhotosAPI {
   
   @PostMapping("/api/photo/post")
   public ResponseEntity<ResponseModel> uploadPhoto(@RequestParam MultipartFile file, Authentication authentication) {
-    User principal = ((AuthUser) authentication.getPrincipal()).user;
+    User principal = ((AuthUser) authentication.getPrincipal()).getUser();
     switch(file.getContentType()) {
       case "image/bmp":
       case "image/gif":
