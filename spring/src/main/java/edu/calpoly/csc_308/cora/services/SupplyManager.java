@@ -18,7 +18,7 @@ public class SupplyManager {
     }
     private SupplyDAO convertSupplyDAO(Supply supply) {
         return new SupplyDAO(
-          new SupplyDAO.Description(supply.getName(), supply.getLocation(), supply.getDescription()),
+          new SupplyDAO.DescInfo(supply.getName(), supply.getLocation(), supply.getDescription()),
           supply.getNeed(), supply.getOwnerId(), supply.getType(), supply.getQuantity(), supply.getPhotoId());
     }
 

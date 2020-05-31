@@ -27,9 +27,9 @@ export class PostService {
   }
 
   postSupply(supply : Supply, photo : File) {
-    this.photoService.postPhoto(photo).subscribe(response => {
-      supply = new Supply(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, response.id);
-      this.supplyService.postSupplies(supply).subscribe(response => {
+    this.photoService.postPhoto(photo).subscribe(photoResponse => {
+      supply = new Supply(supply.id, supply.name, supply.location, supply.need, supply.description, supply.ownerId, supply.type, supply.quantity, photoResponse.id);
+      this.supplyService.postSupplies(supply).subscribe(postResponse => {
         // TODO: navigate to details page
         this.router.navigateByUrl("/");
       });
@@ -37,9 +37,9 @@ export class PostService {
   }
 
   postTask(task : VolunteerTask, photo : File) {
-    this.photoService.postPhoto(photo).subscribe(response => {
-      task.photoId = response.id;
-      this.tasksService.postNewTask(task).subscribe(response => {
+    this.photoService.postPhoto(photo).subscribe(photoResponse => {
+      task.photoId = photoResponse.id;
+      this.tasksService.postNewTask(task).subscribe(postResponse => {
         // TODO: navigate to details page
         this.router.navigateByUrl("/");
       })

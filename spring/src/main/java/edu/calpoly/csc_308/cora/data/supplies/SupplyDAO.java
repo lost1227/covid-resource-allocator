@@ -17,7 +17,7 @@ public class SupplyDAO {
     private @Id @GeneratedValue Long id;
 
     @Data
-    public static class Description {
+    public static class DescInfo {
       private final String name;
       private final String location;
       private final String description;
@@ -36,7 +36,7 @@ public class SupplyDAO {
 
     private Long photoId;
 
-    public SupplyDAO(Description description, Integer need, long ownerId, SupplyType type, Integer quantity, Long photoId) {
+    public SupplyDAO(DescInfo description, Integer need, long ownerId, SupplyType type, Integer quantity, Long photoId) {
         this.name = description.getName();
         this.location = description.getLocation();
         this.need = need;

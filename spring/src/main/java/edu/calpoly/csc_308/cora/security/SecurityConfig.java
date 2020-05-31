@@ -1,6 +1,5 @@
 package edu.calpoly.csc_308.cora.security;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;

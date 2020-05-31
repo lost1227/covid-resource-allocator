@@ -36,6 +36,6 @@ export interface UserInfoResponseModel extends ResponseModel {
   photoId : number;
 }
 export interface FindUsersResponseModel extends ResponseModel {
-  query : String,
+  query : string,
   users : UserInfoResponseModel[]
 }

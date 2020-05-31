@@ -39,12 +39,10 @@ export class TaskListComponent implements OnInit {
     const value = this.filterForm.value;
     const filter = new VolunteerTasksFilter([], [], -1, "", "")
 
-    if(value['high-need'] && value['low-need']) {
-      
-    } else if(value['high-need']) {
+    if(value['high-need'] && !value['low-need']) {
       filter.enabledFilters.push("need");
       filter.need = 1;
-    } else if(value['low-need']) {
+    } else if(!value['high-need'] && value['low-need']) {
       filter.enabledFilters.push("need");
       filter.need = 0;
     }

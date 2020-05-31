@@ -40,7 +40,7 @@ class SuppliesAPITest {
     @BeforeEach
     void setup() {
         SupplyDAO mockSupply1 = new SupplyDAO(
-          new SupplyDAO.Description(
+          new SupplyDAO.DescInfo(
             "KN-95 Masks",
             "Tempe, AZ",
             "In need of extra KN-95 medical grade masks."),

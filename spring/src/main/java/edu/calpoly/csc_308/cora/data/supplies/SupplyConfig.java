@@ -17,7 +17,7 @@ public class SupplyConfig {
       return args -> {
         SupplyDAO supply = supplyrepository.save(
           new SupplyDAO(
-            new SupplyDAO.Description(
+            new SupplyDAO.DescInfo(
               "KN-95 Masks",
               "Tempe, AZ",
               "In need of extra KN-95 medical grade masks."

@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '@app/entities/user';
 import { LoginManagerService } from '@app/loginmanager.service';
 import { Router } from '@angular/router';
-import { PhotosApiService } from '@app/api/photos-api.service';
 
 
 @Component({

@@ -36,22 +36,18 @@ export class SuppliesListComponent implements OnInit {
     const value = this.filterForm.value;
     const filter = new SuppliesFilter([], SupplyType.OFFER, -1, "", "");
 
-    if(value['high-need'] && value['low-need']) {
-      
-    } else if(value['high-need']) {
+    if(value['high-need'] && !value['low-need']) {
       filter.enabledFilters.push("need");
       filter.need = 1;
-    } else if(value['low-need']) {
+    } else if(!value['high-need'] && value['low-need']) {
       filter.enabledFilters.push("need");
       filter.need = 0;
     }
 
-    if(value['offers'] && value['requests']) {
-      
-    } else if(value['offers']) {
+    else if(value['offers'] && !value['requests']) {
       filter.enabledFilters.push('type');
       filter.type = SupplyType.OFFER;
-    } else if(value['requests']) {
+    } else if(!value['offers'] && value['requests']) {
       filter.enabledFilters.push('type');
       filter.type = SupplyType.REQUEST;
     }
