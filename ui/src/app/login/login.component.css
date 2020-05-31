@@ -1,6 +1,6 @@
 .title {
   margin: 50px 0px 0px 0px;
-  font-family: Roboto, sans;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 64px;
@@ -22,7 +22,7 @@
 }
 
 .welcome {
-  font-family: Roboto, sans;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -31,7 +31,7 @@
 }
 
 .label {
-  font-family: Roboto, sans;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -46,7 +46,7 @@
   height: 50px;
   box-sizing: border-box;
 
-  font-family: Roboto, sans;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -60,7 +60,7 @@ button.loginbutton{
   background: #007048;
   border-radius: 30px;
 
-  font-family: Roboto, sans;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -80,7 +80,7 @@ button.loginbutton:active {
 p.signup {
   margin: 15px 0px 0px 0px;
   
-  font-family: Roboto, sans;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
