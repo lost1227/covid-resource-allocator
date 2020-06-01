@@ -76,3 +76,22 @@ p.loc {
   color: #000000;
 }
 
+
+button.edit-button {
+  width: 100%;
+  height: 78px;
+
+  background: #007048;
+  border-radius: 30px;
+
+  font-family: Roboto, Sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 42px;
+  text-align: center;
+  color: #FFFFFF;
+
+  cursor: pointer;
+
+}

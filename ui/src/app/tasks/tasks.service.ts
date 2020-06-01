@@ -19,13 +19,13 @@ export class TasksService {
       filter = new VolunteerTasksFilter([], [], -1, "", "")
     }
     return this.api.getTasks(filter).pipe(
-      map(response => response.tasks.map(task => new VolunteerTask(task.id, task.name, task.location, task.need, task.description, task.ownerId, task.skillNeeded, task.photoId)))
+      map(response => response.tasks.map(task => new VolunteerTask(task.id, task.name, task.location, task.need, task.description, task.instructions, task.ownerId, task.skillNeeded, task.photoId)))
     )
   }
 
   getTask(id : number) : Observable<VolunteerTask> {
     return this.api.getTask(id).pipe(
-      map(response => new VolunteerTask(response.id, response.name, response.location, response.need, response.description, response.ownerId, response.skillNeeded, response.photoId))
+      map(response => new VolunteerTask(response.id, response.name, response.location, response.need, response.description, response.instructions, response.ownerId, response.skillNeeded, response.photoId))
     )
   }
 }

@@ -47,7 +47,7 @@ public class TasksAPI {
       }
       
       List<VolunteerTaskResponse> tasks = daoList.stream().map( dao ->
-          new VolunteerTaskResponse(dao.getId(), dao.getName(), dao.getLocation(), dao.getNeed(), dao.getDescription(), dao.getOwnerId(), dao.getSkillNeeded(), dao.getPhotoId())
+          new VolunteerTaskResponse(dao.getId(), dao.getName(), dao.getLocation(), dao.getNeed(), dao.getDescription(), dao.getInstructions(), dao.getOwnerId(), dao.getSkillNeeded(), dao.getPhotoId())
       ).collect(Collectors.toList());
 
       return new VolunteerTasksResponse(tasks);
@@ -61,15 +61,15 @@ public class TasksAPI {
       }
       VolunteerTaskDAO dao = opDao.get();
       
-      VolunteerTaskResponse response = new VolunteerTaskResponse(dao.getId(), dao.getName(), dao.getLocation(), dao.getNeed(), dao.getDescription(), dao.getOwnerId(), dao.getSkillNeeded(), dao.getPhotoId());
+      VolunteerTaskResponse response = new VolunteerTaskResponse(dao.getId(), dao.getName(), dao.getLocation(), dao.getNeed(), dao.getDescription(), dao.getInstructions(), dao.getOwnerId(), dao.getSkillNeeded(), dao.getPhotoId());
       return ResponseEntity.ok().body(response);
     }
 
     @PostMapping("/api/tasks/post")
     public ResponseModel postVolunteerTask(@RequestBody PostVolunteerTaskRequestModel request) {
-      VolunteerTaskDAO dao = new VolunteerTaskDAO(request.getName(), request.getLocation(), request.getNeed(), request.getDescription(), request.getOwnerId(), request.getSkillNeeded(), request.getPhotoId());
+      VolunteerTaskDAO dao = new VolunteerTaskDAO(new VolunteerTaskDAO.TaskProfile(request.getName(), request.getLocation(), request.getDescription(), request.getInstructions()), request.getNeed(), request.getOwnerId(), request.getSkillNeeded(), request.getPhotoId());
       dao = repo.save(dao);
-      return new VolunteerTaskResponse(dao.getId(), dao.getName(), dao.getLocation(), dao.getNeed(), dao.getDescription(), dao.getOwnerId(), dao.getSkillNeeded(), dao.getPhotoId());
+      return new VolunteerTaskResponse(dao.getId(), dao.getName(), dao.getLocation(), dao.getNeed(), dao.getDescription(), dao.getInstructions(), dao.getOwnerId(), dao.getSkillNeeded(), dao.getPhotoId());
     }
     
 }

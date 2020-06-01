@@ -7,10 +7,12 @@
     <p class="title">{{item.name}}</p>
     <div class="user" *ngIf="user">
       <img class="user-pic" [src]="'/api/photo/get?id='+user.photoId" alt="profile picture">
-      <p class="user-name">{{user.name}}</p>
+      <a [routerLink]="['/profile',user.id]"><p class="user-name">{{user.name}}</p></a>
     </div>
     <p class="label">Description:</p>
     <p class="description">{{item.description}}</p>
+    <p class="label">Instructions:</p>
+    <p class="description">{{item.instructions}}</p>
   </div>
   <div class="right-container">
     <p class="task-loc">{{item.location}}</p>
