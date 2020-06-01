@@ -48,6 +48,7 @@ export class PostVolunteerTaskRequest {
     public location : string,
     public need : number,
     public description : string,
+    public instructions : string,
     public ownerId : number,
     public skillNeeded : string,
     public photoId : number
@@ -60,6 +61,7 @@ export interface VolunteerTaskResponse extends ResponseModel {
   location : string
   need : number
   description : string
+  instructions : string
   ownerId : number
   skillNeeded : string
   photoId : number

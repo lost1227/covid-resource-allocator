@@ -13,6 +13,14 @@ import lombok.NoArgsConstructor;
 public class VolunteerTaskDAO {
     
     private @Id @GeneratedValue Long id;
+
+    @Data
+    public static class TaskProfile {
+      private final String name;
+      private final String location;
+      private final String description;
+      private final String instructions;
+    }
     
     private String name;
     private String location;
@@ -20,6 +28,7 @@ public class VolunteerTaskDAO {
     private Integer need;
 
     private String description;
+    private String instructions;
 
     private Long ownerId;
 
@@ -27,11 +36,12 @@ public class VolunteerTaskDAO {
 
     private String skillNeeded;
 
-    public VolunteerTaskDAO(String name, String location, Integer need, String description, Long ownerId, String skillNeeded, Long photoId) {
-        this.name = name;
-        this.location = location;
+    public VolunteerTaskDAO(TaskProfile profile, Integer need, Long ownerId, String skillNeeded, Long photoId) {
+        this.name = profile.name;
+        this.location = profile.location;
+        this.instructions = profile.instructions;
         this.need = need;
-        this.description = description;
+        this.description = profile.description;
         this.ownerId = ownerId;
         this.skillNeeded = skillNeeded;     
         this.photoId = photoId;

@@ -20,6 +20,7 @@ public class VolunteerTasksResponse extends ResponseModel {
     private final Integer need;
 
     private final String description;
+    private final String instructions;
 
     private final Long ownerId;
 
