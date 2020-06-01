@@ -86,6 +86,10 @@ p.description {
   flex-grow: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .user-name {
   margin: 0px 10px;
 
@@ -101,6 +105,11 @@ p.description {
   flex-shrink: 1;
   flex-grow: 1;
 
+  text-decoration: none;
+}
+
+.user-name:hover {
+  text-decoration: underline;
 }
 
 p.task-loc {

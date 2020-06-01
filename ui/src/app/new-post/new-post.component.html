@@ -17,6 +17,10 @@
 
       <p class="label">Description:</p>
       <textarea class="description" formControlName="description"></textarea>
+      <div *ngIf="type == 'volunteer'">
+        <p class="label">Instructions:</p>
+        <textarea class="description" formControlName="instructions"></textarea>
+      </div>
       <button class="create-button">Create</button>
     </div>
     <div class="right-container">

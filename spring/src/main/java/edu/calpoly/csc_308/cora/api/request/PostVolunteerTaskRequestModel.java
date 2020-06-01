@@ -10,6 +10,7 @@ public class PostVolunteerTaskRequestModel implements RequestModel {
   private String location;
   private Integer need;
   private String description;
+  private String instructions;
   private Long ownerId;
   private String skillNeeded;
   private Long photoId;

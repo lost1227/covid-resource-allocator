@@ -43,6 +43,7 @@ export class NewPostComponent implements OnInit {
           'title' : new FormControl('', Validators.required),
           'image' : new FormControl(null, Validators.required),
           'description' : new FormControl('', Validators.required),
+          'instructions' : new FormControl('', Validators.required),
           'location' : new FormControl('', Validators.required),
           'need' : new FormControl('', Validators.required)
         })
@@ -90,6 +91,7 @@ export class NewPostComponent implements OnInit {
             formValue.location,
             parseInt(formValue.need),
             formValue.description,
+            formValue.instructions,
             this.user.id,
             "",
             -1
