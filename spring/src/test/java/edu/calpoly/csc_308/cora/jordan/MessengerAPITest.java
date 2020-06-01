@@ -1,4 +1,4 @@
-package edu.calpoly.csc_308.cora.api;
+package edu.calpoly.csc_308.cora.jordan;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 
 import org.mockito.Mockito;
 
+import edu.calpoly.csc_308.cora.api.MessengerAPI;
 import edu.calpoly.csc_308.cora.api.request.SendMessageRequestModel;
 import edu.calpoly.csc_308.cora.api.response.ListConversationsResponse;
 import edu.calpoly.csc_308.cora.api.response.SuccessResponse;
@@ -28,6 +29,7 @@ import edu.calpoly.csc_308.cora.data.users.UserDAO;
 import edu.calpoly.csc_308.cora.data.users.UserRepository;
 import edu.calpoly.csc_308.cora.entities.Conversation;
 import edu.calpoly.csc_308.cora.services.Messenger;
+
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class MessengerAPITest {
