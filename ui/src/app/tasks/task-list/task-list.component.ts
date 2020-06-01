@@ -5,6 +5,7 @@ import { VolunteerTask } from '@app/entities/volunteer-task';
 import { User } from '@app/entities/user';
 import { FormGroup, FormControl } from '@angular/forms';
 import { VolunteerTasksFilter } from '@app/api/tasks-api.service';
+import { LoginManagerService } from '@app/loginmanager.service';
 
 @Component({
   selector: 'app-task-list',
@@ -19,7 +20,8 @@ export class TaskListComponent implements OnInit {
   filterForm : FormGroup
 
   constructor(
-    private tasksService : TasksService
+    private tasksService : TasksService,
+    private loginmanager : LoginManagerService
   ) {
     this.filterForm = new FormGroup({
       'high-need': new FormControl(false),
@@ -27,6 +29,13 @@ export class TaskListComponent implements OnInit {
       'match-skillset': new FormControl(false),
       'location': new FormControl(false),
       'search': new FormControl()
+    })
+    this.loginmanager.isLoggedIn().subscribe(loggedIn => {
+      if(loggedIn) {
+        this.loginmanager.getLoggedInUser("/volunteer").subscribe(user => {
+          this.user = user;
+        })
+      }
     })
   }
 

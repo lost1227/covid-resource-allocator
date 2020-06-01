@@ -2,9 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskListComponent } from './task-list.component';
 
-import { of, Observable } from 'rxjs';
+import { of, Observable, empty } from 'rxjs';
 import { VolunteerTask } from '@app/entities/volunteer-task';
 import { TasksService } from '../tasks.service';
+import { LoginManagerService } from '@app/loginmanager.service';
 
 describe('TaskListComponent', () => {
   let component: TaskListComponent;
@@ -37,9 +38,21 @@ describe('TaskListComponent', () => {
     }
   }
 
+  const mockloginmanager = {
+    isLoggedIn() {
+      return of(false);
+    },
+    getLoggedInUser(redirect? : string) {
+      return empty();
+    }
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: TasksService, useValue: mockTasksService}],
+      providers: [
+        { provide: TasksService, useValue: mockTasksService},
+        { provide: LoginManagerService, useValue: mockloginmanager}
+      ],
       declarations: [ TaskListComponent ]
     })
     .compileComponents();
