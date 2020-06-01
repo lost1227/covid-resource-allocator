@@ -33,7 +33,7 @@ public class MessengerAPI {
     @PostMapping("/api/message/post")
     public ResponseModel postMessage(@RequestBody SendMessageRequestModel messageRequest, Authentication authentication) {
       
-        User principal = ((AuthUser) authentication.getPrincipal()).user;
+        User principal = ((AuthUser) authentication.getPrincipal()).getUser();
 
         Long id = principal.getId();
         if(id.equals(messageRequest.getReceiverId())) {
@@ -48,24 +48,16 @@ public class MessengerAPI {
 
     @GetMapping("/api/message/conversations")
     public ResponseModel listConversations(Authentication authentication) {
-        User principal = ((AuthUser) authentication.getPrincipal()).user;
+        User principal = ((AuthUser) authentication.getPrincipal()).getUser();
         Long uid = principal.getId();
-        
-        ListConversationsResponse response = new ListConversationsResponse();
-        response.userId = uid;
 
         List<Conversation> conversations = mess.listConversations(uid);
         List<ConversationResponse> responses = conversations.stream().map(convo -> {
             Long otherId = convo.getUser1id().equals(uid) ? convo.getUser2id() : convo.getUser1id();
-            ConversationResponse res = new ConversationResponse();
-            res.userId = otherId;
-            res.messageHistory = convo.getMessages();
-            return res;
+            return new ConversationResponse(otherId, convo.getMessages());
         }).collect(Collectors.toList());
 
-        response.conversations = responses;
-
-        return response;
+        return new ListConversationsResponse(uid, responses);
     }
     
 }

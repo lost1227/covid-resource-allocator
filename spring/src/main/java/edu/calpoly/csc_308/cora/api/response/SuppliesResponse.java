@@ -5,58 +5,47 @@ import java.util.List;
 import edu.calpoly.csc_308.cora.entities.Supply;
 import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class SuppliesResponse extends ResponseModel {
-    public static class SupplyResponse extends ResponseModel {
-        public Long id;
 
-        public String name;
-        public String location;
-        
-        public Integer need;
+  @Data
+  @EqualsAndHashCode(callSuper=true)
+  public static class SupplyResponse extends ResponseModel {
+    private final Long id;
 
-        public String description;
+    private final String name;
+    private final String location;
+    
+    private final Integer need;
 
-        public Long ownerId;
-        
-        public SupplyType type;
+    private final String description;
 
-        public Integer quantity;
+    private final Long ownerId;
+    
+    private final SupplyType type;
 
-        public Long photoId;
+    private final Integer quantity;
 
-        public SupplyResponse(Long id, String name, String location, Integer need, String description, Long ownerId, SupplyType type, Integer quantity, Long photoId) {
-            this.id = id;
-            this.name = name;
-            this.location = location;
-            this.need = need;
-            this.description = description;
-            this.ownerId = ownerId;
-            this.type = type;
-            this.quantity = quantity;
-            this.photoId = photoId;
-        }
+    private final Long photoId;
 
-        public static SupplyResponse fromSupply(Supply supply) {
-          return new SupplyResponse(
-            supply.getId(),
-            supply.getName(), 
-            supply.getLocation(), 
-            supply.getNeed(),
-            supply.getDescription(),
-            supply.getOwnerId(),
-            supply.getType(),
-            supply.getQuantity(),
-            supply.getPhotoId());
-        }
+    public static SupplyResponse fromSupply(Supply supply) {
+      return new SupplyResponse(
+        supply.getId(),
+        supply.getName(), 
+        supply.getLocation(), 
+        supply.getNeed(),
+        supply.getDescription(),
+        supply.getOwnerId(),
+        supply.getType(),
+        supply.getQuantity(),
+        supply.getPhotoId());
     }
+  }
 
-    public List<SupplyResponse> supplies;
-
-    public SuppliesResponse(List<SupplyResponse> supplies) {
-        this.supplies = supplies;
-    }
-
-    public SuppliesResponse() {
-    }
+  private final List<SupplyResponse> supplies;
     
 }

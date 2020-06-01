@@ -4,12 +4,19 @@ import java.util.List;
 
 import edu.calpoly.csc_308.cora.entities.Message;
 
-public class ListConversationsResponse extends ResponseModel {
-    public static class ConversationResponse {
-        public Long userId;
-        public List<Message> messageHistory;
-    }
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-    public Long userId;
-    public List<ConversationResponse> conversations;
+@Data
+@EqualsAndHashCode(callSuper=true)
+public class ListConversationsResponse extends ResponseModel {
+
+  @Data
+  public static class ConversationResponse {
+    private final Long userId;
+    private final List<Message> messageHistory;
+  }
+
+  private final Long userId;
+  private final List<ConversationResponse> conversations;
 }

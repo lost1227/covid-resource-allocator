@@ -1,11 +1,12 @@
 package edu.calpoly.csc_308.cora.entities;
 
+import edu.calpoly.csc_308.cora.data.supplies.SupplyDAO;
 import lombok.Data;
 
 @Data
 public class Supply {
 
-  public static enum SupplyType {
+  public enum SupplyType {
     REQUEST,
     OFFER
   }
@@ -25,4 +26,8 @@ public class Supply {
   private final Integer quantity;
 
   private final Long photoId;
+
+  public static Supply fromDAO(SupplyDAO dao) {
+    return new Supply(dao.getId(), dao.getName(), dao.getLocation(), dao.getNeed(), dao.getDescription(), dao.getOwnerId(), dao.getType(), dao.getQuantity(), dao.getPhotoId());
+  }
 }

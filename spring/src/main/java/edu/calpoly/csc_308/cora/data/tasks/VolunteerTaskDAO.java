@@ -1,32 +1,31 @@
 package edu.calpoly.csc_308.cora.data.tasks;
 
-import lombok.Data;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Data
-@Entity
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@Entity
 public class VolunteerTaskDAO {
     
-    public @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue Long id;
     
-    public String name;
-    public String location;
+    private String name;
+    private String location;
     
-    public Integer need;
+    private Integer need;
 
-    public String description;
+    private String description;
 
-    public Long ownerId;
+    private Long ownerId;
 
-    public Long photoId;
+    private Long photoId;
 
-    public String skillNeeded;
-
-    public VolunteerTaskDAO() {};
+    private String skillNeeded;
 
     public VolunteerTaskDAO(String name, String location, Integer need, String description, Long ownerId, String skillNeeded, Long photoId) {
         this.name = name;

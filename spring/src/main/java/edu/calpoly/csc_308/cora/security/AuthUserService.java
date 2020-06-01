@@ -38,18 +38,20 @@ public class AuthUserService implements UserDetailsService {
         if(dao == null) {
             throw new IllegalArgumentException("No such user " + username);
         }
-        AuthUser authUser = new AuthUser(
-            dao.username,
-            dao.passwordHash,
-            User.fromDao(dao)
+        return new AuthUser(
+          new AuthUser.Auth(
+            dao.getUsername(),
+            dao.getPasswordHash()),
+          User.fromDao(dao)
         );
-        return authUser;
     }
     
 
     public AuthUser registerNewUser(User user, String username, String password) {
       String hashedPassword = encoder.encode(password);
-      UserDAO dao = new UserDAO(user.getName(), user.getLocation(), user.getUserType(), user.getDescription(), user.getSkillSet(), user.getPhotoId(), username, hashedPassword);
+      
+      UserDAO.ProfileInfo info = new UserDAO.ProfileInfo(user.getName(), user.getLocation(), user.getUserType(), user.getDescription(), user.getSkillSet());
+      UserDAO dao = new UserDAO(info, user.getPhotoId(), username, hashedPassword);
 
       UserDAO preexisting = users.findByUsername(username);
       if(preexisting != null) {
@@ -58,31 +60,31 @@ public class AuthUserService implements UserDetailsService {
 
       dao = users.save(dao);
       User ret = User.fromDao(dao);
-      return new AuthUser(username, hashedPassword, ret);
+      return new AuthUser(new AuthUser.Auth(username, hashedPassword), ret);
     }
 
     public AuthUser updateUser(AuthUser principal, User user, String password) {
-      Optional<UserDAO> opDao = users.findById(principal.user.getId());
+      Optional<UserDAO> opDao = users.findById(principal.getUser().getId());
       if(!opDao.isPresent()) {
         throw new IllegalArgumentException("Principal does not exist!");
       }
       UserDAO dao = opDao.get();
       if(!user.getName().isEmpty())
-        dao.name = user.getName();
+        dao.setName(user.getName());
       if(!user.getPhotoId().equals(-1L))
-        dao.photoId = user.getPhotoId();
+        dao.setPhotoId(user.getPhotoId());
       if(!user.getLocation().isEmpty())
-        dao.location = user.getLocation();
+        dao.setLocation(user.getLocation());
       if(!user.getDescription().isEmpty())
-        dao.description = user.getDescription();
+        dao.setDescription(user.getDescription());
       if(user.getSkillSet().length > 0)
-        dao.skillSet = user.getSkillSet();
+        dao.setSkillSet(user.getSkillSet());
       if(!password.isEmpty())
-        dao.passwordHash = encoder.encode(password);
+        dao.setPasswordHash(encoder.encode(password));
 
       dao = users.save(dao);
 
-      return new AuthUser(dao.username, dao.passwordHash, User.fromDao(dao));
+      return new AuthUser(new AuthUser.Auth(dao.getUsername(), dao.getPasswordHash()), User.fromDao(dao));
     }
     
 }

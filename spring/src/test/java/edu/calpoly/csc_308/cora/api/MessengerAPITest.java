@@ -30,7 +30,7 @@ import edu.calpoly.csc_308.cora.entities.Conversation;
 import edu.calpoly.csc_308.cora.services.Messenger;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class MessengerAPITest {
+class MessengerAPITest {
 
     @LocalServerPort
     private int port;
@@ -55,26 +55,27 @@ public class MessengerAPITest {
         Mockito.doReturn(conversations).when(messengerService).listConversations(Mockito.any());
 
         UserDAO dao = new UserDAO(
-                    "Jordan Powers",
-                    "Long Beach, CA",
-                    "volunteer",
-                    "Student living in Long Beach, CA", 
-                    new String[] { "programming" },
-                    -1L,
-                    "test",
-                    encoder.encode("password123"));
-        dao.id = 0L;
+            new UserDAO.ProfileInfo(
+            "Jordan Powers",
+            "Long Beach, CA",
+            "volunteer",
+            "Student living in Long Beach, CA", 
+            new String[] { "programming" }),
+          -1L,
+          "test",
+          encoder.encode("password123"));
+        dao.setId(0L);
         Mockito.doReturn(dao).when(userService).findByUsername("test");
     }
 
     @Test
-    public void contextLoads() throws Exception {
+    void contextLoads() throws Exception {
         assertThat(api).isNotNull();
     }
 
 
     @Test
-    public void testSendMessage() {
+    void testSendMessage() {
         SendMessageRequestModel request = new SendMessageRequestModel();
         request.setReceiverId(1L);
         request.setMessageText("Test Message");
@@ -91,16 +92,16 @@ public class MessengerAPITest {
         //System.out.println("Interactions" + Mockito.mockingDetails(userService).printInvocations());
 
         assertThat(value).isNotNull();
-        assertThat(value.ok).isTrue();
+        assertThat(value.getOk()).isTrue();
     }
 
     @Test
-    public void testListConversation() {
+    void testListConversation() {
         ListConversationsResponse response = this.restTemplate.withBasicAuth("test", "password123").getForObject(
             "http://localhost:"+this.port+"/api/message/conversations",
             ListConversationsResponse.class);
         
         assertThat(response).isNotNull();
-        assertThat(response.ok).isTrue();
+        assertThat(response.getOk()).isTrue();
     }
 }

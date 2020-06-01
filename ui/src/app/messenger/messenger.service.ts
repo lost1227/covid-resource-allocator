@@ -3,7 +3,7 @@ import { LoginManagerService } from '@app/loginmanager.service';
 import { UserinfoApiService } from '@app/api/userinfo-api.service';
 import { MessengerApiService, SendMessageRequestModel } from '@app/api/messenger-api.service';
 import { Observable, ReplaySubject } from 'rxjs';
-import { toArray, mergeMap, map, catchError } from 'rxjs/operators';
+import { toArray, mergeMap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -81,7 +81,7 @@ export class MessengerService {
 export class MessageUser {
   constructor(
     public readonly id : number,
-    public readonly name : String,
+    public readonly name : string,
     public readonly photoId : number
   ) {}
 

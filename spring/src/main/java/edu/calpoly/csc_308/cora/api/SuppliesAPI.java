@@ -46,7 +46,7 @@ public class SuppliesAPI {
 
 
     List<SupplyResponse> supplies = daos.stream().map(
-      dao -> new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId)
+      dao -> SupplyResponse.fromSupply(Supply.fromDAO(dao))
     ).collect(Collectors.toList());
     
     return new SuppliesResponse(supplies);
@@ -59,7 +59,7 @@ public class SuppliesAPI {
       return ResponseEntity.badRequest().body(new FailResponse());
     }
     SupplyDAO dao = opDao.get();
-    return ResponseEntity.ok().body(new SupplyResponse(dao.id, dao.name, dao.location, dao.need, dao.description, dao.ownerId, dao.type, dao.quantity, dao.photoId));
+    return ResponseEntity.ok().body(SupplyResponse.fromSupply(Supply.fromDAO(dao)));
   }
 
   @PostMapping("/api/supplies/post")

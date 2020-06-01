@@ -1,16 +1,22 @@
 package edu.calpoly.csc_308.cora.api.response;
 
 import java.util.List;
+import java.util.Collections;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class FindUsersResponse extends ResponseModel {
 
-    public String query;
+    private final String query;
 
-    public List<UserInfoResponse> users;
+    private final List<UserInfoResponse> users;
 
     public FindUsersResponse(String query, List<UserInfoResponse> users) {
         this.query = query;
-        this.users = users;
+        this.users = Collections.unmodifiableList(users);
     }
     
 }

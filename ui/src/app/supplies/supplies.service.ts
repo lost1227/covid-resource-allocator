@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SuppliesApiService, SuppliesFilter } from '@app/api/supplies-api.service';
 
-import { Supply, SupplyType } from '@app/entities/supply';
+import { Supply } from '@app/entities/supply';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 

@@ -39,7 +39,7 @@ export class LoginManagerService {
     this.router.navigateByUrl("/login?redirect=" + redirect);
   }
 
-  public isLoggedIn() : Observable<Boolean> {
+  public isLoggedIn() : Observable<boolean> {
     if(this.loggingIn) {
       return of(false);
     }

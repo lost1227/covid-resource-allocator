@@ -18,7 +18,7 @@ import edu.calpoly.csc_308.cora.api.request.SuppliesFilterRequestModel;
 
 public class SupplyRepositoryImpl implements SupplyRepositoryCustom {
 
-  Logger logger = LoggerFactory.getLogger(SupplyRepositoryCustom.class);
+  Logger logger = LoggerFactory.getLogger(SupplyRepositoryImpl.class);
   
   @PersistenceContext
   private EntityManager em;
@@ -49,6 +49,8 @@ public class SupplyRepositoryImpl implements SupplyRepositoryCustom {
             builder.or(
               builder.like(builder.lower(supply.get("name")), searchStr),
               builder.like(builder.lower(supply.get("description")), searchStr)));
+          break;
+        default:
           break;
       }
     }

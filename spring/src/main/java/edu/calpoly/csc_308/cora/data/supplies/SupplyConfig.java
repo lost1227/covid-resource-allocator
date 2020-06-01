@@ -14,18 +14,21 @@ public class SupplyConfig {
     Logger logger = LoggerFactory.getLogger(SupplyConfig.class);
     @Bean
     CommandLineRunner initSupplyDatabase(SupplyRepository supplyrepository) {
-        return args -> {
-            logger.info("Preloading " + supplyrepository.save(
-                new SupplyDAO(
-                    "KN-95 Masks",
-                    "Tempe, AZ",
-                    1,
-                    "In need of extra KN-95 medical grade masks.",
-                    5L,
-                    SupplyType.REQUEST,
-                    0,
-                    -1L
-                )));
-        };
+      return args -> {
+        SupplyDAO supply = supplyrepository.save(
+          new SupplyDAO(
+            new SupplyDAO.DescInfo(
+              "KN-95 Masks",
+              "Tempe, AZ",
+              "In need of extra KN-95 medical grade masks."
+            ),
+            1,
+            5L,
+            SupplyType.REQUEST,
+            0,
+            -1L
+        ));
+        logger.info("Preloading {}", supply);
+      };
     }
 }

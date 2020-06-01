@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { UserInfoResponseModel } from '@app/api/userinfo-api.service'
 import { ApiService, ResponseModel } from '@app/api/api.service';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { User } from '@app/entities/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

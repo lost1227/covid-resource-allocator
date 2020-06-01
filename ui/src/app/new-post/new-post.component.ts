@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { User } from '@app/entities/user';
-import { LoginManagerService } from '@app/loginmanager.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import {Supply, SupplyType} from '@app/entities/supply'
-import {SuppliesApiService, PostSupplyRequestModel} from '@app/api/supplies-api.service'
-import { SupplyRequestModel } from '@app/api/post-api.service';
+import { Supply, SupplyType } from '@app/entities/supply'
 import { PostService, PostType } from './post.service';
 import { VolunteerTask } from '@app/entities/volunteer-task';
 import {Location} from '@angular/common';

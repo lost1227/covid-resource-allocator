@@ -5,24 +5,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 @Entity
 public class PhotoDAO {
-  public @Id @GeneratedValue Long id;
+  private @Id @GeneratedValue Long id;
 
-  public Long ownerId;
+  private Long ownerId;
 
-  public String contentType;
+  private String contentType;
 
   @Lob
-  public byte[] data;
+  private byte[] data;
 
   public PhotoDAO(Long ownerId, String contentType, byte[] data) {
     this.ownerId = ownerId;
     this.contentType = contentType;
     this.data = data;
   }
-
-  public PhotoDAO() {}
 
   @Override
   public String toString() {

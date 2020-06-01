@@ -1,14 +1,13 @@
 package edu.calpoly.csc_308.cora;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
 public class AngularRouting {
     
-    @RequestMapping(value = {
+    @GetMapping({
       "/volunteer",
       "/supplies",
       "/supplies/details/*",
@@ -21,7 +20,7 @@ public class AngularRouting {
       "/profile/logout",
       "/post/volunteer",
       "/post/supply"
-    }, method = RequestMethod.GET)
+    })
     public String index() {
         return "forward:/index.html";
     }
