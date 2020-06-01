@@ -6,6 +6,7 @@ import { User } from '@app/entities/user';
 import { FormGroup, FormControl } from '@angular/forms';
 import { VolunteerTasksFilter } from '@app/api/tasks-api.service';
 import { LoginManagerService } from '@app/loginmanager.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-task-list',
@@ -21,7 +22,8 @@ export class TaskListComponent implements OnInit {
 
   constructor(
     private tasksService : TasksService,
-    private loginmanager : LoginManagerService
+    private loginmanager : LoginManagerService,
+    public location : Location
   ) {
     this.filterForm = new FormGroup({
       'high-need': new FormControl(false),
@@ -73,7 +75,9 @@ export class TaskListComponent implements OnInit {
 
     this.tasks = this.tasksService.listTasks(filter);
   }
-
+  backClicked(){
+    this.location.back();
+  }
   
 
 

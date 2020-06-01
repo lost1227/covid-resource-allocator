@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { Supply, SupplyType } from '@app/entities/supply'
 import { PostService, PostType } from './post.service';
 import { VolunteerTask } from '@app/entities/volunteer-task';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-new-post',
@@ -21,7 +23,8 @@ export class NewPostComponent implements OnInit {
   constructor(
     private route : ActivatedRoute,
     private formBuilder : FormBuilder,
-    private postService : PostService
+    private postService : PostService,
+    public location : Location
   ) {
     this.route.url.subscribe(params => {
       this.type = <PostType> params[0].path;
@@ -63,6 +66,9 @@ export class NewPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  backClicked(){
+    this.location.back();
   }
 
   onSubmit(formValue : any) {

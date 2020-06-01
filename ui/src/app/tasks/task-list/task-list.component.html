@@ -2,6 +2,7 @@
 <form [formGroup]="filterForm" class="filterForm">
   <mat-toolbar color="secondary" id="toolbar">
     <div id="toolbar-right">
+        <button id="backButton" mat-button (click)="backClicked()">Back</button>
         <button mat-button [matMenuTriggerFor]="filterMenu">Filters</button>
         <mat-menu #filterMenu >
           <div id="filterMenu" (click) = "$event.stopPropagation()">
@@ -20,6 +21,7 @@
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
+      <button id="addButton" mat-button [routerLink]="['/post/volunteer']">Create Post</button>
     </div>
   </mat-toolbar>
 </form>
