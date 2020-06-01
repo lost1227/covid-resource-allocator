@@ -5,6 +5,8 @@ import { Supply, SupplyType } from '@app/entities/supply';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SuppliesFilter } from '@app/api/supplies-api.service';
 import { User } from '@app/entities/user';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-supplies-list',
@@ -17,7 +19,7 @@ export class SuppliesListComponent implements OnInit {
   user : User
   filterForm : FormGroup
 
-  constructor(private api : SuppliesService) {
+  constructor(private api : SuppliesService, public location :Location) {
     this.filterForm = new FormGroup({
       'high-need': new FormControl(false),
       'low-need': new FormControl(false),
@@ -67,5 +69,8 @@ export class SuppliesListComponent implements OnInit {
     }
 
     this.supplies = this.api.listSupplies(filter);
+  }
+  backClicked(){
+    this.location.back();
   }
 }

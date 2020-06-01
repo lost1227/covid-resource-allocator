@@ -158,3 +158,13 @@ button.create-button:active {
   flex-grow: 1;
 
 }
+#backButton{
+  background-color: rgb(184, 45, 35); /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+}
