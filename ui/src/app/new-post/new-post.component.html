@@ -1,9 +1,11 @@
 <app-toolbar [selected]="getSelectedType()"></app-toolbar>
+<mat-toolbar color="secondary">
+  <button mat-mini-fab id="backButton" (click)="backClicked()" color="primary"><mat-icon>arrow_back</mat-icon></button>
+</mat-toolbar>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
   <div class="main">
     <div class="left-container">
-      <button id="backButton" mat-button (click)="backClicked()">Back</button>
       <app-image-upload-component formControlName="image"></app-image-upload-component>
     </div>
     <div class="middle-container">

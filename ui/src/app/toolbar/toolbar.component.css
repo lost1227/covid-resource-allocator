@@ -23,3 +23,15 @@
     border-bottom: 5px solid;
 }
 
+a {
+  text-decoration: none;
+}
+
+span.hometext {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+span.hometext:hover {
+  text-decoration: underline;
+}

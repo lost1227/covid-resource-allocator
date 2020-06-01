@@ -6,7 +6,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { SuppliesFilter } from '@app/api/supplies-api.service';
 import { User } from '@app/entities/user';
 import { LoginManagerService } from '@app/loginmanager.service';
-import {Location} from '@angular/common';
+
 
 
 @Component({
@@ -22,8 +22,8 @@ export class SuppliesListComponent implements OnInit {
 
   constructor(
     private api : SuppliesService,
-    private loginmanager : LoginManagerService,
-    public location :Location) {
+    private loginmanager : LoginManagerService
+  ) {
     this.filterForm = new FormGroup({
       'high-need': new FormControl(false),
       'low-need': new FormControl(false),
@@ -76,8 +76,5 @@ export class SuppliesListComponent implements OnInit {
     }
 
     this.supplies = this.api.listSupplies(filter);
-  }
-  backClicked(){
-    this.location.back();
   }
 }
