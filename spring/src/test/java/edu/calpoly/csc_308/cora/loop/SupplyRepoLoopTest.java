@@ -29,7 +29,7 @@ public class SupplyRepoLoopTest {
   @Autowired
   private SupplyRepository repo;
 
-  ArrayList<SupplyDAO> supplies = new ArrayList<>();
+  private ArrayList<SupplyDAO> supplies = new ArrayList<>();
 
   @BeforeEach
   void setup() {
@@ -115,7 +115,7 @@ public class SupplyRepoLoopTest {
   }
 
   @Test
-  void testSupplyRepoLoopNMinus1Times() {
+  void testSupplyRepoLoopNMinusOneTimes() {
     SuppliesFilterRequestModel filters = new SuppliesFilterRequestModel();
     filters.setEnabledFilters(new String[]{"type", "need", "location"});
     filters.setType(SupplyType.OFFER);
@@ -142,7 +142,7 @@ public class SupplyRepoLoopTest {
   }
 
   @Test
-  void testSupplyRepoLoopNPlus1Times() {
+  void testSupplyRepoLoopNPlusOneTimes() {
     SuppliesFilterRequestModel filters = new SuppliesFilterRequestModel();
     filters.setEnabledFilters(new String[]{"type", "need", "location", "search", "type"});
     filters.setType(SupplyType.OFFER);
@@ -156,7 +156,7 @@ public class SupplyRepoLoopTest {
   }
 
   @Test
-  void testSupplyRepoLoopNPlus1TimesInvalidFilter() {
+  void testSupplyRepoLoopNPlusOneTimesInvalidFilter() {
     SuppliesFilterRequestModel filters = new SuppliesFilterRequestModel();
     filters.setEnabledFilters(new String[]{"type", "need", "location", "search", "some invalid filter"});
     filters.setType(SupplyType.OFFER);
