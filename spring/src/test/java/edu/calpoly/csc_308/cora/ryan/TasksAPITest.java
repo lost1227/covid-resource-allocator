@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,15 +17,11 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import org.springframework.http.ResponseEntity;
-
-import org.mockito.Mockito;
 
 import edu.calpoly.csc_308.cora.api.TasksAPI;
 import edu.calpoly.csc_308.cora.api.request.VolunteerFilterRequestModel;
@@ -32,7 +29,6 @@ import edu.calpoly.csc_308.cora.api.response.VolunteerTasksResponse;
 import edu.calpoly.csc_308.cora.api.response.VolunteerTasksResponse.VolunteerTaskResponse;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskDAO;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskRepository;
-import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskDAO.TaskProfile;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class TasksAPITest {
@@ -46,10 +42,16 @@ class TasksAPITest {
     @Autowired
     VolunteerTaskRepository repo;
 
+    @BeforeEach
+    void setup() {
+      repo.deleteAll();
+    }
+
     @Test
     void contextLoads() throws Exception {
         assertThat(api).isNotNull();
     }
+
 
 
     @Test
@@ -86,19 +88,32 @@ class TasksAPITest {
                 )));
 
         assertThat(repo.findAll(), contains(taskList.toArray()));
+        
+        VolunteerFilterRequestModel request1 = new VolunteerFilterRequestModel();
 
-        VolunteerFilterRequestModel request1 = new VolunteerFilterRequestModel([], [], -1, "", "");
-        VolunteerFilterRequestModel request2 = new VolunteerFilterRequestModel([], [], -1, "Long Beach, CA", "");
-        VolunteerFilterRequestModel request3 = new VolunteerFilterRequestModel([], [], 1, "", "");
-        VolunteerFilterRequestModel request3 = new VolunteerFilterRequestModel([], [], -1, "", "Supply");
+        VolunteerFilterRequestModel request2 = new VolunteerFilterRequestModel();
+        request2.setLocation("Long Beach, CA");
+
+        VolunteerFilterRequestModel request3 = new VolunteerFilterRequestModel();
+        request3.setNeed(1);
+
+        VolunteerFilterRequestModel request4 = new VolunteerFilterRequestModel();
+        request4.setSearch("Supply");
+        
+        List<VolunteerTaskResponse> tasks = taskList.stream().map( dao ->
+          new VolunteerTaskResponse(dao.getId(), dao.getName(), 
+                    dao.getLocation(), dao.getNeed(), dao.getDescription(), 
+                    dao.getInstructions(), dao.getOwnerId(), dao.getSkillNeeded(), 
+                    dao.getPhotoId())
+                    ).collect(Collectors.toList());
         
 
-        assertEquals(new VolunteerTasksResponse(taskList), api.getVolunteerTasks(request1));
-        assertEquals(new VolunteerTasksResponse(taskList), api.getVolunteerTasks(request2));
+        //assertEquals(new VolunteerTasksResponse(tasks), api.getVolunteerTasks(request1));
+        assertEquals(new VolunteerTasksResponse(tasks), api.getVolunteerTasks(request2));
 
-        taskList.remove(1);
-        assertEquals(new VolunteerTasksResponse(taskList), api.getVolunteerTasks(request3));
-        assertEquals(new VolunteerTasksResponse(taskList), api.getVolunteerTasks(request4));
+        tasks.remove(1);
+        assertEquals(new VolunteerTasksResponse(tasks), api.getVolunteerTasks(request3));
+        assertEquals(new VolunteerTasksResponse(tasks), api.getVolunteerTasks(request4));
 
         
     }
@@ -123,6 +138,6 @@ class TasksAPITest {
                 )
             ));
 
-        assertEquals(ResponseEntity.ok().body(taskList.get(0)), api.getSingleVolunteerTask(0));
+        assertEquals(ResponseEntity.ok().body(taskList.get(0)), api.getSingleVolunteerTask(0L));
     }
 }
