@@ -1,23 +1,25 @@
 package edu.calpoly.csc_308.cora.entities;
 
+import java.io.Serializable;
+
+import edu.calpoly.csc_308.cora.data.users.UserDAO;
 import lombok.Data;
 
 @Data
-public class User {
-    public final Long id;    
-    public final String name;
+public class User implements Serializable {
+  private static final long serialVersionUID = 1L;
+  
+  private final Long id;
+  private final String name;
 
-    public final String location;
-    public final String userType;
-    public final String description;
-    public final String[] skillSet;
+  private final String location;
+  private final String userType;
+  private final String description;
+  private final String[] skillSet;
 
-    public User(Long id, String name, String location, String userType, String description, String[] skillSet) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.userType = userType;
-        this.description = description;
-        this.skillSet = skillSet;
-    }
+  private final Long photoId;
+
+  public static User fromDao(UserDAO dao) {
+    return new User(dao.getId(), dao.getName(), dao.getLocation(), dao.getUserType(), dao.getDescription(), dao.getSkillSet(), dao.getPhotoId());
+  }
 }

@@ -1,2 +1,28 @@
 <app-toolbar selected="Volunteer"></app-toolbar>
+<form [formGroup]="filterForm" class="filterForm">
+  <mat-toolbar color="secondary" id="toolbar">
+    <div id="toolbar-right">
+        <button mat-button [matMenuTriggerFor]="filterMenu">Filters</button>
+        <mat-menu #filterMenu >
+          <div id="filterMenu" (click) = "$event.stopPropagation()">
+            <mat-checkbox class="example-margin" formControlName="high-need" (change)="updateFilters()">High Need</mat-checkbox>
+            <mat-checkbox class="example-margin" formControlName="low-need" (change)="updateFilters()">Low Need</mat-checkbox>
+            <mat-checkbox class="example-margin" *ngIf="user" formControlName="match-skillset" (change)="updateFilters()">Match my Skillset</mat-checkbox>
+            <mat-checkbox class="example-margin" *ngIf="user" formControlName="location" (change)="updateFilters()">Match my Location</mat-checkbox>
+          </div>
+        </mat-menu>
+    </div>
+
+    <div id="toolbar-left">
+      <mat-form-field class="search-form-field" floatLabel="never">
+        <input matInput type="text" formControlName="search" placeholder="Search" (input)="updateFilters()" #searchbox>
+        <button mat-button *ngIf="searchbox.value" matSuffix mat-icon-button aria-label="Clear" (click)="filterForm.controls['search'].reset(); updateFilters()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <button mat-mini-fab id="addButton" routerLink="/post/volunteer" color="primary" ><mat-icon>add</mat-icon></button>
+    </div>
+  </mat-toolbar>
+</form>
 <app-task-item *ngFor="let task of tasks | async" [task]="task"></app-task-item>
+

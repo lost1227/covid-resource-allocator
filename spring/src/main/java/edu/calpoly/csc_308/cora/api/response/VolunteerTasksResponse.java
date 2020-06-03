@@ -2,32 +2,33 @@ package edu.calpoly.csc_308.cora.api.response;
 
 import java.util.List;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=true)
 public class VolunteerTasksResponse extends ResponseModel {
-    public static class VolunteerTaskResponse {
-        public Long id;
+
+  @Data
+  @EqualsAndHashCode(callSuper=true)
+  public static class VolunteerTaskResponse extends ResponseModel {
+    private final Long id;
+
+    private final String name;
+    private final String location;
     
-        public String name;
-        public String location;
-        
-        public Integer need;
+    private final Integer need;
 
-        public String description;
+    private final String description;
+    private final String instructions;
 
-        public Long taskOwnerId;
+    private final Long ownerId;
 
-        public VolunteerTaskResponse(Long id, String name, String location, Integer need, String description, Long taskOwnerId) {
-            this.id = id;
-            this.name = name;
-            this.location = location;
-            this.need = need;
-            this.description = description;
-            this.taskOwnerId = taskOwnerId;
-        }
-    }
+    private final String skillNeeded;
 
-    public List<VolunteerTaskResponse> tasks;
+    private final Long photoId;
+  }
 
-    public VolunteerTasksResponse(List<VolunteerTaskResponse> tasks) {
-        this.tasks = tasks;
-    }
+  private final List<VolunteerTaskResponse> tasks;
+
 }

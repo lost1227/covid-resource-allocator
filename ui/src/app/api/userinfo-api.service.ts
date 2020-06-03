@@ -33,8 +33,9 @@ export interface UserInfoResponseModel extends ResponseModel {
   userType : string;
   description : string;
   skillset : string[];
+  photoId : number;
 }
 export interface FindUsersResponseModel extends ResponseModel {
-  query : String,
+  query : string,
   users : UserInfoResponseModel[]
 }

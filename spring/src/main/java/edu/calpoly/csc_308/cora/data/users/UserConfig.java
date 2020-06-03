@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class UserConfig {
+  private static final String PRELOADING = "Preloading {}";
 
   Logger logger = LoggerFactory.getLogger(UserConfig.class);
 
@@ -19,35 +20,61 @@ public class UserConfig {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     return args -> {
       if(repository.findAll().isEmpty()) {
-        logger.info("Preloading " + repository.save(
+        UserDAO user1 = repository.save(
           new UserDAO(
-            "Memorialcare Health System",
-            "Long Beach, CA",
-            "provider",
-            "Hospital located in Long Beach, California",
-            new String[] {},
+            new UserDAO.ProfileInfo(
+              "Memorialcare Health System",
+              "Long Beach, CA",
+              "provider",
+              "Hospital located in Long Beach, California",
+              new String[] {}),
+            -1L,
             "memorialcare",
-            encoder.encode("pass"))));
-        logger.info("Preloading " + repository.save(
+            encoder.encode("pass"))
+        );
+        UserDAO user2 = repository.save(
           new UserDAO(
-            "Blue Shield of California",
-            "Long Beach, CA",
-            "provider",
-            "Insurance company serving Long Beach, California",
-            new String[] {},
+            new UserDAO.ProfileInfo(
+              "Blue Shield of California",
+              "Los Angeles, CA",
+              "provider",
+              "Insurance company serving Los Angeles, California",
+              new String[] {}),
+            -1L,
             "bshield",
-            encoder.encode("super secure password"))));
-        logger.info("Preloading " + repository.save(
+            encoder.encode("super secure password"))
+        );
+        UserDAO user3 = repository.save(
           new UserDAO(
-            "Jordan Powers",
-            "Long Beach, CA",
-            "volunteer",
-            "Student living in Long Beach, CA", 
-            new String[] { "programming" },
+            new UserDAO.ProfileInfo(
+              "Jordan Powers",
+              "Long Beach",
+              "volunteer",
+              "Student living in Long Beach, CA",
+              new String[] { "programming" }),
+            -1L,
             "jordan",
-            encoder.encode("password123"))));
+            encoder.encode("password123"))
+        );
+        UserDAO user4 = repository.save(
+          new UserDAO(
+            new UserDAO.ProfileInfo(
+              "Finian Rawson",
+              "Monterey, CA",
+              "volunteer",
+              "Student living in Monterey, CA",
+              new String[] { "programming" }),
+            -1L,
+            "frawson",
+            encoder.encode("password123"))
+        );
+
+        logger.info(PRELOADING, user1);
+        logger.info(PRELOADING, user2);
+        logger.info(PRELOADING, user3);
+        logger.info(PRELOADING, user4);
       }
-    };
+      };
   }
     
 }

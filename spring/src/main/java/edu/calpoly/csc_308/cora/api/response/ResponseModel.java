@@ -1,9 +1,13 @@
 package edu.calpoly.csc_308.cora.api.response;
 
 public abstract class ResponseModel {
-    public boolean ok;
+  private boolean ok = true;
 
-    ResponseModel() {
-        this.ok = true;
-    }
+  public void setOk(boolean ok) {
+    this.ok = ok;
+  }
+
+  public boolean getOk() {
+    return ok;
+  }
 }

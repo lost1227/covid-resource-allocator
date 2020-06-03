@@ -54,8 +54,8 @@ describe('MessengerUserComponent', () => {
 })
 class TestHostComponent {
   testconversation = new Conversation(
-    new MessageUser(0, "User 0"),
-    new MessageUser(1, "User 1"),
+    new MessageUser(0, "User 0", -1),
+    new MessageUser(1, "User 1", -1),
     []
   )
 

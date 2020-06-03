@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessengerService, Conversation } from './messenger.service';
 
 
@@ -18,16 +18,19 @@ export class MessengerComponent implements OnInit {
       this.conversations = conversations;
     })
     messengerService.selectedConversation.subscribe(conversation => {
-      const alreadyInConversations = this.conversations.reduce(
-        (accumulator, currentValue) => accumulator || currentValue.equals(conversation),
-        false);
-      if(!alreadyInConversations) {
-        this.conversations.push(conversation);
+      if(conversation) {
+        const alreadyInConversations = this.conversations.reduce(
+          (accumulator, currentValue) => accumulator || currentValue.equals(conversation),
+          false);
+        if(!alreadyInConversations) {
+          this.conversations.push(conversation);
+        }
       }
     })
   }
 
   ngOnInit(): void {
+    this.messengerService.selectedConversation.next(null);
   }
 
 }

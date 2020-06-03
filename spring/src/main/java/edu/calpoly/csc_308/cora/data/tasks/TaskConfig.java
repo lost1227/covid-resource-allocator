@@ -10,29 +10,41 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TaskConfig {
 
-    Logger logger = LoggerFactory.getLogger(TaskConfig.class);
+  Logger logger = LoggerFactory.getLogger(TaskConfig.class);
 
-    @Bean
-    CommandLineRunner initTasks(VolunteerTaskRepository repository) {
-      return args -> {
-        if(repository.findAll().isEmpty()) {
-          logger.info("Preloading " + repository.save(
-            new VolunteerTaskDAO(
+  @Bean
+  CommandLineRunner initTasks(VolunteerTaskRepository repository) {
+    return args -> {
+      if(repository.findAll().isEmpty()) {
+        VolunteerTaskDAO task1 = repository.save(
+          new VolunteerTaskDAO(
+            new VolunteerTaskDAO.TaskProfile(
               "Supply Collector",
               "Long Beach, CA",
-              1,
               "Volunteers are needed to assist in the collection of donated supplies for distribution to medical facilities.",
-              3L
-          )));
-          logger.info("Preloading " + repository.save(
-            new VolunteerTaskDAO(
+              "No instructions."
+            ),
+            1,
+            3L,
+            "",
+            -1L
+        ));
+        VolunteerTaskDAO task2 = repository.save(
+          new VolunteerTaskDAO(
+            new VolunteerTaskDAO.TaskProfile(
               "Pamphlet Designer",
               "Long Beach, CA",
-              0,
               "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
-              4L
-          )));
-        }
-      };
-    }
+              "Message me for more instructions."
+            ),
+            0,
+            4L,
+            "Graphic Design",
+            -1L
+        ));
+        logger.info("Preloading {}", task1);
+        logger.info("Preloading {}", task2);
+      }
+    };
+  }
 }

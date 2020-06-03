@@ -22,13 +22,7 @@ public class Messenger {
     }
 
     private MessageDAO convertMessageDAO(Message message) {
-        MessageDAO dao = new MessageDAO(message.sender, message.receiver, message.messageText, message.sentTs);
-        return dao;
-    }
-
-    private Message convertMessage(MessageDAO dao) {
-        Message message = new Message(dao.id, dao.sender, dao.receiver, dao.messageText, dao.sentTs);
-        return message;
+        return new MessageDAO(message.getSender(), message.getReceiver(), message.getMessageText(), message.getSentTs());
     }
 
     public void postMessage(Message message) {
@@ -37,11 +31,12 @@ public class Messenger {
 
     public List<Conversation> listConversations(Long userId) {
         List<MessageDAO> ungrouped = repo.findBySenderOrReceiver(userId);
-        Map<Long, List<MessageDAO>> grouped = ungrouped.stream().collect(Collectors.groupingBy(message -> (message.receiver == userId) ? message.sender : message.receiver));
+        Map<Long, List<MessageDAO>> grouped = ungrouped.stream().collect(Collectors.groupingBy(message -> message.getReceiver().equals(userId) ? message.getSender() : message.getReceiver()));
         ArrayList<Conversation> conversations = new ArrayList<>();
-        for(Long otherId : grouped.keySet()) {
-            List<MessageDAO> daos = grouped.get(otherId);
-            List<Message> messages = daos.stream().map(this::convertMessage).collect(Collectors.toList());
+        for(Map.Entry<Long, List<MessageDAO>> otherEntry : grouped.entrySet()) {
+            Long otherId = otherEntry.getKey();
+            List<MessageDAO> daos = otherEntry.getValue();
+            List<Message> messages = daos.stream().map(Message::fromDAO).collect(Collectors.toList());
             conversations.add(new Conversation(userId, otherId, messages));
         }
         return conversations;

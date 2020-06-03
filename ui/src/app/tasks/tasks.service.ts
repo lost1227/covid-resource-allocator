@@ -14,20 +14,18 @@ export class TasksService {
     private api : TasksApiService
   ) { }
 
-  listTasks(skillSet? : string[], priority? : number, distance? : number) : Observable<VolunteerTask[]> {
-    var filters = [];
-    if(skillSet) {
-      filters.push("SkillSet");
+  listTasks(filter? : VolunteerTasksFilter) : Observable<VolunteerTask[]> {
+    if(filter == null) {
+      filter = new VolunteerTasksFilter([], [], -1, "", "")
     }
-    if(priority) {
-      filters.push("Priority");
-    }
-    if(distance) {
-      filters.push("LocationDistance");
-    }
-    const filterObj = new VolunteerTasksFilter(filters, skillSet, priority, distance);
-    return this.api.getTasks(filterObj).pipe(
-      map(response => response.tasks.map(task => new VolunteerTask(task.id, task.name, task.location, task.need, task.description, task.taskOwnerId)))
+    return this.api.getTasks(filter).pipe(
+      map(response => response.tasks.map(task => new VolunteerTask(task.id, task.name, task.location, task.need, task.description, task.instructions, task.ownerId, task.skillNeeded, task.photoId)))
+    )
+  }
+
+  getTask(id : number) : Observable<VolunteerTask> {
+    return this.api.getTask(id).pipe(
+      map(response => new VolunteerTask(response.id, response.name, response.location, response.need, response.description, response.instructions, response.ownerId, response.skillNeeded, response.photoId))
     )
   }
 }

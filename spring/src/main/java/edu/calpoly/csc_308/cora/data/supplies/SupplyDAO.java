@@ -1,41 +1,49 @@
 package edu.calpoly.csc_308.cora.data.supplies;
 
-import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Enumerated;
-import javax.persistence.EnumType;
+
+import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class SupplyDAO {
-    public @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue Long id;
+
+    @Data
+    public static class DescInfo {
+      private final String name;
+      private final String location;
+      private final String description;
+    }
     
-    public String name;
-    public String location;
+    private String name;
+    private String location;
     
-    public Integer need;
+    private Integer need;
 
-    public String description;
+    private String description;
 
-    public Long taskOwnerId;
+    private long ownerId;
+    private SupplyType type;
+    private Integer quantity;
 
-    @Enumerated(EnumType.STRING)
-    public SupplyType type;
+    private Long photoId;
 
-    public Integer quantity;
-
-    public SupplyDAO() {};
-
-    public SupplyDAO(String name, String location, Integer need, String description, Long taskOwnerId, SupplyType type, Integer quantity) {
-        this.name = name;
-        this.location = location;
+    public SupplyDAO(DescInfo description, Integer need, long ownerId, SupplyType type, Integer quantity, Long photoId) {
+        this.name = description.getName();
+        this.location = description.getLocation();
         this.need = need;
-        this.description = description;
-        this.taskOwnerId = taskOwnerId;
+        this.description = description.getDescription();
+        this.ownerId = ownerId;
         this.type = type;
         this.quantity = quantity;
+        this.photoId = photoId;
     }
 }

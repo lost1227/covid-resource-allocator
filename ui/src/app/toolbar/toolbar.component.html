@@ -1,7 +1,7 @@
 <mat-toolbar color="primary" id="toolbar">
     <div class="box">
         <div id="toolbar-left">
-            <span>COVID Resource Allocator</span>
+            <a class="homelink" routerLink="/"><span class="hometext">COVID Resource Allocator</span></a>
         </div>
     </div>
     <div class="box">
@@ -14,9 +14,12 @@
     <div class="box">
         <div id="toolbar-right">
             <span *ngIf="user">{{user.name}}</span>
-            <button mat-icon-button aria-label="Open menu">
+            <button mat-icon-button aria-label="Open menu" [matMenuTriggerFor]="mainMenu">
                 <mat-icon>menu</mat-icon>
             </button>
+            <mat-menu #mainMenu>
+              <button mat-menu-item *ngFor="let option of menuOptions" [routerLink]="option.url">{{option.label}}</button>
+            </mat-menu>
         </div>
     </div>
 </mat-toolbar>

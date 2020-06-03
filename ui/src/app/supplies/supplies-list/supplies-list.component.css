@@ -1,0 +1,31 @@
+#toolbar {
+  justify-content: space-between;
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.search-form-field {
+  width: 200px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+#filterMenu {
+display: flex;
+flex-direction: column;
+
+align-items: flex-start;
+}
+
+#addButton{
+  margin: 0px 0px 0px 10px;
+}
+

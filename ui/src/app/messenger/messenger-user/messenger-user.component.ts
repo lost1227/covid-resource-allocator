@@ -20,6 +20,7 @@ export class MessengerUserComponent implements OnInit {
     this.messengerService.selectedConversation.subscribe(convo => {
       this.currConvo = convo;
     })
+
   }
 
   buttonClicked() {

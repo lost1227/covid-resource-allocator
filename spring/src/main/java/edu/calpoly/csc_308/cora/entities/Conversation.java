@@ -7,10 +7,10 @@ import lombok.Data;
 
 @Data
 public class Conversation {
-    public final List<Message> messages;
+    private final List<Message> messages;
 
-    public final Long user1id;
-    public final Long user2id;
+    private final Long user1id;
+    private final Long user2id;
 
     public Conversation(Long user1, Long user2, List<Message> messages) {
         this.user1id = user1;

@@ -1,6 +1,6 @@
 .title {
   margin: 50px 0px 0px 0px;
-  font-family: Roboto;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 64px;
@@ -22,7 +22,7 @@
 }
 
 .welcome {
-  font-family: Roboto;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -31,7 +31,7 @@
 }
 
 .label {
-  font-family: Roboto;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -46,7 +46,7 @@
   height: 50px;
   box-sizing: border-box;
 
-  font-family: Roboto;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -60,7 +60,7 @@ button.loginbutton{
   background: #007048;
   border-radius: 30px;
 
-  font-family: Roboto;
+  font-family: Roboto, Sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
@@ -74,4 +74,30 @@ button.loginbutton{
 
 button.loginbutton:active {
   box-shadow: 0px 0px 10px 2px black inset;
+}
+
+
+p.signup {
+  margin: 15px 0px 0px 0px;
+  
+  font-family: Roboto, Sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+
+  text-align: center;
+
+  /* Text Grey */
+  color: #676767;
+}
+
+a.signupLink {
+  text-decoration: none;
+
+  color: #140152;
+}
+
+a.signupLinnk:hover {
+  text-decoration: underline;
 }

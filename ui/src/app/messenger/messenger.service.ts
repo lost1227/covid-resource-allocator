@@ -3,7 +3,7 @@ import { LoginManagerService } from '@app/loginmanager.service';
 import { UserinfoApiService } from '@app/api/userinfo-api.service';
 import { MessengerApiService, SendMessageRequestModel } from '@app/api/messenger-api.service';
 import { Observable, ReplaySubject } from 'rxjs';
-import { toArray, mergeMap, map, catchError } from 'rxjs/operators';
+import { toArray, mergeMap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class MessengerService {
   listConversations() : Observable<Conversation[]> {
     return this.login.getLoggedInUser("/message").pipe(
       mergeMap(principal => {
-        const senderUser : MessageUser = new MessageUser(principal.id, principal.name);
+        const senderUser : MessageUser = new MessageUser(principal.id, principal.name, principal.photoId);
         return this.messengerapi.listConversations().pipe(
           mergeMap(conversations => conversations.conversations),
           mergeMap( conversation => this.getMessageUser(conversation.userId).pipe(
@@ -39,7 +39,8 @@ export class MessengerService {
     return this.userapi.getUserInfo(id).pipe(
       map( userinfo => new MessageUser(
         userinfo.id,
-        userinfo.name
+        userinfo.name,
+        userinfo.photoId
       ))
     )
   }
@@ -58,7 +59,7 @@ export class MessengerService {
         const uid = principal.id;
         return this.userapi.findUsersByName(name).pipe(
           map(result => result.users.filter( userinfo => userinfo.id != uid)
-                                    .map( userinfo => new MessageUser(userinfo.id, userinfo.name)))
+                                    .map( userinfo => new MessageUser(userinfo.id, userinfo.name, userinfo.photoId)))
         )
       })
     )
@@ -68,7 +69,7 @@ export class MessengerService {
     // TODO: assert no preexisting conversation
 
     this.login.getLoggedInUser("/message").subscribe(principal => {
-      const senderUser = new MessageUser(principal.id, principal.name);
+      const senderUser = new MessageUser(principal.id, principal.name, principal.photoId);
       const newConversation = new Conversation(senderUser, otherUser, []);
       this.selectedConversation.next(newConversation);
     })
@@ -80,11 +81,12 @@ export class MessengerService {
 export class MessageUser {
   constructor(
     public readonly id : number,
-    public readonly name : String
+    public readonly name : string,
+    public readonly photoId : number
   ) {}
 
   equals(other : MessageUser) : boolean {
-    return other.id === this.id && other.name === this.name;
+    return other.id === this.id && other.name === this.name && other.photoId === this.photoId;
   }
 }
 export class Message {

@@ -1,7 +1,16 @@
+a.details-link {
+  text-decoration: none;
+  color: #000000;
+}
+
 div.task-item {
     border-bottom: 1px solid black;
     display: flex;
     justify-content: space-between;
+}
+
+div.task-item:hover {
+  background-color: #EEEEEE;
 }
 
 img.task-image-box {
@@ -25,7 +34,7 @@ img.task-image {
 
 p.task-title {
     margin: 50px 0px 0px 0px;
-    font-family: Roboto;
+    font-family: Roboto, Sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 36px;
@@ -36,7 +45,7 @@ p.task-title {
 p.task-description {
     margin: 20px 0px 0px 0px;
 
-    font-family: Roboto;
+    font-family: Roboto, Sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -48,7 +57,7 @@ p.task-description {
 p.task-loc {
     margin: 30px 0px 0px 0px;
 
-    font-family: Roboto;
+    font-family: Roboto, Sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -61,7 +70,7 @@ p.task-loc {
 p.task-need {
     margin: 20px 0px 0px 00px;
 
-    font-family: Roboto;
+    font-family: Roboto, Sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 24px;
@@ -76,4 +85,5 @@ p.task-need-high {
 p.task-need-low {
     color: #007048;
 }
+
 

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MessengerService, Conversation, Message } from '@app/messenger/messenger.service';
 import { LoginManagerService } from '@app/loginmanager.service';
@@ -20,11 +20,10 @@ export class MessengerChatComponent implements OnInit {
 
   constructor(
     private loginService : LoginManagerService,
-    private messengerService : MessengerService,
-    private formBuilder : FormBuilder
+    private messengerService : MessengerService
   ) {
-    this.sendMessageForm = this.formBuilder.group({
-      message: ''
+    this.sendMessageForm = new FormGroup({
+      'message': new FormControl('', [Validators.required, Validators.maxLength(1000)])
     })
     this.loginService.getLoggedInUser("/message").subscribe(principal => {
       this.user = principal;
@@ -62,16 +61,18 @@ export class MessengerChatComponent implements OnInit {
   }
 
   onSend(messageData) {
-    this.sendMessageForm.reset();
-    const message = new Message(
-      this.currConvo.sender.id,
-      this.currConvo.receiver.id,
-      messageData.message,
-      new Date().getTime()
-    )
-    this.messengerService.sendMessage(message).subscribe( response => {
-      this.currConvo.history.push(message)
-    })
+    if(this.sendMessageForm.status === "VALID") {
+      this.sendMessageForm.reset();
+      const message = new Message(
+        this.currConvo.sender.id,
+        this.currConvo.receiver.id,
+        messageData.message,
+        new Date().getTime()
+      )
+      this.messengerService.sendMessage(message).subscribe( response => {
+        this.currConvo.history.push(message)
+      })
+    }
   }
 
 }

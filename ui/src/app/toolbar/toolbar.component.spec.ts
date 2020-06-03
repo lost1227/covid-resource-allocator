@@ -21,7 +21,8 @@ describe('ToolbarComponent', () => {
         location : "someplace",
         userType : "volunteer",
         description : "",
-        skillset : ["unskilled"]
+        skillset : ["unskilled"],
+        photoId: -1
       })
     }
   }

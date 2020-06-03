@@ -7,24 +7,30 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
+
 @Configuration
 public class SupplyConfig {
-  Logger logger = LoggerFactory.getLogger(SupplyConfig.class);
-  @Bean
-  CommandLineRunner initSupplyDatabase(SupplyRepository supplyrepository) {
-    return args -> {
-      if(supplyrepository.findAll().isEmpty()) {
-        logger.info("Preloading " + supplyrepository.save(
-          new SupplyDAO(
-            "KN-95 Masks",
-            "Tempe, AZ",
-            1,
-            "In need of extra KN-95 medical grade masks.",
-            5L,
-            SupplyType.REQUEST,
-            0
-          )));
-      }
-    };
-  }
+    Logger logger = LoggerFactory.getLogger(SupplyConfig.class);
+    @Bean
+    CommandLineRunner initSupplyDatabase(SupplyRepository supplyrepository) {
+      return args -> {
+        if(supplyrepository.findAll().isEmpty()) {
+          SupplyDAO supply = supplyrepository.save(
+            new SupplyDAO(
+              new SupplyDAO.DescInfo(
+                "KN-95 Masks",
+                "Tempe, AZ",
+                "In need of extra KN-95 medical grade masks."
+              ),
+              1,
+              5L,
+              SupplyType.REQUEST,
+              0,
+              -1L
+          ));
+          logger.info("Preloading {}", supply);
+        }
+      };
+    }
 }

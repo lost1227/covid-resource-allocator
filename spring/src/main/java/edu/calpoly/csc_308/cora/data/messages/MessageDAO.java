@@ -4,18 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
 @Entity
 public class MessageDAO {
-    public @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue Long id;
     
-    public Long sender;
-    public Long receiver;
+    private Long sender;
+    private Long receiver;
     
-    public String messageText;
+    private String messageText;
 
-    public Long sentTs;
-
-    public MessageDAO() {}
+    private Long sentTs;
 
     public MessageDAO(Long sender, Long receiver, String messageText, Long sentTs) {
         this.sender = sender;

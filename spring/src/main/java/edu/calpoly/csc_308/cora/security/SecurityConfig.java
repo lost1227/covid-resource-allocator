@@ -1,6 +1,5 @@
 package edu.calpoly.csc_308.cora.security;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .httpBasic()
         .and()
             .authorizeRequests()
-                .antMatchers("/api/user/info", "/api/user/find", "/api/tasks", "/api/supplies").permitAll()
+                .antMatchers(
+                  "/api/photo/get",
+                  "/api/user/info",
+                  "/api/user/find", 
+                  "/api/tasks",
+                  "/api/task",
+                  "/api/supplies",
+                  "/api/supply",
+                  "/api/login/register"
+                ).permitAll()
                 .antMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
         .and()
@@ -41,8 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
+    private AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setPasswordEncoder(new BCryptPasswordEncoder());
         authenticationProvider.setUserDetailsService(userService);

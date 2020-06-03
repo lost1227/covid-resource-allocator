@@ -1,6 +1,7 @@
 package edu.calpoly.csc_308.cora.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -19,18 +20,19 @@ public class UserManager {
     }
 
     public User getUser(Long id) {
-        UserDAO dao = repo.findById(id).get();
-        User user = new User(dao.id, dao.name, dao.location, dao.userType, dao.description, dao.skillSet);
-
-        return user;
+        Optional<UserDAO> opDao = repo.findById(id);
+        if(!opDao.isPresent()) {
+          return null;
+        }
+        UserDAO dao = opDao.get();
+        return User.fromDao(dao);
     }
 
     public List<User> findUsersByName(String name) {
         List<UserDAO> daos = repo.findByName(name);
-        List<User> users = daos.stream()
-                                .map(dao -> new User(dao.id, dao.name, dao.location, dao.userType, dao.description, dao.skillSet))
-                                .collect(Collectors.toList());
-        return users;
+        return daos.stream()
+          .map(User::fromDao)
+          .collect(Collectors.toList());
     }
 
 }

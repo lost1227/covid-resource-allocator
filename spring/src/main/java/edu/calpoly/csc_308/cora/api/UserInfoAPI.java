@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.http.ResponseEntity;
+
+import edu.calpoly.csc_308.cora.api.response.FailResponse;
 import edu.calpoly.csc_308.cora.api.response.FindUsersResponse;
 import edu.calpoly.csc_308.cora.api.response.ResponseModel;
 import edu.calpoly.csc_308.cora.api.response.UserInfoResponse;
@@ -28,21 +31,23 @@ public class UserInfoAPI {
     }
 
     @GetMapping("/api/user/info")
-    public ResponseModel getUserInfo(@RequestParam Long id) {
-
+    public ResponseEntity<ResponseModel> getUserInfo(@RequestParam Long id) {
         User user = userManager.getUser(id);
-        UserInfoResponse response = new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet);
+        if(user == null) {
+          return ResponseEntity.badRequest().body(new FailResponse());
+        }
 
-        return response;
+        UserInfoResponse response = UserInfoResponse.fromUser(user);
+
+        return ResponseEntity.ok().body(response);
     }
 
     @GetMapping("/api/user/find")
     public ResponseModel findUserByName(@RequestParam String name) {
         List<User> users = userManager.findUsersByName(name);
         List<UserInfoResponse> responses = users.stream()
-                                                .map(user -> new UserInfoResponse(user.id, user.name, user.location, user.userType, user.description, user.skillSet))
+                                                .map(UserInfoResponse::fromUser)
                                                 .collect(Collectors.toList());
-        FindUsersResponse response = new FindUsersResponse(name, responses);
-        return response;
+        return new FindUsersResponse(name, responses);
     }
 }

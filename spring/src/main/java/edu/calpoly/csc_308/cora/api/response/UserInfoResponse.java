@@ -1,19 +1,29 @@
 package edu.calpoly.csc_308.cora.api.response;
 
-public class UserInfoResponse extends ResponseModel {
-    public Long id;
-    public String name;
-    public String location;
-    public String userType;
-    public String description;
-    public String[] skillset;
+import edu.calpoly.csc_308.cora.entities.User;
 
-    public UserInfoResponse(Long id, String name, String location, String userType, String description, String[] skillset) {
-        this.id = id;
-        this.name = name;
-        this.location = location;
-        this.userType = userType;
-        this.description = description;
-        this.skillset = skillset;
-    }
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=true)
+public class UserInfoResponse extends ResponseModel {
+  private final Long id;
+  private final String name;
+  private final String location;
+  private final String userType;
+  private final String description;
+  private final String[] skillset;
+  private final Long photoId;
+
+  public static UserInfoResponse fromUser(User user) {
+    return new UserInfoResponse(
+      user.getId(),
+      user.getName(),
+      user.getLocation(),
+      user.getUserType(),
+      user.getDescription(),
+      user.getSkillSet(), 
+      user.getPhotoId());
+  }
 }

@@ -25,7 +25,7 @@ describe('MessengerChatComponent', () => {
 
   let mockloginservice = {
     getLoggedInUser() : Observable<User> {
-      return of(new User(0, "Test User", "Test Location", "Test Type", "Test Description", []))
+      return of(new User(0, "Test User", "Test Location", "Test Type", "Test Description", [], -1))
     }
   }
 
@@ -52,8 +52,8 @@ describe('MessengerChatComponent', () => {
   it('should respond to conversation changes', () => {
     expect(component.currConvo).toBeFalsy();
     const testconvo = new Conversation(
-      new MessageUser(1, "User 1"),
-      new MessageUser(2, "User 2"),
+      new MessageUser(1, "User 1", -1),
+      new MessageUser(2, "User 2", -1),
       []
     )
     mockMessengerService.selectedConversation.next(testconvo);

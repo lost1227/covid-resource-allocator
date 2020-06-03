@@ -1,22 +1,19 @@
 package edu.calpoly.csc_308.cora.entities;
 
+import edu.calpoly.csc_308.cora.data.messages.MessageDAO;
 import lombok.Data;
 
 @Data
 public class Message {
-    public final Long id;
-    public final Long sender;
-    public final Long receiver;
-    
-    public final String messageText;
+  private final Long id;
+  private final Long sender;
+  private final Long receiver;
+  
+  private final String messageText;
 
-    public final Long sentTs;
+  private final Long sentTs;
 
-    public Message(Long id, Long sender, Long receiver, String messageText, Long sentTs) {
-        this.id = id;
-        this.sender = sender;
-        this.receiver = receiver;
-        this.messageText = messageText;
-        this.sentTs = sentTs;
-    }
+  public static Message fromDAO(MessageDAO dao) {
+    return new Message(dao.getId(), dao.getSender(), dao.getReceiver(), dao.getMessageText(), dao.getSentTs());
+  }
 }
