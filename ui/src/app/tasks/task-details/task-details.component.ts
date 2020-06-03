@@ -4,6 +4,7 @@ import { VolunteerTask } from '@app/entities/volunteer-task';
 import { TasksService } from '@app/tasks/tasks.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserinfoApiService } from '@app/api/userinfo-api.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-task-details',
@@ -18,7 +19,8 @@ export class TaskDetailsComponent implements OnInit {
   constructor(
     private route : ActivatedRoute,
     private tasksService : TasksService,
-    private usersService : UserinfoApiService
+    private usersService : UserinfoApiService,
+    public location : Location
   ) {
     this.route.paramMap.subscribe( params => {
       const id = Number(params.get('id'));
@@ -34,7 +36,9 @@ export class TaskDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  backClicked(){
+    this.location.back();
+  }
   getNeedClass() : string[] {
     if(!this.item) {
       return []
