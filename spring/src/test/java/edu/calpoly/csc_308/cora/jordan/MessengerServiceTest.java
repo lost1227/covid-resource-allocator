@@ -28,7 +28,7 @@ import edu.calpoly.csc_308.cora.services.Messenger;
 
 @AutoConfigureTestDatabase
 @SpringBootTest
-public class MessengerServiceTest {
+class MessengerServiceTest {
 
   @Autowired
   private Messenger messenger;

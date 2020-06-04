@@ -25,7 +25,7 @@ import edu.calpoly.csc_308.cora.api.request.VolunteerFilterRequestModel;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-public class TaskRepoLoopTest {
+class TaskRepoLoopTest {
   
   @Autowired
   private VolunteerTaskRepository repo;

@@ -24,7 +24,7 @@ import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-public class SupplyRepoLoopTest {
+class SupplyRepoLoopTest {
 
   @Autowired
   private SupplyRepository repo;
