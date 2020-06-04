@@ -4,6 +4,7 @@ import { User } from '@app/entities/user';
 import { Supply, SupplyType } from '@app/entities/supply';
 import { SuppliesService } from '../supplies.service';
 import { UserinfoApiService } from '@app/api/userinfo-api.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-supply-details',
@@ -18,7 +19,8 @@ export class SupplyDetailsComponent implements OnInit {
   constructor(
     private route : ActivatedRoute,
     private suppliesService : SuppliesService,
-    private usersService : UserinfoApiService
+    private usersService : UserinfoApiService,
+    public location : Location
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +34,9 @@ export class SupplyDetailsComponent implements OnInit {
       })
     }
     )
+  }
+  backClicked(){
+    this.location.back();
   }
 
   getTypeClass() : string[] {

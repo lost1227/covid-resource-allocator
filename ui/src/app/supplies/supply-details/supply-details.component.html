@@ -1,4 +1,7 @@
 <app-toolbar selected="Supplies"></app-toolbar>
+<mat-toolbar color="secondary">
+    <button mat-mini-fab id="backButton" (click)="backClicked()" color="primary"><mat-icon>arrow_back</mat-icon></button>
+</mat-toolbar>
 <div class="main" *ngIf="item">
   <div class="left-container">
     <img class="item-image" [src]="'/api/photo/get?id='+item.photoId" alt="image">
