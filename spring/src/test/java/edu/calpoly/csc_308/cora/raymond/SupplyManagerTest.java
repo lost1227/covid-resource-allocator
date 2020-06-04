@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.core.Is.is;
 
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 import edu.calpoly.csc_308.cora.data.supplies.SupplyDAO;
 import edu.calpoly.csc_308.cora.data.supplies.SupplyRepository;
 import edu.calpoly.csc_308.cora.entities.Supply;
+import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
 import edu.calpoly.csc_308.cora.services.SupplyManager;
 
 @AutoConfigureTestDatabase
@@ -39,31 +41,39 @@ public class SupplyManagerTest {
   @Test
   void testPostSupply() {
     assertThat(repo.findAll(), is(empty()));
-
-    Supply supply = new Supply();
-    supply = supp.postSupply(supply);
-    
+   
+    SupplyDAO supply = repo.save(
+          new SupplyDAO(
+            new SupplyDAO.DescInfo(
+              "KN-95 Masks",
+              "Tempe, AZ",
+              "In need of extra KN-95 medical grade masks."
+            ),
+            1,
+            5L,
+            SupplyType.REQUEST,
+            0,
+            -1L
+        ));
     List<Supply> storedSupplies = repo.findAll().stream().map(Supply::fromDAO).collect(Collectors.toList());
 
-    assertThat(storedSupplies, contains(new Supply[]{supply}));
+    assertThat(storedSupplies, contains(new Supply[]{}));
   }
   @Test
-  void testConvertSupply() {
-    Supply supply = new Supply();
-    supply.setName("Test");
-    supply.setLocation("Test");
-    supply.setNeed(0);
-    supply.setDescritpion("Test");
-    supply.setOwnerId(0);
-    SupplyDAO suppDAO = supp.convertSupplyDAO(supply);
-    assertThat(suppDAO.getName().equals(supply.getName()));
-    assertThat(suppDAO.getLocation().equals(supply.getLocation()));
-    assertThat(suppDAO.getNeed().equals(supply.getNeed()));
-    assertThat(suppDAO.getDescription().equals(supply.getDescription()));
-    assertThat(suppDAO.getOwnerId().equals(supply.getOwnerId()));
-    assertThat(suppDAO.getType().equals(supply.getType()));
-    assertThat(suppDAO.getQuantity().equals(supply.getQuantity()));
-    assertThat(suppDAO.getPhotoId().equals(supply.getPhotoId()));
+  void testSupply() {
+
+  Supply s = new Supply(null, "name", "Location", 0, "desc", 1L, SupplyType.REQUEST, 0, 2L);
+  SupplyDAO sd = supp.convertSupplyDAO(s);
+
+  assertThat(s.getName().equals(sd.getName())).isTrue();
+  assertThat(s.getLocation().equals(sd.getLocation())).isTrue();
+  assertThat(s.getNeed().equals(sd.getNeed())).isTrue();
+  assertThat(s.getDescription().equals(sd.getDescription())).isTrue();
+  assertThat(s.getOwnerId().equals(sd.getOwnerId())).isTrue();
+  assertThat(s.getType().equals(sd.getType())).isTrue();
+  assertThat(s.getQuantity().equals(sd.getQuantity())).isTrue();
+  assertThat(s.getPhotoId().equals(sd.getPhotoId())).isTrue();
+
   }
 
 }
