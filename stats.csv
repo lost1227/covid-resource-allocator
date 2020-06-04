@@ -1,0 +1,88 @@
+cb264d1,Jordan Powers,2020-06-01 14:41:41 -0700,Add tests,9,6,15
+2c61ed5,Jordan Powers,2020-06-01 13:42:45 -0700,Merge branch 'master' into test-jordan,0,0,0
+8bce8c8,Jordan Powers,2020-06-01 13:40:58 -0700,Add volunteer tasks repo loop test,8,4,12
+c651903,Jordan Powers,2020-06-01 12:32:50 -0700,Merge pull request #44 from lost1227/task-instructions,4,2,6
+a75aa09,Jordan Powers,2020-06-01 11:25:00 -0700,Merge branch 'master' into navigation,0,0,0
+3ce75e9,Drof Aras,2020-06-01 14:16:55 -0400,Merge branch 'Navigation',0,0,0
+c8622aa,Jordan Powers,2020-06-01 11:03:10 -0700,Update css,15,31,46
+deb3681,Drof Aras,2020-06-01 13:36:47 -0400,added back buttons,21,4,25
+9a2f6da,Drof Aras,2020-06-01 13:18:01 -0400,touchup,8,2,10
+fba07ab,Jordan Powers,2020-06-01 10:12:06 -0700,Show task instructions,59,18,77
+da82f40,Drof Aras,2020-06-01 13:08:39 -0400,linked and created post buttons,6,0,6
+f0f2f42,Jordan Powers,2020-06-01 09:27:46 -0700,Fix user-sensitive filters,7,4,11
+dd1b7b9,Jordan Powers,2020-05-30 19:52:40 -0700,Sonarcloud one last bug,6,0,6
+a55f5b8,Jordan Powers,2020-05-30 19:42:57 -0700,Typescript code smells,30,43,73
+b409bf4,Jordan Powers,2020-05-30 19:30:00 -0700,More java code smells,68,56,124
+fa7ce51,Drof Aras,2020-05-30 22:27:16 -0400,click Top left go back to volunteer page,1,1,2
+3d411ee,Jordan Powers,2020-05-30 18:08:14 -0700,Fix DAO code smells,50,75,125
+ec13d27,Jordan Powers,2020-05-30 17:36:31 -0700,Fix response code smells,53,54,107
+e3fb46e,Jordan Powers,2020-05-30 17:03:06 -0700,Fix font-family bugs,51,51,102
+aebadb3,Jordan Powers,2020-05-30 16:11:09 -0700,Sonarcloud security improvements,3,9,12
+bb2e610,Jordan Powers,2020-05-30 16:02:48 -0700,Sonarcloud bug fixes,99,80,179
+3ad31b3,Jordan Powers,2020-05-30 14:34:44 -0700,Add dropdown menu,36,5,41
+db8bc32,Jordan Powers,2020-05-30 13:48:59 -0700,Merge pull request #40 from lost1227/details-page,80,42,122
+acc5e89,Jordan Powers,2020-05-29 23:34:18 -0700,Volunteer task details,74,9,83
+ee3e82d,Jordan Powers,2020-05-29 22:55:37 -0700,Merge branch 'master' into details-page,0,0,0
+2ff018e,Jordan Powers,2020-05-29 22:46:10 -0700,Rename supply method,1,1,2
+ace9bb1,Jordan Powers,2020-05-29 22:43:28 -0700,Merge pull request #38 from lost1227/ViewTasks,0,0,0
+1af1223,Jordan Powers,2020-05-29 22:37:38 -0700,Fix toolbar typo,1,1,2
+e17f2f6,Jordan Powers,2020-05-29 18:21:51 -0700,Use JPA queries to filter supply items,56,35,91
+c527af8,Jordan Powers,2020-05-29 13:41:17 -0700,Volunteer Tasks show photos,53,31,84
+acc9e86,Jordan Powers,2020-05-29 13:26:10 -0700,Fix merge errors,5,5,10
+8b7460c,frawson10,2020-05-29 11:39:22 -0700,Merge branch 'EditUserInfo',0,0,0
+a0a2fe8,Jordan Powers,2020-05-29 11:34:22 -0700,Merge pull request #37 from lost1227/Request,0,0,0
+e0e4e6f,Jordan Powers,2020-05-29 11:32:38 -0700,Remove more bins,0,2,2
+ae0e7c3,Jordan Powers,2020-05-29 11:30:59 -0700,Remove bin,2,402,404
+a1e3222,Jordan Powers,2020-05-29 11:28:01 -0700,Use user profile photo,1,3,4
+d148108,Drof Aras,2020-05-29 14:27:06 -0400,fixed post,1,1,2
+ef34d76,frawson10,2020-05-29 11:23:57 -0700,fix edit-account html,5,8,13
+1eff46c,Ryan Madamba,2020-05-29 11:17:39 -0700,Updated implementation for Volunteer Filters,31,88,119
+e95868b,Jordan Powers,2020-05-29 11:04:15 -0700,Merge branch 'master' into details-page,0,0,0
+f4cef86,Drof Aras,2020-05-29 14:00:23 -0400,added qunatity box,11,6,17
+1a7909e,Jordan Powers,2020-05-29 10:48:23 -0700,Merge pull request #35 from lost1227/register-user,0,0,0
+a3d0d95,Jordan Powers,2020-05-29 10:46:32 -0700,Merge pull request #34 from lost1227/photos-api,37,17,54
+5c3ec0d,Ryan Madamba,2020-05-29 05:45:36 -0700,Cleaning up,0,0,0
+e5bed2a,Ryan Madamba,2020-05-29 04:19:25 -0700,Updating Api Controller,9,14,23
+9c10cfc,Jordan Powers,2020-05-28 21:37:56 -0700,Link to signup page,8,0,8
+ff11896,Jordan Powers,2020-05-28 20:44:24 -0700,Add photos to users,85,33,118
+2b7f091,Jordan Powers,2020-05-28 18:35:47 -0700,Client-side form,52,5,57
+7b8eafa,Jordan Powers,2020-05-28 17:00:09 -0700,Server-side api,21,8,29
+b02eb23,Jordan Powers,2020-05-27 11:57:28 -0700,Add photo manager,37,8,45
+1b278f4,Jordan Powers,2020-05-27 09:43:32 -0700,Delete extraneous file,0,0,0
+8a06290,Jordan Powers,2020-05-27 09:35:47 -0700,Merge pull request #26 from lost1227/cleanup,0,0,0
+bbd3eff,Ryan Madamba,2020-05-27 09:04:12 -0700,Update with newest master (again),5,23,28
+f5bf8f5,Ryan Madamba,2020-05-27 08:50:04 -0700,Update with newest master,415,49,464
+e45fc5c,Ryan Madamba,2020-05-27 07:56:41 -0700,Updated View Tasks,81,7,88
+0b41329,Jordan Powers,2020-05-25 22:06:37 -0700,Add supply details page,60,7,67
+3ac3649,Jordan Powers,2020-05-22 12:04:44 -0700,Finish messaging CSS,42,17,59
+3c42ed0,Drof Aras,2020-05-22 12:10:57 -0700,merged with cleanup,0,467,467
+ecc77a0,Jordan Powers,2020-05-20 11:54:33 -0700,Improve message page CSS,55,30,85
+f9376d5,Drof Aras,2020-05-20 11:17:47 -0700,add supplies,501,17,518
+a520767,Jordan Powers,2020-05-19 17:18:14 -0700,Merge branch 'master' into cleanup,0,0,0
+cc7ac8d,Jordan Powers,2020-05-19 17:01:55 -0700,Refactor api structure,149,104,253
+b7689e8,Jordan Powers,2020-05-18 12:03:55 -0700,Should be fixed now (again),1,1,2
+0d26842,Jordan Powers,2020-05-18 08:44:00 -0700,Remove Material Sidenav,7,6,13
+fb9c0ca,frawson10,2020-05-18 08:19:31 -0700,add java obects,30,0,30
+a64c5c4,Jordan Powers,2020-05-17 23:09:56 -0700,Add authentication,113,60,173
+e7d78ce,Jordan Powers,2020-05-15 12:20:35 -0700,Add new conversation starter,108,32,140
+3d1dd95,Jordan Powers,2020-05-15 08:44:36 -0700,Start on Messenger,191,10,201
+d9c7cc2,Drof Aras,2020-05-14 13:01:19 -0700,formatted post page,9,0,9
+9b276ab,Drof Aras,2020-05-14 12:07:07 -0700,fixed redirect and bars under title,3,3,6
+0a077ed,Drof Aras,2020-05-14 11:40:12 -0700,routed the buttons,48,36,84
+3e1ac3f,Jordan Powers,2020-04-28 22:11:19 -0700,Mock api service in testcase,8,1,9
+ce5575f,Jordan Powers,2020-04-24 17:04:56 -0700,Add api service to ui,19,15,34
+bb2228a,Jordan Powers,2020-04-23 11:52:04 -0700,Update tests,1,5,6
+d4f368d,Jordan Powers,2020-04-22 22:12:46 -0700,Add javascript to sonarcloud,13,1,14
+4f2e1ba,Jordan Powers,2020-04-22 20:54:57 -0700,Travis cache node modules,3,1,4
+e429a0e,Jordan Powers,2020-04-20 10:23:14 -0700,Add test coverage to SonarCloud,1,0,1
+ac47c86,Jordan Powers,2020-04-17 14:33:12 -0700,Regenerated key,1,4,5
+c7d12af,Jordan Powers,2020-04-17 14:14:59 -0700,Wrong key. Oops,2,1,3
+3c8cc00,Jordan Powers,2020-04-17 12:50:33 -0700,Update Sonarcloud settings in build.gradle,1,3,4
+ea64528,Jordan Powers,2020-04-17 12:38:23 -0700,Setup Sonarcloud,13,0,13
+ce82f90,Jordan Powers,2020-04-17 12:23:08 -0700,Add executable property,0,0,0
+3ecbdb7,Ryan Madamba,2020-04-15 11:01:00 -0700,Adding User Stories and Function Requirements,13,0,13
+fecea7c,Luis703,2020-04-10 12:14:54 -0700,adding Garcia-FR and Garcia-US,8,0,8
+0a12b54,Raymond Lenz,2020-04-10 12:00:14 -0700,Add Lenz-FR,0,0,0
+ffa72a3,frawson10,2020-04-10 11:38:37 -0700,Add User Stories Finian Rawson,7,0,7
+e5d81e5,Jordan Powers,2020-04-10 11:32:14 -0700,Add Powers-US User Stories,3,0,3
+0ad31ed,Jordan Powers,2020-04-08 08:51:09 -0700,README,4,0,4

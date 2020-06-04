@@ -89,8 +89,6 @@ class MessengerAPITest {
 
         SuccessResponse value = entity.getBody();
 
-        //System.out.println("Interactions" + Mockito.mockingDetails(userService).printInvocations());
-
         assertThat(value).isNotNull();
         assertThat(value.getOk()).isTrue();
     }

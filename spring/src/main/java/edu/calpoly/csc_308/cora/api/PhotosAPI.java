@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 import javax.imageio.ImageIO;
+import java.awt.Color;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -85,11 +86,13 @@ public class PhotosAPI {
   private static byte[] convertToJpg(byte[] image) throws IOException {
     try(ByteArrayInputStream bais = new ByteArrayInputStream(image);
         ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-      BufferedImage img = ImageIO.read(bais);
-      if(img == null) {
+      BufferedImage in = ImageIO.read(bais);
+      if(in == null) {
         throw new IllegalArgumentException("Not an image");
       }
-      ImageIO.write(img, "jpg", baos);
+      BufferedImage out = new BufferedImage(in.getWidth(), in.getHeight(), BufferedImage.TYPE_INT_RGB);
+      out.createGraphics().drawImage(in, 0, 0, Color.WHITE, null);
+      ImageIO.write(out, "jpg", baos);
       baos.flush();
       return baos.toByteArray();
     }
