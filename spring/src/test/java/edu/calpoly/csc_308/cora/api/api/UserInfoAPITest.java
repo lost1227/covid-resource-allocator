@@ -1,5 +1,6 @@
-package edu.calpoly.csc_308.cora.api;
+package edu.calpoly.csc_308.cora.api.api;
 
+import edu.calpoly.csc_308.cora.api.MessengerAPI;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
