@@ -71,7 +71,7 @@ class SuppliesAPITest {
         );
 
         assertThat(response).isNotNull();
-        assertThat(response.getOk()).isTrue();
+        assertThat(response.isOk()).isTrue();
     }
     
 }
