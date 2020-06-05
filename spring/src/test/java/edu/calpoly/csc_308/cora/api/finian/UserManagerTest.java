@@ -7,33 +7,17 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.core.Is.is;
 import org.hamcrest.collection.IsEmptyCollection;
 import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.collection.IsIterableContainingInAnyOrder.containsInAnyOrder;
-import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-
-
 import java.util.List;
-import java.util.stream.Collectors;
 
 import edu.calpoly.csc_308.cora.data.users.UserDAO;
 import edu.calpoly.csc_308.cora.data.users.UserRepository;
 import edu.calpoly.csc_308.cora.entities.User;
 import edu.calpoly.csc_308.cora.services.UserManager;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
