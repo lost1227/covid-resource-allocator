@@ -92,7 +92,7 @@ class MessengerAPITest {
         SuccessResponse value = entity.getBody();
 
         assertThat(value).isNotNull();
-        assertThat(value.getOk()).isTrue();
+        assertThat(value.isOk()).isTrue();
     }
 
     @Test
@@ -102,6 +102,6 @@ class MessengerAPITest {
             ListConversationsResponse.class);
         
         assertThat(response).isNotNull();
-        assertThat(response.getOk()).isTrue();
+        assertThat(response.isOk()).isTrue();
     }
 }
