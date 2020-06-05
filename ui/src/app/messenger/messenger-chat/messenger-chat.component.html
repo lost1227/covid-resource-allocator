@@ -8,12 +8,16 @@
   </div>
   <div class="input-box">
     <form [formGroup]="sendMessageForm" (ngSubmit)="onSend(sendMessageForm.value)">
+      <div class="error" *ngIf="(sendMessageForm.touched || sendMessageForm.dirty) && sendMessageForm.status == 'INVALID'">
+        <p>Invalid message!</p>
+        <p>Messages must be less than 1000 characters and cannot be empty.</p>
+      </div>
       <div class="sendcontainer">
         <div class="composer">
           <textarea class="messagecomposer" formControlName="message" (keypress)="onKeypress($event)"></textarea>
         </div>
         <div class="send">
-          <button mat-button class="sendmessage" type="submit">Send</button>
+          <button mat-button class="sendmessage" type="submit" [disabled]="sendMessageForm.status == 'INVALID'">Send</button>
         </div>
       </div>
     </form>
