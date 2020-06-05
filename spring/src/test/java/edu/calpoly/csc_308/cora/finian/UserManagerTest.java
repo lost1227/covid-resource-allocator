@@ -1,4 +1,4 @@
-package edu.calpoly.csc_308.cora.api.finian;
+package edu.calpoly.csc_308.cora.finian;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 

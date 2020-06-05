@@ -1,4 +1,5 @@
-package edu.calpoly.csc_308.cora.api.finian;
+package edu.calpoly.csc_308.cora.finian;
+
 import edu.calpoly.csc_308.cora.api.LoginAPI;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -77,7 +78,7 @@ public class LoginAPITest {
                 "http://localhost:"+this.port+"/api/user/info?id={id}",
                 UserInfoResponse.class, 0);
         assertThat(value).isNotNull();
-        assertThat(value.getOk()).isTrue();
+        assertThat(value.isOk()).isTrue();
         assertThat(value.getId()).isEqualTo(0L);
     }
 
