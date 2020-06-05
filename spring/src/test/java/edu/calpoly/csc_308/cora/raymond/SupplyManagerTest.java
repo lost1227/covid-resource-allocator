@@ -42,22 +42,11 @@ public class SupplyManagerTest {
   void testPostSupply() {
     assertThat(repo.findAll(), is(empty()));
    
-    SupplyDAO supply = repo.save(
-          new SupplyDAO(
-            new SupplyDAO.DescInfo(
-              "KN-95 Masks",
-              "Tempe, AZ",
-              "In need of extra KN-95 medical grade masks."
-            ),
-            1,
-            5L,
-            SupplyType.REQUEST,
-            0,
-            -1L
-        ));
+    Supply s = new Supply(null, "name", "Location", 0, "desc", 1L, SupplyType.REQUEST, 0, 2L);
+    repo.save(supp.convertSupplyDAO(s));
     List<Supply> storedSupplies = repo.findAll().stream().map(Supply::fromDAO).collect(Collectors.toList());
 
-    assertThat(storedSupplies, contains(new Supply[]{}));
+    assertThat(storedSupplies, contains(new Supply[]{s}));
   }
   @Test
   void testSupply() {
