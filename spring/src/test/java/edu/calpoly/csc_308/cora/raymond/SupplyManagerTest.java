@@ -42,7 +42,7 @@ class SupplyManagerTest {
   void testPostSupply() {
     assertThat(repo.findAll(), is(empty()));
    
-    Supply s = new Supply(null, "name", "Location", 0, "desc", 1L, SupplyType.REQUEST, 0, 2L);
+    Supply s = new Supply(8L, "name", "Location", 0, "desc", 1L, SupplyType.REQUEST, 0, 2L);
     repo.save(supp.convertSupplyDAO(s));
     List<Supply> storedSupplies = repo.findAll().stream().map(Supply::fromDAO).collect(Collectors.toList());
 
