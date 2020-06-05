@@ -1,9 +1,9 @@
 package edu.calpoly.csc_308.cora.luis;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import edu.calpoly.csc_308.cora.data.supplies.SupplyDAO;
 import edu.calpoly.csc_308.cora.entities.Supply.SupplyType;
@@ -16,7 +16,7 @@ class ChangeSupplyInfoTest {
 		SupplyDAO item = new SupplyDAO(desc, 1, 12345, SupplyType.OFFER, 47, (long)123);
 		item.setQuantity(39);
 		Integer quantity = item.getQuantity();
-		assertThat(quantity.equals(39));
+		assertThat(quantity, equalTo(39));
 	}
 
 	@Test
@@ -25,6 +25,6 @@ class ChangeSupplyInfoTest {
 		SupplyDAO item = new SupplyDAO(desc, 1, 12345, SupplyType.OFFER, 47, (long)123);
 		item.setDescription("Food in a can.  Expires in 2026.");
 		String description = item.getDescription();
-		assertThat(description.equals("Food in a can.  Expires in 2026."));
+		assertThat(description, equalTo("Food in a can.  Expires in 2026."));
 	}
 }

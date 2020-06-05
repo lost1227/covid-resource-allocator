@@ -25,7 +25,6 @@ import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskDAO;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskRepository;
 import edu.calpoly.csc_308.cora.api.response.VolunteerTasksResponse;
 import edu.calpoly.csc_308.cora.api.response.VolunteerTasksResponse.VolunteerTaskResponse;
-import edu.calpoly.csc_308.cora.api.response.UserInfoResponse;
 
 @RestController
 public class TasksAPI {
@@ -33,8 +32,6 @@ public class TasksAPI {
     @Autowired
     VolunteerTaskRepository repo;
     
-    UserInfoResponse user;
-
     Logger logger = LoggerFactory.getLogger(TasksAPI.class);
 
     @PostMapping("/api/tasks")

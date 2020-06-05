@@ -48,7 +48,10 @@ class MessengerServiceTest {
     Message message = new Message(-1L, 4L, 5L, "test message", 1000L);
     message = messenger.postMessage(message);
     
-    List<Message> storedMessages = repo.findAll().stream().map(Message::fromDAO).collect(Collectors.toList());
+    List<Message> storedMessages = 
+      repo.findAll()
+      .stream().map(Message::fromDAO)
+      .collect(Collectors.toList());
 
     assertThat(storedMessages, contains(new Message[]{message}));
   }

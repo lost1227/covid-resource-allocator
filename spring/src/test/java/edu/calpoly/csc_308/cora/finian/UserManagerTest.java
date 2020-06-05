@@ -7,11 +7,12 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.core.Is.is;
-import org.hamcrest.collection.IsEmptyCollection;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import java.util.List;
 
 import edu.calpoly.csc_308.cora.data.users.UserDAO;
@@ -54,13 +55,11 @@ public class UserManagerTest {
                         encoder.encode("test123"))
         );
         User testUser = new User(dao.getId(), dao.getName(), dao.getLocation(), dao.getUserType(), dao.getDescription(), dao.getSkillSet(), dao.getPhotoId());
-        Long userID = dao.getId();
+        
         List<User> userList = userManager.findUsersByName("Testy");
-        User user1 = userList.get(0);
+        assertThat(userList, contains(new User[]{testUser}));
 
-        assertThat(user1.getId(), equalTo(userID));
-        assertThat(userList, not(IsEmptyCollection.empty()));
-        assertThat(repo.findAll(), not(is(empty())));
+        assertThat(repo.findAll(), contains(new UserDAO[]{dao}));
 
     }
 
@@ -81,13 +80,11 @@ public class UserManagerTest {
                         encoder.encode("test123"))
         );
         User testUser = new User(dao.getId(), dao.getName(), dao.getLocation(), dao.getUserType(), dao.getDescription(), dao.getSkillSet(), dao.getPhotoId());
-        Long userID = dao.getId();
-        //List<User> userList = userManager.findUsersByName("Testy");
-        User user1 = userManager.getUser(userID);
 
-        assertThat(user1.getId(), equalTo(userID));
-        //assertThat(userList, not(IsEmptyCollection.empty()));
-        assertThat(repo.findAll(), not(is(empty())));
+        User user1 = userManager.getUser(dao.getId());
+
+        assertThat(user1, equalTo(testUser));
+        assertThat(repo.findAll(), contains(new UserDAO[]{dao}));
 
     }
 

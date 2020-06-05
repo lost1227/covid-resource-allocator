@@ -1,9 +1,10 @@
-package edu.calpoly.csc_308.cora.api;
+package edu.calpoly.csc_308.cora.finian;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -14,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import org.mockito.Mockito;
 
+import edu.calpoly.csc_308.cora.api.UserInfoAPI;
 import edu.calpoly.csc_308.cora.api.response.UserInfoResponse;
 import edu.calpoly.csc_308.cora.entities.User;
 import edu.calpoly.csc_308.cora.services.UserManager;
@@ -25,7 +27,7 @@ class UserInfoAPITest {
     private int port;
     
     @Autowired
-    private MessengerAPI api;
+    private UserInfoAPI api;
 
     @Autowired
     private TestRestTemplate restTemplate;
