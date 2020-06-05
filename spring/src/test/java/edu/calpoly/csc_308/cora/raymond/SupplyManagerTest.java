@@ -25,7 +25,7 @@ import edu.calpoly.csc_308.cora.services.SupplyManager;
 
 @AutoConfigureTestDatabase
 @SpringBootTest
-public class SupplyManagerTest {
+class SupplyManagerTest {
 
     @Autowired
     private SupplyManager supp;
@@ -41,23 +41,15 @@ public class SupplyManagerTest {
   @Test
   void testPostSupply() {
     assertThat(repo.findAll(), is(empty()));
-   
-    Supply supply = supp.postSupply(
-      new Supply(
-      -1L, 
-      "KN-95 Masks",
-      "Tempe, AZ",
-      1,
-      "In need of extra KN-95 medical grade masks.",
-      5L,
-      SupplyType.REQUEST,
-      0,
-      -1L
-    ));
+
+    Supply s = new Supply(8L, "name", "Location", 0, "desc", 1L, SupplyType.REQUEST, 0, 2L);
+    repo.save(supp.convertSupplyDAO(s));
     List<Supply> storedSupplies = repo.findAll().stream().map(Supply::fromDAO).collect(Collectors.toList());
 
-    assertThat(storedSupplies, contains(new Supply[]{supply}));
+    assertThat(storedSupplies, contains(new Supply[]{s}));
+
   }
+
   @Test
   void testSupply() {
 

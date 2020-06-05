@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VolunteerFilterRequestModel {
 
-  private String[] enabledFilters;
+  private String[] enabledFilters = {};
 
-  private String[] skillSet;
-  private Integer need;
-  private String location;
-  private String search;
+  private String[] skillSet = {};
+  private Integer need = 0;
+  private String location = "";
+  private String search = "";
 
 }
