@@ -25,7 +25,7 @@ import edu.calpoly.csc_308.cora.services.SupplyManager;
 
 @AutoConfigureTestDatabase
 @SpringBootTest
-public class SupplyManagerTest {
+class SupplyManagerTest {
 
     @Autowired
     private SupplyManager supp;
@@ -48,6 +48,7 @@ public class SupplyManagerTest {
 
     assertThat(storedSupplies, contains(new Supply[]{s}));
   }
+
   @Test
   void testSupply() {
 
