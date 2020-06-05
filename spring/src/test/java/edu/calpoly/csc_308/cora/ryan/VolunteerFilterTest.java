@@ -7,36 +7,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.core.Is.is;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import edu.calpoly.csc_308.cora.api.TasksAPI;
-import edu.calpoly.csc_308.cora.api.request.PostVolunteerTaskRequestModel;
 import edu.calpoly.csc_308.cora.api.request.VolunteerFilterRequestModel;
-import edu.calpoly.csc_308.cora.api.response.VolunteerTasksResponse;
-import edu.calpoly.csc_308.cora.api.response.VolunteerTasksResponse.VolunteerTaskResponse;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskDAO;
 import edu.calpoly.csc_308.cora.data.tasks.VolunteerTaskRepository;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureTestDatabase
+@SpringBootTest
 class VolunteerFilterTest {
-
-    @LocalServerPort
-    private int port;
-    
-    @Autowired
-    private TasksAPI api;
 
     @Autowired
     VolunteerTaskRepository repo;
@@ -48,7 +35,7 @@ class VolunteerFilterTest {
 
     @Test
     void contextLoads() throws Exception {
-        assertThat(api).isNotNull();
+        assertThat(repo).isNotNull();
     }
 
     @Test
@@ -86,73 +73,27 @@ class VolunteerFilterTest {
 
         assertThat(repo.findAll(), contains(taskList.toArray()));
 
-        /*VolunteerFilterRequestModel request1 = new VolunteerFilterRequestModel([], [], -1, "", "");
-        VolunteerFilterRequestModel request2 = new VolunteerFilterRequestModel([], [], -1, "Long Beach, CA", "");
-        VolunteerFilterRequestModel request3 = new VolunteerFilterRequestModel([], [], 1, "", "");
-        VolunteerFilterRequestModel request4 = new VolunteerFilterRequestModel([], [], -1, "", "Supply");
-        */
-
         VolunteerFilterRequestModel request1 = new VolunteerFilterRequestModel();
 
         VolunteerFilterRequestModel request2 = new VolunteerFilterRequestModel();
+        request2.setEnabledFilters(new String[]{"location"});
         request2.setLocation("Long Beach, CA");
 
         VolunteerFilterRequestModel request3 = new VolunteerFilterRequestModel();
+        request3.setEnabledFilters(new String[]{"need"});
         request3.setNeed(1);
 
         VolunteerFilterRequestModel request4 = new VolunteerFilterRequestModel();
+        request4.setEnabledFilters(new String[]{"search"});
         request4.setSearch("Supply");
 
-        assertEquals(taskList, repo.tasksByFilters(request1));
-        assertEquals(taskList, repo.tasksByFilters(request2));
+        assertThat(repo.tasksByFilters(request1), contains(taskList.toArray()));
+        assertThat(repo.tasksByFilters(request2), contains(taskList.toArray()));
 
         taskList.remove(1);
-        assertEquals(taskList, repo.tasksByFilters(request3));
-        assertEquals(taskList, repo.tasksByFilters(request4));
+        assertThat(repo.tasksByFilters(request3), contains(taskList.toArray()));
+        assertThat(repo.tasksByFilters(request4), contains(taskList.toArray()));
 
         
-    }
-
-    @Test
-    void testPostVolunteerTask() {
-        assertThat(repo.findAll(), is(empty()));
-
-        List<VolunteerTaskDAO> taskList = new ArrayList<>();
-        
-        taskList.add(new VolunteerTaskDAO(
-                new VolunteerTaskDAO.TaskProfile(
-                    "Pamphlet Designer",
-                    "Long Beach, CA",
-                    "A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.",
-                    "Message me for more instructions."
-                    ),
-                0,
-                4L,
-                "Graphic Design",
-                -1L
-                ));
-        
-        PostVolunteerTaskRequestModel request1 = new PostVolunteerTaskRequestModel();
-        request1.setName("Pamphlet Designer");
-        request1.setLocation("Long Beach, CA");
-        request1.setNeed(0);
-        request1.setDescription("A graphic designer is needed to assist in the creation of informational brocures and pamphlets that will help inform the community on how to stay safe during the COVID pandemic.");
-        request1.setInstructions("Message me for more instructions.");
-        request1.setOwnerId(4L);
-        request1.setSkillNeeded("Graphic Design");
-        request1.setPhotoId(-1L);
-        
-        api.postVolunteerTask(request1);
-
-        VolunteerFilterRequestModel filter1 = new VolunteerFilterRequestModel();
-
-        List<VolunteerTaskResponse> tasks = taskList.stream().map( dao ->
-          new VolunteerTaskResponse(dao.getId(), dao.getName(), 
-                    dao.getLocation(), dao.getNeed(), dao.getDescription(), 
-                    dao.getInstructions(), dao.getOwnerId(), dao.getSkillNeeded(), 
-                    dao.getPhotoId())
-                    ).collect(Collectors.toList());
-        
-        assertEquals(new VolunteerTasksResponse(tasks), api.getVolunteerTasks(filter1));
     }
 }

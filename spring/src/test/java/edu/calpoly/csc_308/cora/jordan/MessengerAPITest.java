@@ -94,7 +94,7 @@ class MessengerAPITest {
         //System.out.println("Interactions" + Mockito.mockingDetails(userService).printInvocations());
 
         assertThat(value).isNotNull();
-        assertThat(value.getOk()).isTrue();
+        assertThat(value.isOk()).isTrue();
     }
 
     @Test
@@ -104,6 +104,6 @@ class MessengerAPITest {
             ListConversationsResponse.class);
         
         assertThat(response).isNotNull();
-        assertThat(response.getOk()).isTrue();
+        assertThat(response.isOk()).isTrue();
     }
 }

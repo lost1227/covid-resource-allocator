@@ -52,7 +52,7 @@ class UserInfoAPITest {
             UserInfoResponse.class, 0);
         
         assertThat(value).isNotNull();
-        assertThat(value.getOk()).isTrue();
+        assertThat(value.isOk()).isTrue();
         assertThat(value.getId()).isEqualTo(0L);
     }
 }
