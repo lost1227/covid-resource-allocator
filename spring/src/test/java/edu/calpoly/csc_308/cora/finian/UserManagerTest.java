@@ -24,7 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @AutoConfigureTestDatabase
 @SpringBootTest
-public class UserManagerTest {
+class UserManagerTest {
     @Autowired
     private UserManager userManager;
 
