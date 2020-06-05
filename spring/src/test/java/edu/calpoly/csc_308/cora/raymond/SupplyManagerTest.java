@@ -47,6 +47,7 @@ class SupplyManagerTest {
     List<Supply> storedSupplies = repo.findAll().stream().map(Supply::fromDAO).collect(Collectors.toList());
 
     assertThat(storedSupplies, contains(new Supply[]{s}));
+
   }
 
   @Test
